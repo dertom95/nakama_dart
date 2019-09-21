@@ -19,539 +19,182 @@ syntax = "proto3";
 
 package nakama.api;
 
-import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
-import "protoc-gen-swagger/options/annotations.proto";
-import "github.com/heroiclabs/nakama-common/api/api.proto";
-
-option go_package = "apigrpc";
-
-option java_multiple_files = true;
-option java_outer_classname = "NakamaApiGrpc";
-option java_package = "com.heroiclabs.nakama.api";
-
-option csharp_namespace = "Nakama";
-
-option objc_class_prefix = "NKPB";
-
-option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
-  info: {
-    title: "Nakama API v2";
-    version: "2.0";
-    contact: {
-      name: "The Nakama Authors & Contributors";
-      url: "https://github.com/heroiclabs/nakama";
-      email: "hello@heroiclabs.com";
-    };
-  };
-  host: "127.0.0.1:7350";
-  external_docs: {
-    url: "https://heroiclabs.com/docs";
-    description: "Nakama server documentation";
-  }
-  schemes: HTTP;
-  consumes: "application/json";
-  produces: "application/json";
-  security_definitions: {
-    security: {
-      key: "BasicAuth";
-      value: {
-        type: TYPE_BASIC;
-      }
-    }
-    security: {
-      // Made up security so we can apply "Bearer <JWT_TOKEN>"
-      key: "BearerJwt";
-      value: {
-        type: TYPE_INVALID;
-      }
-    }
-    security: {
-      key: "HttpKeyAuth";
-      value: {
-        type: TYPE_API_KEY;
-        in: IN_HEADER;
-        name: "http_key";
-      }
-    }
-  }
-  // Default security definition.
-  security: {
-    security_requirement: {
-      key: "BearerJwt";
-      value: {};
-    }
-  }
-};
+import "api.proto";
 
 /**
  * The Nakama RPC protocol service built with GRPC.
  */
 service Nakama {
   // Add friends by ID or username to a user's account.
-  rpc AddFriends (api.AddFriendsRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).post = "/v2/friend";
-  }
+  rpc AddFriends (api.AddFriendsRequest) returns (google.protobuf.Empty)
 
   // Add users to a group.
-  rpc AddGroupUsers (api.AddGroupUsersRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).post = "/v2/group/{group_id}/add";
-  }
-
+  rpc AddGroupUsers (api.AddGroupUsersRequest) returns (google.protobuf.Empty)
   // Authenticate a user with a custom id against the server.
-  rpc AuthenticateCustom (api.AuthenticateCustomRequest) returns (api.Session) {
-    option (google.api.http) = {
-      post: "/v2/account/authenticate/custom",
-      body: "account"
-    };
-    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-      security: {
-        security_requirement: {
-          key: "BasicAuth";
-          value: {};
-        }
-      }
-    };
-  }
+  rpc AuthenticateCustom (api.AuthenticateCustomRequest) returns (api.Session)
 
   // Authenticate a user with a device id against the server.
-  rpc AuthenticateDevice (api.AuthenticateDeviceRequest) returns (api.Session) {
-    option (google.api.http) = {
-      post: "/v2/account/authenticate/device",
-      body: "account"
-    };
-    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-      security: {
-        security_requirement: {
-          key: "BasicAuth";
-          value: {};
-        }
-      }
-    };
-  }
-
+  rpc AuthenticateDevice (api.AuthenticateDeviceRequest) returns (api.Session)
   // Authenticate a user with an email+password against the server.
-  rpc AuthenticateEmail (api.AuthenticateEmailRequest) returns (api.Session) {
-    option (google.api.http) = {
-      post: "/v2/account/authenticate/email",
-      body: "account"
-    };
-    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-      security: {
-        security_requirement: {
-          key: "BasicAuth";
-          value: {};
-        }
-      }
-    };
-  }
+  rpc AuthenticateEmail (api.AuthenticateEmailRequest) returns (api.Session)
 
   // Authenticate a user with a Facebook OAuth token against the server.
-  rpc AuthenticateFacebook (api.AuthenticateFacebookRequest) returns (api.Session) {
-    option (google.api.http) = {
-      post: "/v2/account/authenticate/facebook",
-      body: "account"
-    };
-    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-      security: {
-        security_requirement: {
-          key: "BasicAuth";
-          value: {};
-        }
-      }
-    };
-  }
+  rpc AuthenticateFacebook (api.AuthenticateFacebookRequest) returns (api.Session)
 
   // Authenticate a user with Apple's GameCenter against the server.
-  rpc AuthenticateGameCenter (api.AuthenticateGameCenterRequest) returns (api.Session) {
-    option (google.api.http) = {
-      post: "/v2/account/authenticate/gamecenter",
-      body: "account"
-    };
-    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-      security: {
-        security_requirement: {
-          key: "BasicAuth";
-          value: {};
-        }
-      }
-    };
-  }
+  rpc AuthenticateGameCenter (api.AuthenticateGameCenterRequest) returns (api.Session)
 
   // Authenticate a user with Google against the server.
-  rpc AuthenticateGoogle (api.AuthenticateGoogleRequest) returns (api.Session) {
-    option (google.api.http) = {
-      post: "/v2/account/authenticate/google",
-      body: "account"
-    };
-    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-      security: {
-        security_requirement: {
-          key: "BasicAuth";
-          value: {};
-        }
-      }
-    };
-  }
+  rpc AuthenticateGoogle (api.AuthenticateGoogleRequest) returns (api.Session)
 
   // Authenticate a user with Steam against the server.
-  rpc AuthenticateSteam (api.AuthenticateSteamRequest) returns (api.Session) {
-    option (google.api.http) = {
-      post: "/v2/account/authenticate/steam",
-      body: "account"
-    };
-    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-      security: {
-        security_requirement: {
-          key: "BasicAuth";
-          value: {};
-        }
-      }
-    };
-  }
+  rpc AuthenticateSteam (api.AuthenticateSteamRequest) returns (api.Session)
 
   // Block one or more users by ID or username.
-  rpc BlockFriends (api.BlockFriendsRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/friend/block"
-    };
-  }
+  rpc BlockFriends (api.BlockFriendsRequest) returns (google.protobuf.Empty)
 
   // Create a new group with the current user as the owner.
-  rpc CreateGroup (api.CreateGroupRequest) returns (api.Group) {
-    option (google.api.http) = {
-      post: "/v2/group",
-      body: "*"
-    };
-  }
+  rpc CreateGroup (api.CreateGroupRequest) returns (api.Group)
 
   // Delete one or more users by ID or username.
-  rpc DeleteFriends (api.DeleteFriendsRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).delete = "/v2/friend";
-  }
-
+  rpc DeleteFriends (api.DeleteFriendsRequest) returns (google.protobuf.Empty)
   // Delete a group by ID.
-  rpc DeleteGroup (api.DeleteGroupRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).delete = "/v2/group/{group_id}";
-  }
-
+  rpc DeleteGroup (api.DeleteGroupRequest) returns (google.protobuf.Empty)
   // Delete a leaderboard record.
-  rpc DeleteLeaderboardRecord (api.DeleteLeaderboardRecordRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).delete = "/v2/leaderboard/{leaderboard_id}";
-  }
+  rpc DeleteLeaderboardRecord (api.DeleteLeaderboardRecordRequest) returns (google.protobuf.Empty)
 
   // Delete one or more notifications for the current user.
-  rpc DeleteNotifications (api.DeleteNotificationsRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).delete = "/v2/notification";
-  }
+  rpc DeleteNotifications (api.DeleteNotificationsRequest) returns (google.protobuf.Empty)
 
   // Delete one or more objects by ID or username.
-  rpc DeleteStorageObjects (api.DeleteStorageObjectsRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      put: "/v2/storage/delete",
-      body: "*"
-    };
-  }
+  rpc DeleteStorageObjects (api.DeleteStorageObjectsRequest) returns (google.protobuf.Empty)
 
   // Fetch the current user's account.
-  rpc GetAccount (google.protobuf.Empty) returns (api.Account) {
-    option (google.api.http).get = "/v2/account";
-  }
+  rpc GetAccount (google.protobuf.Empty) returns (api.Account)
 
   // Fetch zero or more users by ID and/or username.
-  rpc GetUsers (api.GetUsersRequest) returns (api.Users) {
-    option (google.api.http).get = "/v2/user";
-  }
+  rpc GetUsers (api.GetUsersRequest) returns (api.Users)
 
   // A healthcheck which load balancers can use to check the service.
-  rpc Healthcheck (google.protobuf.Empty) returns (google.protobuf.Empty) {
-    option (google.api.http).get = "/healthcheck";
-  }
+  rpc Healthcheck (google.protobuf.Empty) returns (google.protobuf.Empty)
 
   // Import Facebook friends and add them to a user's account.
-  rpc ImportFacebookFriends (api.ImportFacebookFriendsRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/friend/facebook",
-      body: "account"
-    };
-  }
+  rpc ImportFacebookFriends (api.ImportFacebookFriendsRequest) returns (google.protobuf.Empty)
 
   // Immediately join an open group, or request to join a closed one.
-  rpc JoinGroup (api.JoinGroupRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).post = "/v2/group/{group_id}/join";
-  }
+  rpc JoinGroup (api.JoinGroupRequest) returns (google.protobuf.Empty)
 
   // Attempt to join an open and running tournament.
-  rpc JoinTournament (api.JoinTournamentRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).post = "/v2/tournament/{tournament_id}/join";
-  }
+  rpc JoinTournament (api.JoinTournamentRequest) returns (google.protobuf.Empty)
 
   // Kick a set of users from a group.
-  rpc KickGroupUsers (api.KickGroupUsersRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).post = "/v2/group/{group_id}/kick";
-  }
+  rpc KickGroupUsers (api.KickGroupUsersRequest) returns (google.protobuf.Empty)
 
   // Leave a group the user is a member of.
-  rpc LeaveGroup (api.LeaveGroupRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).post = "/v2/group/{group_id}/leave";
-  }
+  rpc LeaveGroup (api.LeaveGroupRequest) returns (google.protobuf.Empty)
 
   // Add a custom ID to the social profiles on the current user's account.
-  rpc LinkCustom (api.AccountCustom) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/link/custom",
-      body: "*"
-    };
-  }
+  rpc LinkCustom (api.AccountCustom) returns (google.protobuf.Empty)
 
   // Add a device ID to the social profiles on the current user's account.
-  rpc LinkDevice (api.AccountDevice) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/link/device",
-      body: "*"
-    };
-  }
+  rpc LinkDevice (api.AccountDevice) returns (google.protobuf.Empty)
 
   // Add an email+password to the social profiles on the current user's account.
-  rpc LinkEmail (api.AccountEmail) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/link/email",
-      body: "*"
-    };
-  }
+  rpc LinkEmail (api.AccountEmail) returns (google.protobuf.Empty)
 
   // Add Facebook to the social profiles on the current user's account.
-  rpc LinkFacebook (api.LinkFacebookRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/link/facebook",
-      body: "account"
-    };
-  }
+  rpc LinkFacebook (api.LinkFacebookRequest) returns (google.protobuf.Empty)
 
   // Add Apple's GameCenter to the social profiles on the current user's account.
-  rpc LinkGameCenter (api.AccountGameCenter) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/link/gamecenter",
-      body: "*"
-    };
-  }
+  rpc LinkGameCenter (api.AccountGameCenter) returns (google.protobuf.Empty)
 
   // Add Google to the social profiles on the current user's account.
-  rpc LinkGoogle (api.AccountGoogle) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/link/google",
-      body: "*"
-    };
-  }
+  rpc LinkGoogle (api.AccountGoogle) returns (google.protobuf.Empty)
 
   // Add Steam to the social profiles on the current user's account.
-  rpc LinkSteam (api.AccountSteam) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/link/steam",
-      body: "*"
-    };
-  }
+  rpc LinkSteam (api.AccountSteam) returns (google.protobuf.Empty)
 
   // List a channel's message history.
-  rpc ListChannelMessages (api.ListChannelMessagesRequest) returns (api.ChannelMessageList) {
-    option (google.api.http).get = "/v2/channel/{channel_id}";
-  }
+  rpc ListChannelMessages (api.ListChannelMessagesRequest) returns (api.ChannelMessageList)
 
   // List all friends for the current user.
-  rpc ListFriends (api.ListFriendsRequest) returns (api.FriendList) {
-    option (google.api.http).get = "/v2/friend";
-  }
-
+  rpc ListFriends (api.ListFriendsRequest) returns (api.FriendList)
   // List groups based on given filters.
-  rpc ListGroups (api.ListGroupsRequest) returns (api.GroupList) {
-    option (google.api.http).get = "/v2/group";
-  }
+  rpc ListGroups (api.ListGroupsRequest) returns (api.GroupList)
 
   // List all users that are part of a group.
-  rpc ListGroupUsers (api.ListGroupUsersRequest) returns (api.GroupUserList) {
-    option (google.api.http).get = "/v2/group/{group_id}/user";
-  }
+  rpc ListGroupUsers (api.ListGroupUsersRequest) returns (api.GroupUserList)
 
   // List leaderboard records.
-  rpc ListLeaderboardRecords (api.ListLeaderboardRecordsRequest) returns (api.LeaderboardRecordList) {
-    option (google.api.http).get = "/v2/leaderboard/{leaderboard_id}";
-  }
+  rpc ListLeaderboardRecords (api.ListLeaderboardRecordsRequest) returns (api.LeaderboardRecordList)
 
   // List leaderboard records that belong to a user.
-  rpc ListLeaderboardRecordsAroundOwner (api.ListLeaderboardRecordsAroundOwnerRequest) returns (api.LeaderboardRecordList) {
-    option (google.api.http).get = "/v2/leaderboard/{leaderboard_id}/owner/{owner_id}";
-  }
+  rpc ListLeaderboardRecordsAroundOwner (api.ListLeaderboardRecordsAroundOwnerRequest) returns (api.LeaderboardRecordList)
 
   // Fetch list of running matches.
-  rpc ListMatches (api.ListMatchesRequest) returns (api.MatchList) {
-    option (google.api.http).get = "/v2/match";
-  }
+  rpc ListMatches (api.ListMatchesRequest) returns (api.MatchList)
 
   // Fetch list of notifications.
-  rpc ListNotifications (api.ListNotificationsRequest) returns (api.NotificationList) {
-    option (google.api.http).get = "/v2/notification";
-  }
+  rpc ListNotifications (api.ListNotificationsRequest) returns (api.NotificationList)
 
   // List publicly readable storage objects in a given collection.
-  rpc ListStorageObjects (api.ListStorageObjectsRequest) returns (api.StorageObjectList) {
-    option (google.api.http) = {
-      get: "/v2/storage/{collection}",
-      additional_bindings {
-        get: "/v2/storage/{collection}/{user_id}"
-      }
-    };
-  }
+  rpc ListStorageObjects (api.ListStorageObjectsRequest) returns (api.StorageObjectList)
 
   // List current or upcoming tournaments.
-  rpc ListTournaments (api.ListTournamentsRequest) returns (api.TournamentList) {
-    option (google.api.http).get = "/v2/tournament";
-  }
+  rpc ListTournaments (api.ListTournamentsRequest) returns (api.TournamentList)
 
   // List tournament records.
-  rpc ListTournamentRecords (api.ListTournamentRecordsRequest) returns (api.TournamentRecordList) {
-    option (google.api.http).get = "/v2/tournament/{tournament_id}";
-  }
+  rpc ListTournamentRecords (api.ListTournamentRecordsRequest) returns (api.TournamentRecordList)
 
   // List tournament records for a given owner.
-  rpc ListTournamentRecordsAroundOwner (api.ListTournamentRecordsAroundOwnerRequest) returns (api.TournamentRecordList) {
-    option (google.api.http).get = "/v2/tournament/{tournament_id}/owner/{owner_id}";
-  }
+  rpc ListTournamentRecordsAroundOwner (api.ListTournamentRecordsAroundOwnerRequest) returns (api.TournamentRecordList)
 
   // List groups the current user belongs to.
-  rpc ListUserGroups (api.ListUserGroupsRequest) returns (api.UserGroupList) {
-    option (google.api.http).get = "/v2/user/{user_id}/group";
-  }
+  rpc ListUserGroups (api.ListUserGroupsRequest) returns (api.UserGroupList)
 
   // Promote a set of users in a group to the next role up.
-  rpc PromoteGroupUsers (api.PromoteGroupUsersRequest) returns (google.protobuf.Empty) {
-    option (google.api.http).post = "/v2/group/{group_id}/promote";
-  }
+  rpc PromoteGroupUsers (api.PromoteGroupUsersRequest) returns (google.protobuf.Empty)
 
   // Get storage objects.
-  rpc ReadStorageObjects (api.ReadStorageObjectsRequest) returns (api.StorageObjects) {
-    option (google.api.http) = {
-      post: "/v2/storage",
-      body: "*"
-    };
-  }
+  rpc ReadStorageObjects (api.ReadStorageObjectsRequest) returns (api.StorageObjects)
 
   // Execute a Lua function on the server.
-  rpc RpcFunc (api.Rpc) returns (api.Rpc) {
-    option (google.api.http) = {
-      post: "/v2/rpc/{id}",
-      body: "payload",
-      additional_bindings {
-        get: "/v2/rpc/{id}"
-      }
-    };
-    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-      // Either HTTP key in query param or Bearer authentication.
-      security: {
-        security_requirement: {
-          key: "HttpKeyAuth";
-          value: {};
-        }
-        security_requirement: {
-          key: "BearerJwt";
-          value: {};
-        }
-      }
-    };
-  }
+  rpc RpcFunc (api.Rpc) returns (api.Rpc)
 
   // Remove the custom ID from the social profiles on the current user's account.
-  rpc UnlinkCustom (api.AccountCustom) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/unlink/custom",
-      body: "*"
-    };
-  }
+  rpc UnlinkCustom (api.AccountCustom) returns (google.protobuf.Empty)
 
   // Remove the device ID from the social profiles on the current user's account.
-  rpc UnlinkDevice (api.AccountDevice) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/unlink/device",
-      body: "*"
-    };
-  }
+  rpc UnlinkDevice (api.AccountDevice) returns (google.protobuf.Empty)
 
   // Remove the email+password from the social profiles on the current user's account.
-  rpc UnlinkEmail (api.AccountEmail) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/unlink/email",
-      body: "*"
-    };
-  }
+  rpc UnlinkEmail (api.AccountEmail) returns (google.protobuf.Empty)
 
   // Remove Facebook from the social profiles on the current user's account.
-  rpc UnlinkFacebook (api.AccountFacebook) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/unlink/facebook",
-      body: "*"
-    };
-  }
+  rpc UnlinkFacebook (api.AccountFacebook) returns (google.protobuf.Empty)
 
   // Remove Apple's GameCenter from the social profiles on the current user's account.
-  rpc UnlinkGameCenter (api.AccountGameCenter) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/unlink/gamecenter",
-      body: "*"
-    };
-  }
+  rpc UnlinkGameCenter (api.AccountGameCenter) returns (google.protobuf.Empty)
 
   // Remove Google from the social profiles on the current user's account.
-  rpc UnlinkGoogle (api.AccountGoogle) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/unlink/google",
-      body: "*"
-    };
-  }
+  rpc UnlinkGoogle (api.AccountGoogle) returns (google.protobuf.Empty)
 
   // Remove Steam from the social profiles on the current user's account.
-  rpc UnlinkSteam (api.AccountSteam) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/v2/account/unlink/steam",
-      body: "*"
-    };
-  }
+  rpc UnlinkSteam (api.AccountSteam) returns (google.protobuf.Empty)
 
   // Update fields in the current user's account.
-  rpc UpdateAccount (api.UpdateAccountRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      put: "/v2/account",
-      body: "*"
-    };
-  }
+  rpc UpdateAccount (api.UpdateAccountRequest) returns (google.protobuf.Empty)
 
   // Update fields in a given group.
-  rpc UpdateGroup (api.UpdateGroupRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      put: "/v2/group/{group_id}",
-      body: "*"
-    };
-  }
+  rpc UpdateGroup (api.UpdateGroupRequest) returns (google.protobuf.Empty)
 
   // Write a record to a leaderboard.
-  rpc WriteLeaderboardRecord (api.WriteLeaderboardRecordRequest) returns (api.LeaderboardRecord) {
-    option (google.api.http) = {
-      post: "/v2/leaderboard/{leaderboard_id}",
-      body: "record"
-    };
-  }
+  rpc WriteLeaderboardRecord (api.WriteLeaderboardRecordRequest) returns (api.LeaderboardRecord)
 
   // Write objects into the storage engine.
-  rpc WriteStorageObjects (api.WriteStorageObjectsRequest) returns (api.StorageObjectAcks) {
-    option (google.api.http) = {
-      put: "/v2/storage",
-      body: "*"
-    };
-  }
+  rpc WriteStorageObjects (api.WriteStorageObjectsRequest) returns (api.StorageObjectAcks)
 
   // Write a record to a tournament.
-  rpc WriteTournamentRecord (api.WriteTournamentRecordRequest) returns (api.LeaderboardRecord) {
-    option (google.api.http) = {
-      put: "/v2/tournament/{tournament_id}",
-      body: "record"
-    };
-  }
+  rpc WriteTournamentRecord (api.WriteTournamentRecordRequest) returns (api.LeaderboardRecord)
 }

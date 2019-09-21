@@ -27,174 +27,174 @@ import "api.proto";
  */
 service Nakama {
   // Add friends by ID or username to a user's account.
-  rpc AddFriends (api.AddFriendsRequest) returns (google.protobuf.Empty)
+  rpc AddFriends (AddFriendsRequest) returns (google.protobuf.Empty);
 
   // Add users to a group.
-  rpc AddGroupUsers (api.AddGroupUsersRequest) returns (google.protobuf.Empty)
+  rpc AddGroupUsers (AddGroupUsersRequest) returns (google.protobuf.Empty);
   // Authenticate a user with a custom id against the server.
-  rpc AuthenticateCustom (api.AuthenticateCustomRequest) returns (api.Session)
+  rpc AuthenticateCustom (AuthenticateCustomRequest) returns (Session);
 
   // Authenticate a user with a device id against the server.
-  rpc AuthenticateDevice (api.AuthenticateDeviceRequest) returns (api.Session)
+  rpc AuthenticateDevice (AuthenticateDeviceRequest) returns (Session);
   // Authenticate a user with an email+password against the server.
-  rpc AuthenticateEmail (api.AuthenticateEmailRequest) returns (api.Session)
+  rpc AuthenticateEmail (AuthenticateEmailRequest) returns (Session);
 
   // Authenticate a user with a Facebook OAuth token against the server.
-  rpc AuthenticateFacebook (api.AuthenticateFacebookRequest) returns (api.Session)
+  rpc AuthenticateFacebook (AuthenticateFacebookRequest) returns (Session);
 
   // Authenticate a user with Apple's GameCenter against the server.
-  rpc AuthenticateGameCenter (api.AuthenticateGameCenterRequest) returns (api.Session)
+  rpc AuthenticateGameCenter (AuthenticateGameCenterRequest) returns (Session);
 
   // Authenticate a user with Google against the server.
-  rpc AuthenticateGoogle (api.AuthenticateGoogleRequest) returns (api.Session)
+  rpc AuthenticateGoogle (AuthenticateGoogleRequest) returns (Session);
 
   // Authenticate a user with Steam against the server.
-  rpc AuthenticateSteam (api.AuthenticateSteamRequest) returns (api.Session)
+  rpc AuthenticateSteam (AuthenticateSteamRequest) returns (Session);
 
   // Block one or more users by ID or username.
-  rpc BlockFriends (api.BlockFriendsRequest) returns (google.protobuf.Empty)
+  rpc BlockFriends (BlockFriendsRequest) returns (google.protobuf.Empty);
 
   // Create a new group with the current user as the owner.
-  rpc CreateGroup (api.CreateGroupRequest) returns (api.Group)
+  rpc CreateGroup (CreateGroupRequest) returns (Group);
 
   // Delete one or more users by ID or username.
-  rpc DeleteFriends (api.DeleteFriendsRequest) returns (google.protobuf.Empty)
+  rpc DeleteFriends (DeleteFriendsRequest) returns (google.protobuf.Empty);
   // Delete a group by ID.
-  rpc DeleteGroup (api.DeleteGroupRequest) returns (google.protobuf.Empty)
+  rpc DeleteGroup (DeleteGroupRequest) returns (google.protobuf.Empty);
   // Delete a leaderboard record.
-  rpc DeleteLeaderboardRecord (api.DeleteLeaderboardRecordRequest) returns (google.protobuf.Empty)
+  rpc DeleteLeaderboardRecord (DeleteLeaderboardRecordRequest) returns (google.protobuf.Empty);
 
   // Delete one or more notifications for the current user.
-  rpc DeleteNotifications (api.DeleteNotificationsRequest) returns (google.protobuf.Empty)
+  rpc DeleteNotifications (DeleteNotificationsRequest) returns (google.protobuf.Empty);
 
   // Delete one or more objects by ID or username.
-  rpc DeleteStorageObjects (api.DeleteStorageObjectsRequest) returns (google.protobuf.Empty)
+  rpc DeleteStorageObjects (DeleteStorageObjectsRequest) returns (google.protobuf.Empty);
 
   // Fetch the current user's account.
-  rpc GetAccount (google.protobuf.Empty) returns (api.Account)
+  rpc GetAccount (google.protobuf.Empty) returns (Account);
 
   // Fetch zero or more users by ID and/or username.
-  rpc GetUsers (api.GetUsersRequest) returns (api.Users)
+  rpc GetUsers (GetUsersRequest) returns (Users);
 
   // A healthcheck which load balancers can use to check the service.
-  rpc Healthcheck (google.protobuf.Empty) returns (google.protobuf.Empty)
+  rpc Healthcheck (google.protobuf.Empty) returns (google.protobuf.Empty);
 
   // Import Facebook friends and add them to a user's account.
-  rpc ImportFacebookFriends (api.ImportFacebookFriendsRequest) returns (google.protobuf.Empty)
+  rpc ImportFacebookFriends (ImportFacebookFriendsRequest) returns (google.protobuf.Empty);
 
   // Immediately join an open group, or request to join a closed one.
-  rpc JoinGroup (api.JoinGroupRequest) returns (google.protobuf.Empty)
+  rpc JoinGroup (JoinGroupRequest) returns (google.protobuf.Empty);
 
   // Attempt to join an open and running tournament.
-  rpc JoinTournament (api.JoinTournamentRequest) returns (google.protobuf.Empty)
+  rpc JoinTournament (JoinTournamentRequest) returns (google.protobuf.Empty);
 
   // Kick a set of users from a group.
-  rpc KickGroupUsers (api.KickGroupUsersRequest) returns (google.protobuf.Empty)
+  rpc KickGroupUsers (KickGroupUsersRequest) returns (google.protobuf.Empty);
 
   // Leave a group the user is a member of.
-  rpc LeaveGroup (api.LeaveGroupRequest) returns (google.protobuf.Empty)
+  rpc LeaveGroup (LeaveGroupRequest) returns (google.protobuf.Empty);
 
   // Add a custom ID to the social profiles on the current user's account.
-  rpc LinkCustom (api.AccountCustom) returns (google.protobuf.Empty)
+  rpc LinkCustom (AccountCustom) returns (google.protobuf.Empty);
 
   // Add a device ID to the social profiles on the current user's account.
-  rpc LinkDevice (api.AccountDevice) returns (google.protobuf.Empty)
+  rpc LinkDevice (AccountDevice) returns (google.protobuf.Empty);
 
   // Add an email+password to the social profiles on the current user's account.
-  rpc LinkEmail (api.AccountEmail) returns (google.protobuf.Empty)
+  rpc LinkEmail (AccountEmail) returns (google.protobuf.Empty);
 
   // Add Facebook to the social profiles on the current user's account.
-  rpc LinkFacebook (api.LinkFacebookRequest) returns (google.protobuf.Empty)
+  rpc LinkFacebook (LinkFacebookRequest) returns (google.protobuf.Empty);
 
   // Add Apple's GameCenter to the social profiles on the current user's account.
-  rpc LinkGameCenter (api.AccountGameCenter) returns (google.protobuf.Empty)
+  rpc LinkGameCenter (AccountGameCenter) returns (google.protobuf.Empty);
 
   // Add Google to the social profiles on the current user's account.
-  rpc LinkGoogle (api.AccountGoogle) returns (google.protobuf.Empty)
+  rpc LinkGoogle (AccountGoogle) returns (google.protobuf.Empty);
 
   // Add Steam to the social profiles on the current user's account.
-  rpc LinkSteam (api.AccountSteam) returns (google.protobuf.Empty)
+  rpc LinkSteam (AccountSteam) returns (google.protobuf.Empty);
 
   // List a channel's message history.
-  rpc ListChannelMessages (api.ListChannelMessagesRequest) returns (api.ChannelMessageList)
+  rpc ListChannelMessages (ListChannelMessagesRequest) returns (ChannelMessageList);
 
   // List all friends for the current user.
-  rpc ListFriends (api.ListFriendsRequest) returns (api.FriendList)
+  rpc ListFriends (ListFriendsRequest) returns (FriendList);
   // List groups based on given filters.
-  rpc ListGroups (api.ListGroupsRequest) returns (api.GroupList)
+  rpc ListGroups (ListGroupsRequest) returns (GroupList);
 
   // List all users that are part of a group.
-  rpc ListGroupUsers (api.ListGroupUsersRequest) returns (api.GroupUserList)
+  rpc ListGroupUsers (ListGroupUsersRequest) returns (GroupUserList);
 
   // List leaderboard records.
-  rpc ListLeaderboardRecords (api.ListLeaderboardRecordsRequest) returns (api.LeaderboardRecordList)
+  rpc ListLeaderboardRecords (ListLeaderboardRecordsRequest) returns (LeaderboardRecordList);
 
   // List leaderboard records that belong to a user.
-  rpc ListLeaderboardRecordsAroundOwner (api.ListLeaderboardRecordsAroundOwnerRequest) returns (api.LeaderboardRecordList)
+  rpc ListLeaderboardRecordsAroundOwner (ListLeaderboardRecordsAroundOwnerRequest) returns (LeaderboardRecordList);
 
   // Fetch list of running matches.
-  rpc ListMatches (api.ListMatchesRequest) returns (api.MatchList)
+  rpc ListMatches (ListMatchesRequest) returns (MatchList);
 
   // Fetch list of notifications.
-  rpc ListNotifications (api.ListNotificationsRequest) returns (api.NotificationList)
+  rpc ListNotifications (ListNotificationsRequest) returns (NotificationList);
 
   // List publicly readable storage objects in a given collection.
-  rpc ListStorageObjects (api.ListStorageObjectsRequest) returns (api.StorageObjectList)
+  rpc ListStorageObjects (ListStorageObjectsRequest) returns (StorageObjectList);
 
   // List current or upcoming tournaments.
-  rpc ListTournaments (api.ListTournamentsRequest) returns (api.TournamentList)
+  rpc ListTournaments (ListTournamentsRequest) returns (TournamentList);
 
   // List tournament records.
-  rpc ListTournamentRecords (api.ListTournamentRecordsRequest) returns (api.TournamentRecordList)
+  rpc ListTournamentRecords (ListTournamentRecordsRequest) returns (TournamentRecordList);
 
   // List tournament records for a given owner.
-  rpc ListTournamentRecordsAroundOwner (api.ListTournamentRecordsAroundOwnerRequest) returns (api.TournamentRecordList)
+  rpc ListTournamentRecordsAroundOwner (ListTournamentRecordsAroundOwnerRequest) returns (TournamentRecordList);
 
   // List groups the current user belongs to.
-  rpc ListUserGroups (api.ListUserGroupsRequest) returns (api.UserGroupList)
+  rpc ListUserGroups (ListUserGroupsRequest) returns (UserGroupList);
 
   // Promote a set of users in a group to the next role up.
-  rpc PromoteGroupUsers (api.PromoteGroupUsersRequest) returns (google.protobuf.Empty)
+  rpc PromoteGroupUsers (PromoteGroupUsersRequest) returns (google.protobuf.Empty);
 
   // Get storage objects.
-  rpc ReadStorageObjects (api.ReadStorageObjectsRequest) returns (api.StorageObjects)
+  rpc ReadStorageObjects (ReadStorageObjectsRequest) returns (StorageObjects);
 
   // Execute a Lua function on the server.
-  rpc RpcFunc (api.Rpc) returns (api.Rpc)
+  rpc RpcFunc (Rpc) returns (Rpc);
 
   // Remove the custom ID from the social profiles on the current user's account.
-  rpc UnlinkCustom (api.AccountCustom) returns (google.protobuf.Empty)
+  rpc UnlinkCustom (AccountCustom) returns (google.protobuf.Empty);
 
   // Remove the device ID from the social profiles on the current user's account.
-  rpc UnlinkDevice (api.AccountDevice) returns (google.protobuf.Empty)
+  rpc UnlinkDevice (AccountDevice) returns (google.protobuf.Empty);
 
   // Remove the email+password from the social profiles on the current user's account.
-  rpc UnlinkEmail (api.AccountEmail) returns (google.protobuf.Empty)
+  rpc UnlinkEmail (AccountEmail) returns (google.protobuf.Empty);
 
   // Remove Facebook from the social profiles on the current user's account.
-  rpc UnlinkFacebook (api.AccountFacebook) returns (google.protobuf.Empty)
+  rpc UnlinkFacebook (AccountFacebook) returns (google.protobuf.Empty);
 
   // Remove Apple's GameCenter from the social profiles on the current user's account.
-  rpc UnlinkGameCenter (api.AccountGameCenter) returns (google.protobuf.Empty)
+  rpc UnlinkGameCenter (AccountGameCenter) returns (google.protobuf.Empty);
 
   // Remove Google from the social profiles on the current user's account.
-  rpc UnlinkGoogle (api.AccountGoogle) returns (google.protobuf.Empty)
+  rpc UnlinkGoogle (AccountGoogle) returns (google.protobuf.Empty);
 
   // Remove Steam from the social profiles on the current user's account.
-  rpc UnlinkSteam (api.AccountSteam) returns (google.protobuf.Empty)
+  rpc UnlinkSteam (AccountSteam) returns (google.protobuf.Empty);
 
   // Update fields in the current user's account.
-  rpc UpdateAccount (api.UpdateAccountRequest) returns (google.protobuf.Empty)
+  rpc UpdateAccount (UpdateAccountRequest) returns (google.protobuf.Empty);
 
   // Update fields in a given group.
-  rpc UpdateGroup (api.UpdateGroupRequest) returns (google.protobuf.Empty)
+  rpc UpdateGroup (UpdateGroupRequest) returns (google.protobuf.Empty);
 
   // Write a record to a leaderboard.
-  rpc WriteLeaderboardRecord (api.WriteLeaderboardRecordRequest) returns (api.LeaderboardRecord)
+  rpc WriteLeaderboardRecord (WriteLeaderboardRecordRequest) returns (LeaderboardRecord);
 
   // Write objects into the storage engine.
-  rpc WriteStorageObjects (api.WriteStorageObjectsRequest) returns (api.StorageObjectAcks)
+  rpc WriteStorageObjects (WriteStorageObjectsRequest) returns (StorageObjectAcks);
 
   // Write a record to a tournament.
-  rpc WriteTournamentRecord (api.WriteTournamentRecordRequest) returns (api.LeaderboardRecord)
+  rpc WriteTournamentRecord (WriteTournamentRecordRequest) returns (LeaderboardRecord);
 }

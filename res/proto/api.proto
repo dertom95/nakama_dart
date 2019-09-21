@@ -22,16 +22,6 @@ package nakama.api;
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
-option go_package = "api";
-
-option java_multiple_files = true;
-option java_outer_classname = "NakamaApi";
-option java_package = "com.heroiclabs.nakama.api";
-
-option csharp_namespace = "Nakama";
-
-option objc_class_prefix = "NKPB";
-
 // A user with additional account details. Always the current user.
 message Account {
   // The user object.

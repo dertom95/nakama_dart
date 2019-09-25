@@ -13,3 +13,4 @@ doc/api/
 # intellij idea
 .idea
 *.iml
+data

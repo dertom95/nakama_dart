@@ -1,14 +1,23 @@
+import 'package:nakama_client/src/generated/proto/api.pb.dart' as prefix0;
+import 'package:nakama_client/src/generated/proto/apigrpc.pbgrpc.dart';
+
 import 'session.dart';
 import 'socket_client.dart';
 
 import 'models.dart';
 
-abstract class Client {
+class BasicNakamaClient {
+  NakamaClient _client;
+
+  BasicNakamaClient(this._client);
+
   /**
    * Disconnects the client. This function kills all outgoing exchanges immediately without waiting.
    * If arguments provided, This function kills all outgoing exchanges and waits until the channel is shutdown.
    */
-  Future<void> disconnect({int timeout, Duration unit});
+  Future<void> disconnect({int timeout, Duration unit}) {
+
+  };
   /**
    * Create a new socket from the client with the default port set to 7350.
    * @optional param port The port number of the server. Default should be 7350.

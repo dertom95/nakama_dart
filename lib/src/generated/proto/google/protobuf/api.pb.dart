@@ -20,7 +20,7 @@ class Api extends $pb.GeneratedMessage {
     ..pc<Method>(2, 'methods', $pb.PbFieldType.PM, subBuilder: Method.create)
     ..pc<$2.Option>(3, 'options', $pb.PbFieldType.PM, subBuilder: $2.Option.create)
     ..aOS(4, 'version')
-    ..a<$0.SourceContext>(5, 'sourceContext', $pb.PbFieldType.OM, defaultOrMaker: $0.SourceContext.getDefault, subBuilder: $0.SourceContext.create)
+    ..aOM<$0.SourceContext>(5, 'sourceContext', subBuilder: $0.SourceContext.create)
     ..pc<Mixin>(6, 'mixins', $pb.PbFieldType.PM, subBuilder: Mixin.create)
     ..e<$2.Syntax>(7, 'syntax', $pb.PbFieldType.OE, defaultOrMaker: $2.Syntax.SYNTAX_PROTO2, valueOf: $2.Syntax.valueOf, enumValues: $2.Syntax.values)
     ..hasRequiredFields = false
@@ -37,33 +37,55 @@ class Api extends $pb.GeneratedMessage {
   static Api create() => Api._();
   Api createEmptyInstance() => create();
   static $pb.PbList<Api> createRepeated() => $pb.PbList<Api>();
-  static Api getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Api getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Api>(create);
   static Api _defaultInstance;
 
-  $core.String get name => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
   set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.List<Method> get methods => $_getList(1);
 
+  @$pb.TagNumber(3)
   $core.List<$2.Option> get options => $_getList(2);
 
-  $core.String get version => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get version => $_getSZ(3);
+  @$pb.TagNumber(4)
   set version($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasVersion() => $_has(3);
+  @$pb.TagNumber(4)
   void clearVersion() => clearField(4);
 
+  @$pb.TagNumber(5)
   $0.SourceContext get sourceContext => $_getN(4);
+  @$pb.TagNumber(5)
   set sourceContext($0.SourceContext v) { setField(5, v); }
+  @$pb.TagNumber(5)
   $core.bool hasSourceContext() => $_has(4);
+  @$pb.TagNumber(5)
   void clearSourceContext() => clearField(5);
+  @$pb.TagNumber(5)
+  $0.SourceContext ensureSourceContext() => $_ensure(4);
 
+  @$pb.TagNumber(6)
   $core.List<Mixin> get mixins => $_getList(5);
 
+  @$pb.TagNumber(7)
   $2.Syntax get syntax => $_getN(6);
+  @$pb.TagNumber(7)
   set syntax($2.Syntax v) { setField(7, v); }
+  @$pb.TagNumber(7)
   $core.bool hasSyntax() => $_has(6);
+  @$pb.TagNumber(7)
   void clearSyntax() => clearField(7);
 }
 
@@ -90,39 +112,65 @@ class Method extends $pb.GeneratedMessage {
   static Method create() => Method._();
   Method createEmptyInstance() => create();
   static $pb.PbList<Method> createRepeated() => $pb.PbList<Method>();
-  static Method getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Method getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Method>(create);
   static Method _defaultInstance;
 
-  $core.String get name => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
   set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
-  $core.String get requestTypeUrl => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get requestTypeUrl => $_getSZ(1);
+  @$pb.TagNumber(2)
   set requestTypeUrl($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasRequestTypeUrl() => $_has(1);
+  @$pb.TagNumber(2)
   void clearRequestTypeUrl() => clearField(2);
 
-  $core.bool get requestStreaming => $_get(2, false);
+  @$pb.TagNumber(3)
+  $core.bool get requestStreaming => $_getBF(2);
+  @$pb.TagNumber(3)
   set requestStreaming($core.bool v) { $_setBool(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasRequestStreaming() => $_has(2);
+  @$pb.TagNumber(3)
   void clearRequestStreaming() => clearField(3);
 
-  $core.String get responseTypeUrl => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get responseTypeUrl => $_getSZ(3);
+  @$pb.TagNumber(4)
   set responseTypeUrl($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasResponseTypeUrl() => $_has(3);
+  @$pb.TagNumber(4)
   void clearResponseTypeUrl() => clearField(4);
 
-  $core.bool get responseStreaming => $_get(4, false);
+  @$pb.TagNumber(5)
+  $core.bool get responseStreaming => $_getBF(4);
+  @$pb.TagNumber(5)
   set responseStreaming($core.bool v) { $_setBool(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasResponseStreaming() => $_has(4);
+  @$pb.TagNumber(5)
   void clearResponseStreaming() => clearField(5);
 
+  @$pb.TagNumber(6)
   $core.List<$2.Option> get options => $_getList(5);
 
+  @$pb.TagNumber(7)
   $2.Syntax get syntax => $_getN(6);
+  @$pb.TagNumber(7)
   set syntax($2.Syntax v) { setField(7, v); }
+  @$pb.TagNumber(7)
   $core.bool hasSyntax() => $_has(6);
+  @$pb.TagNumber(7)
   void clearSyntax() => clearField(7);
 }
 
@@ -144,17 +192,26 @@ class Mixin extends $pb.GeneratedMessage {
   static Mixin create() => Mixin._();
   Mixin createEmptyInstance() => create();
   static $pb.PbList<Mixin> createRepeated() => $pb.PbList<Mixin>();
-  static Mixin getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Mixin getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Mixin>(create);
   static Mixin _defaultInstance;
 
-  $core.String get name => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
   set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
-  $core.String get root => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get root => $_getSZ(1);
+  @$pb.TagNumber(2)
   set root($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasRoot() => $_has(1);
+  @$pb.TagNumber(2)
   void clearRoot() => clearField(2);
 }
 

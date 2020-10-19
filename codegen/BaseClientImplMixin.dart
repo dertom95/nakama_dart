@@ -245,15 +245,15 @@ ListStorageObjects2Request()..collection=collection..userId=userId..limit=getInt
 }
 
 ResponseFuture<Session> authenticateSteam(String token,bool create,String username){ return client.authenticateSteam(
-AuthenticateSteamRequest()..account=(AccountSteam()..token=token)..username=username);
+AuthenticateSteamRequest()(AccountSteam()..token=token)..create=getBool(create)..username=username);
 }
 
 ResponseFuture<void> linkEmail(String email,String password){ return client.linkEmail(
-(AccountEmail()..email=email..password=password));
+LinkEmailRequest()(AccountEmail()..email=email..password=password));
 }
 
 ResponseFuture<void> unlinkCustom(String id){ return client.unlinkCustom(
-(AccountCustom()..id=id));
+UnlinkCustomRequest()(AccountCustom()..id=id));
 }
 
 ResponseFuture<ChannelMessageList> listChannelMessages(String channelId, limit,bool forward,String cursor){ return client.listChannelMessages(

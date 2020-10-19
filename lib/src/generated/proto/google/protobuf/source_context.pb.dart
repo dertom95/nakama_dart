@@ -26,12 +26,17 @@ class SourceContext extends $pb.GeneratedMessage {
   static SourceContext create() => SourceContext._();
   SourceContext createEmptyInstance() => create();
   static $pb.PbList<SourceContext> createRepeated() => $pb.PbList<SourceContext>();
-  static SourceContext getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static SourceContext getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SourceContext>(create);
   static SourceContext _defaultInstance;
 
-  $core.String get fileName => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get fileName => $_getSZ(0);
+  @$pb.TagNumber(1)
   set fileName($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasFileName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearFileName() => clearField(1);
 }
 

@@ -29,17 +29,26 @@ class Any extends $pb.GeneratedMessage with $mixin.AnyMixin {
   static Any create() => Any._();
   Any createEmptyInstance() => create();
   static $pb.PbList<Any> createRepeated() => $pb.PbList<Any>();
-  static Any getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Any getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Any>(create);
   static Any _defaultInstance;
 
-  $core.String get typeUrl => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get typeUrl => $_getSZ(0);
+  @$pb.TagNumber(1)
   set typeUrl($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasTypeUrl() => $_has(0);
+  @$pb.TagNumber(1)
   void clearTypeUrl() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.List<$core.int> get value => $_getN(1);
+  @$pb.TagNumber(2)
   set value($core.List<$core.int> v) { $_setBytes(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasValue() => $_has(1);
+  @$pb.TagNumber(2)
   void clearValue() => clearField(2);
   /// Creates a new [Any] encoding [message].
   ///

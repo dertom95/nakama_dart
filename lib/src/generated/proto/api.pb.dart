@@ -7,7 +7,7 @@
 
 import 'dart:core' as $core;
 
-import 'package:fixnum/fixnum.dart';
+import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'google/protobuf/timestamp.pb.dart' as $2;
@@ -17,12 +17,12 @@ export 'api.pbenum.dart';
 
 class Account extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Account', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<User>(1, 'user', $pb.PbFieldType.OM, defaultOrMaker: User.getDefault, subBuilder: User.create)
+    ..aOM<User>(1, 'user', subBuilder: User.create)
     ..aOS(2, 'wallet')
     ..aOS(3, 'email')
     ..pc<AccountDevice>(4, 'devices', $pb.PbFieldType.PM, subBuilder: AccountDevice.create)
     ..aOS(5, 'customId')
-    ..a<$2.Timestamp>(6, 'verifyTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(6, 'verifyTime', subBuilder: $2.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -37,35 +37,61 @@ class Account extends $pb.GeneratedMessage {
   static Account create() => Account._();
   Account createEmptyInstance() => create();
   static $pb.PbList<Account> createRepeated() => $pb.PbList<Account>();
-  static Account getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Account getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Account>(create);
   static Account _defaultInstance;
 
+  @$pb.TagNumber(1)
   User get user => $_getN(0);
+  @$pb.TagNumber(1)
   set user(User v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasUser() => $_has(0);
+  @$pb.TagNumber(1)
   void clearUser() => clearField(1);
+  @$pb.TagNumber(1)
+  User ensureUser() => $_ensure(0);
 
-  $core.String get wallet => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get wallet => $_getSZ(1);
+  @$pb.TagNumber(2)
   set wallet($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasWallet() => $_has(1);
+  @$pb.TagNumber(2)
   void clearWallet() => clearField(2);
 
-  $core.String get email => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get email => $_getSZ(2);
+  @$pb.TagNumber(3)
   set email($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasEmail() => $_has(2);
+  @$pb.TagNumber(3)
   void clearEmail() => clearField(3);
 
+  @$pb.TagNumber(4)
   $core.List<AccountDevice> get devices => $_getList(3);
 
-  $core.String get customId => $_getS(4, '');
+  @$pb.TagNumber(5)
+  $core.String get customId => $_getSZ(4);
+  @$pb.TagNumber(5)
   set customId($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasCustomId() => $_has(4);
+  @$pb.TagNumber(5)
   void clearCustomId() => clearField(5);
 
+  @$pb.TagNumber(6)
   $2.Timestamp get verifyTime => $_getN(5);
+  @$pb.TagNumber(6)
   set verifyTime($2.Timestamp v) { setField(6, v); }
+  @$pb.TagNumber(6)
   $core.bool hasVerifyTime() => $_has(5);
+  @$pb.TagNumber(6)
   void clearVerifyTime() => clearField(6);
+  @$pb.TagNumber(6)
+  $2.Timestamp ensureVerifyTime() => $_ensure(5);
 }
 
 class AccountCustom extends $pb.GeneratedMessage {
@@ -86,14 +112,20 @@ class AccountCustom extends $pb.GeneratedMessage {
   static AccountCustom create() => AccountCustom._();
   AccountCustom createEmptyInstance() => create();
   static $pb.PbList<AccountCustom> createRepeated() => $pb.PbList<AccountCustom>();
-  static AccountCustom getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AccountCustom getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AccountCustom>(create);
   static AccountCustom _defaultInstance;
 
-  $core.String get id => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
   set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.Map<$core.String, $core.String> get vars => $_getMap(1);
 }
 
@@ -115,14 +147,20 @@ class AccountDevice extends $pb.GeneratedMessage {
   static AccountDevice create() => AccountDevice._();
   AccountDevice createEmptyInstance() => create();
   static $pb.PbList<AccountDevice> createRepeated() => $pb.PbList<AccountDevice>();
-  static AccountDevice getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AccountDevice getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AccountDevice>(create);
   static AccountDevice _defaultInstance;
 
-  $core.String get id => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
   set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.Map<$core.String, $core.String> get vars => $_getMap(1);
 }
 
@@ -145,19 +183,29 @@ class AccountEmail extends $pb.GeneratedMessage {
   static AccountEmail create() => AccountEmail._();
   AccountEmail createEmptyInstance() => create();
   static $pb.PbList<AccountEmail> createRepeated() => $pb.PbList<AccountEmail>();
-  static AccountEmail getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AccountEmail getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AccountEmail>(create);
   static AccountEmail _defaultInstance;
 
-  $core.String get email => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get email => $_getSZ(0);
+  @$pb.TagNumber(1)
   set email($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasEmail() => $_has(0);
+  @$pb.TagNumber(1)
   void clearEmail() => clearField(1);
 
-  $core.String get password => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get password => $_getSZ(1);
+  @$pb.TagNumber(2)
   set password($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasPassword() => $_has(1);
+  @$pb.TagNumber(2)
   void clearPassword() => clearField(2);
 
+  @$pb.TagNumber(3)
   $core.Map<$core.String, $core.String> get vars => $_getMap(2);
 }
 
@@ -179,14 +227,20 @@ class AccountFacebook extends $pb.GeneratedMessage {
   static AccountFacebook create() => AccountFacebook._();
   AccountFacebook createEmptyInstance() => create();
   static $pb.PbList<AccountFacebook> createRepeated() => $pb.PbList<AccountFacebook>();
-  static AccountFacebook getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AccountFacebook getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AccountFacebook>(create);
   static AccountFacebook _defaultInstance;
 
-  $core.String get token => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get token => $_getSZ(0);
+  @$pb.TagNumber(1)
   set token($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasToken() => $_has(0);
+  @$pb.TagNumber(1)
   void clearToken() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.Map<$core.String, $core.String> get vars => $_getMap(1);
 }
 
@@ -213,39 +267,65 @@ class AccountGameCenter extends $pb.GeneratedMessage {
   static AccountGameCenter create() => AccountGameCenter._();
   AccountGameCenter createEmptyInstance() => create();
   static $pb.PbList<AccountGameCenter> createRepeated() => $pb.PbList<AccountGameCenter>();
-  static AccountGameCenter getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AccountGameCenter getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AccountGameCenter>(create);
   static AccountGameCenter _defaultInstance;
 
-  $core.String get playerId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get playerId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set playerId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasPlayerId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearPlayerId() => clearField(1);
 
-  $core.String get bundleId => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get bundleId => $_getSZ(1);
+  @$pb.TagNumber(2)
   set bundleId($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasBundleId() => $_has(1);
+  @$pb.TagNumber(2)
   void clearBundleId() => clearField(2);
 
-  Int64 get timestampSeconds => $_getI64(2);
-  set timestampSeconds(Int64 v) { $_setInt64(2, v); }
+  @$pb.TagNumber(3)
+  $fixnum.Int64 get timestampSeconds => $_getI64(2);
+  @$pb.TagNumber(3)
+  set timestampSeconds($fixnum.Int64 v) { $_setInt64(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasTimestampSeconds() => $_has(2);
+  @$pb.TagNumber(3)
   void clearTimestampSeconds() => clearField(3);
 
-  $core.String get salt => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get salt => $_getSZ(3);
+  @$pb.TagNumber(4)
   set salt($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasSalt() => $_has(3);
+  @$pb.TagNumber(4)
   void clearSalt() => clearField(4);
 
-  $core.String get signature => $_getS(4, '');
+  @$pb.TagNumber(5)
+  $core.String get signature => $_getSZ(4);
+  @$pb.TagNumber(5)
   set signature($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasSignature() => $_has(4);
+  @$pb.TagNumber(5)
   void clearSignature() => clearField(5);
 
-  $core.String get publicKeyUrl => $_getS(5, '');
+  @$pb.TagNumber(6)
+  $core.String get publicKeyUrl => $_getSZ(5);
+  @$pb.TagNumber(6)
   set publicKeyUrl($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
   $core.bool hasPublicKeyUrl() => $_has(5);
+  @$pb.TagNumber(6)
   void clearPublicKeyUrl() => clearField(6);
 
+  @$pb.TagNumber(7)
   $core.Map<$core.String, $core.String> get vars => $_getMap(6);
 }
 
@@ -267,14 +347,20 @@ class AccountGoogle extends $pb.GeneratedMessage {
   static AccountGoogle create() => AccountGoogle._();
   AccountGoogle createEmptyInstance() => create();
   static $pb.PbList<AccountGoogle> createRepeated() => $pb.PbList<AccountGoogle>();
-  static AccountGoogle getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AccountGoogle getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AccountGoogle>(create);
   static AccountGoogle _defaultInstance;
 
-  $core.String get token => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get token => $_getSZ(0);
+  @$pb.TagNumber(1)
   set token($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasToken() => $_has(0);
+  @$pb.TagNumber(1)
   void clearToken() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.Map<$core.String, $core.String> get vars => $_getMap(1);
 }
 
@@ -296,14 +382,20 @@ class AccountSteam extends $pb.GeneratedMessage {
   static AccountSteam create() => AccountSteam._();
   AccountSteam createEmptyInstance() => create();
   static $pb.PbList<AccountSteam> createRepeated() => $pb.PbList<AccountSteam>();
-  static AccountSteam getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AccountSteam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AccountSteam>(create);
   static AccountSteam _defaultInstance;
 
-  $core.String get token => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get token => $_getSZ(0);
+  @$pb.TagNumber(1)
   set token($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasToken() => $_has(0);
+  @$pb.TagNumber(1)
   void clearToken() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.Map<$core.String, $core.String> get vars => $_getMap(1);
 }
 
@@ -325,11 +417,14 @@ class AddFriendsRequest extends $pb.GeneratedMessage {
   static AddFriendsRequest create() => AddFriendsRequest._();
   AddFriendsRequest createEmptyInstance() => create();
   static $pb.PbList<AddFriendsRequest> createRepeated() => $pb.PbList<AddFriendsRequest>();
-  static AddFriendsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AddFriendsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AddFriendsRequest>(create);
   static AddFriendsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<$core.String> get ids => $_getList(0);
 
+  @$pb.TagNumber(2)
   $core.List<$core.String> get usernames => $_getList(1);
 }
 
@@ -351,21 +446,27 @@ class AddGroupUsersRequest extends $pb.GeneratedMessage {
   static AddGroupUsersRequest create() => AddGroupUsersRequest._();
   AddGroupUsersRequest createEmptyInstance() => create();
   static $pb.PbList<AddGroupUsersRequest> createRepeated() => $pb.PbList<AddGroupUsersRequest>();
-  static AddGroupUsersRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AddGroupUsersRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AddGroupUsersRequest>(create);
   static AddGroupUsersRequest _defaultInstance;
 
-  $core.String get groupId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set groupId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearGroupId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.List<$core.String> get userIds => $_getList(1);
 }
 
 class AuthenticateCustomRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateCustomRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<AccountCustom>(1, 'account', $pb.PbFieldType.OM, defaultOrMaker: AccountCustom.getDefault, subBuilder: AccountCustom.create)
-    ..a<$3.BoolValue>(2, 'create', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<AccountCustom>(1, 'account', subBuilder: AccountCustom.create)
+    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -381,29 +482,46 @@ class AuthenticateCustomRequest extends $pb.GeneratedMessage {
   static AuthenticateCustomRequest create() => AuthenticateCustomRequest._();
   AuthenticateCustomRequest createEmptyInstance() => create();
   static $pb.PbList<AuthenticateCustomRequest> createRepeated() => $pb.PbList<AuthenticateCustomRequest>();
-  static AuthenticateCustomRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateCustomRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthenticateCustomRequest>(create);
   static AuthenticateCustomRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   AccountCustom get account => $_getN(0);
+  @$pb.TagNumber(1)
   set account(AccountCustom v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
   void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountCustom ensureAccount() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.BoolValue get create_2 => $_getN(1);
+  @$pb.TagNumber(2)
   set create_2($3.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.BoolValue ensureCreate_2() => $_ensure(1);
 
-  $core.String get username => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get username => $_getSZ(2);
+  @$pb.TagNumber(3)
   set username($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(3)
   void clearUsername() => clearField(3);
 }
 
 class AuthenticateDeviceRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateDeviceRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<AccountDevice>(1, 'account', $pb.PbFieldType.OM, defaultOrMaker: AccountDevice.getDefault, subBuilder: AccountDevice.create)
-    ..a<$3.BoolValue>(2, 'create', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<AccountDevice>(1, 'account', subBuilder: AccountDevice.create)
+    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -419,29 +537,46 @@ class AuthenticateDeviceRequest extends $pb.GeneratedMessage {
   static AuthenticateDeviceRequest create() => AuthenticateDeviceRequest._();
   AuthenticateDeviceRequest createEmptyInstance() => create();
   static $pb.PbList<AuthenticateDeviceRequest> createRepeated() => $pb.PbList<AuthenticateDeviceRequest>();
-  static AuthenticateDeviceRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateDeviceRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthenticateDeviceRequest>(create);
   static AuthenticateDeviceRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   AccountDevice get account => $_getN(0);
+  @$pb.TagNumber(1)
   set account(AccountDevice v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
   void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountDevice ensureAccount() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.BoolValue get create_2 => $_getN(1);
+  @$pb.TagNumber(2)
   set create_2($3.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.BoolValue ensureCreate_2() => $_ensure(1);
 
-  $core.String get username => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get username => $_getSZ(2);
+  @$pb.TagNumber(3)
   set username($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(3)
   void clearUsername() => clearField(3);
 }
 
 class AuthenticateEmailRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateEmailRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<AccountEmail>(1, 'account', $pb.PbFieldType.OM, defaultOrMaker: AccountEmail.getDefault, subBuilder: AccountEmail.create)
-    ..a<$3.BoolValue>(2, 'create', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<AccountEmail>(1, 'account', subBuilder: AccountEmail.create)
+    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -457,31 +592,48 @@ class AuthenticateEmailRequest extends $pb.GeneratedMessage {
   static AuthenticateEmailRequest create() => AuthenticateEmailRequest._();
   AuthenticateEmailRequest createEmptyInstance() => create();
   static $pb.PbList<AuthenticateEmailRequest> createRepeated() => $pb.PbList<AuthenticateEmailRequest>();
-  static AuthenticateEmailRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateEmailRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthenticateEmailRequest>(create);
   static AuthenticateEmailRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   AccountEmail get account => $_getN(0);
+  @$pb.TagNumber(1)
   set account(AccountEmail v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
   void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountEmail ensureAccount() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.BoolValue get create_2 => $_getN(1);
+  @$pb.TagNumber(2)
   set create_2($3.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.BoolValue ensureCreate_2() => $_ensure(1);
 
-  $core.String get username => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get username => $_getSZ(2);
+  @$pb.TagNumber(3)
   set username($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(3)
   void clearUsername() => clearField(3);
 }
 
 class AuthenticateFacebookRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateFacebookRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<AccountFacebook>(1, 'account', $pb.PbFieldType.OM, defaultOrMaker: AccountFacebook.getDefault, subBuilder: AccountFacebook.create)
-    ..a<$3.BoolValue>(2, 'create', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<AccountFacebook>(1, 'account', subBuilder: AccountFacebook.create)
+    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
     ..aOS(3, 'username')
-    ..a<$3.BoolValue>(4, 'sync', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<$3.BoolValue>(4, 'sync', subBuilder: $3.BoolValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -496,34 +648,57 @@ class AuthenticateFacebookRequest extends $pb.GeneratedMessage {
   static AuthenticateFacebookRequest create() => AuthenticateFacebookRequest._();
   AuthenticateFacebookRequest createEmptyInstance() => create();
   static $pb.PbList<AuthenticateFacebookRequest> createRepeated() => $pb.PbList<AuthenticateFacebookRequest>();
-  static AuthenticateFacebookRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateFacebookRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthenticateFacebookRequest>(create);
   static AuthenticateFacebookRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   AccountFacebook get account => $_getN(0);
+  @$pb.TagNumber(1)
   set account(AccountFacebook v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
   void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountFacebook ensureAccount() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.BoolValue get create_2 => $_getN(1);
+  @$pb.TagNumber(2)
   set create_2($3.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.BoolValue ensureCreate_2() => $_ensure(1);
 
-  $core.String get username => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get username => $_getSZ(2);
+  @$pb.TagNumber(3)
   set username($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(3)
   void clearUsername() => clearField(3);
 
+  @$pb.TagNumber(4)
   $3.BoolValue get sync => $_getN(3);
+  @$pb.TagNumber(4)
   set sync($3.BoolValue v) { setField(4, v); }
+  @$pb.TagNumber(4)
   $core.bool hasSync() => $_has(3);
+  @$pb.TagNumber(4)
   void clearSync() => clearField(4);
+  @$pb.TagNumber(4)
+  $3.BoolValue ensureSync() => $_ensure(3);
 }
 
 class AuthenticateGameCenterRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateGameCenterRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<AccountGameCenter>(1, 'account', $pb.PbFieldType.OM, defaultOrMaker: AccountGameCenter.getDefault, subBuilder: AccountGameCenter.create)
-    ..a<$3.BoolValue>(2, 'create', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<AccountGameCenter>(1, 'account', subBuilder: AccountGameCenter.create)
+    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -539,29 +714,46 @@ class AuthenticateGameCenterRequest extends $pb.GeneratedMessage {
   static AuthenticateGameCenterRequest create() => AuthenticateGameCenterRequest._();
   AuthenticateGameCenterRequest createEmptyInstance() => create();
   static $pb.PbList<AuthenticateGameCenterRequest> createRepeated() => $pb.PbList<AuthenticateGameCenterRequest>();
-  static AuthenticateGameCenterRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateGameCenterRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthenticateGameCenterRequest>(create);
   static AuthenticateGameCenterRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   AccountGameCenter get account => $_getN(0);
+  @$pb.TagNumber(1)
   set account(AccountGameCenter v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
   void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountGameCenter ensureAccount() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.BoolValue get create_2 => $_getN(1);
+  @$pb.TagNumber(2)
   set create_2($3.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.BoolValue ensureCreate_2() => $_ensure(1);
 
-  $core.String get username => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get username => $_getSZ(2);
+  @$pb.TagNumber(3)
   set username($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(3)
   void clearUsername() => clearField(3);
 }
 
 class AuthenticateGoogleRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateGoogleRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<AccountGoogle>(1, 'account', $pb.PbFieldType.OM, defaultOrMaker: AccountGoogle.getDefault, subBuilder: AccountGoogle.create)
-    ..a<$3.BoolValue>(2, 'create', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<AccountGoogle>(1, 'account', subBuilder: AccountGoogle.create)
+    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -577,29 +769,46 @@ class AuthenticateGoogleRequest extends $pb.GeneratedMessage {
   static AuthenticateGoogleRequest create() => AuthenticateGoogleRequest._();
   AuthenticateGoogleRequest createEmptyInstance() => create();
   static $pb.PbList<AuthenticateGoogleRequest> createRepeated() => $pb.PbList<AuthenticateGoogleRequest>();
-  static AuthenticateGoogleRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateGoogleRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthenticateGoogleRequest>(create);
   static AuthenticateGoogleRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   AccountGoogle get account => $_getN(0);
+  @$pb.TagNumber(1)
   set account(AccountGoogle v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
   void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountGoogle ensureAccount() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.BoolValue get create_2 => $_getN(1);
+  @$pb.TagNumber(2)
   set create_2($3.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.BoolValue ensureCreate_2() => $_ensure(1);
 
-  $core.String get username => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get username => $_getSZ(2);
+  @$pb.TagNumber(3)
   set username($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(3)
   void clearUsername() => clearField(3);
 }
 
 class AuthenticateSteamRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateSteamRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<AccountSteam>(1, 'account', $pb.PbFieldType.OM, defaultOrMaker: AccountSteam.getDefault, subBuilder: AccountSteam.create)
-    ..a<$3.BoolValue>(2, 'create', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<AccountSteam>(1, 'account', subBuilder: AccountSteam.create)
+    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -615,22 +824,39 @@ class AuthenticateSteamRequest extends $pb.GeneratedMessage {
   static AuthenticateSteamRequest create() => AuthenticateSteamRequest._();
   AuthenticateSteamRequest createEmptyInstance() => create();
   static $pb.PbList<AuthenticateSteamRequest> createRepeated() => $pb.PbList<AuthenticateSteamRequest>();
-  static AuthenticateSteamRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateSteamRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthenticateSteamRequest>(create);
   static AuthenticateSteamRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   AccountSteam get account => $_getN(0);
+  @$pb.TagNumber(1)
   set account(AccountSteam v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
   void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountSteam ensureAccount() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.BoolValue get create_2 => $_getN(1);
+  @$pb.TagNumber(2)
   set create_2($3.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.BoolValue ensureCreate_2() => $_ensure(1);
 
-  $core.String get username => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get username => $_getSZ(2);
+  @$pb.TagNumber(3)
   set username($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(3)
   void clearUsername() => clearField(3);
 }
 
@@ -652,11 +878,14 @@ class BlockFriendsRequest extends $pb.GeneratedMessage {
   static BlockFriendsRequest create() => BlockFriendsRequest._();
   BlockFriendsRequest createEmptyInstance() => create();
   static $pb.PbList<BlockFriendsRequest> createRepeated() => $pb.PbList<BlockFriendsRequest>();
-  static BlockFriendsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static BlockFriendsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BlockFriendsRequest>(create);
   static BlockFriendsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<$core.String> get ids => $_getList(0);
 
+  @$pb.TagNumber(2)
   $core.List<$core.String> get usernames => $_getList(1);
 }
 
@@ -664,13 +893,13 @@ class ChannelMessage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ChannelMessage', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'channelId')
     ..aOS(2, 'messageId')
-    ..a<$3.Int32Value>(3, 'code', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(3, 'code', subBuilder: $3.Int32Value.create)
     ..aOS(4, 'senderId')
     ..aOS(5, 'username')
     ..aOS(6, 'content')
-    ..a<$2.Timestamp>(7, 'createTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
-    ..a<$2.Timestamp>(8, 'updateTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
-    ..a<$3.BoolValue>(9, 'persistent', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<$2.Timestamp>(7, 'createTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(8, 'updateTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$3.BoolValue>(9, 'persistent', subBuilder: $3.BoolValue.create)
     ..aOS(10, 'roomName')
     ..aOS(11, 'groupId')
     ..aOS(12, 'userIdOne')
@@ -689,72 +918,133 @@ class ChannelMessage extends $pb.GeneratedMessage {
   static ChannelMessage create() => ChannelMessage._();
   ChannelMessage createEmptyInstance() => create();
   static $pb.PbList<ChannelMessage> createRepeated() => $pb.PbList<ChannelMessage>();
-  static ChannelMessage getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ChannelMessage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ChannelMessage>(create);
   static ChannelMessage _defaultInstance;
 
-  $core.String get channelId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get channelId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set channelId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasChannelId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearChannelId() => clearField(1);
 
-  $core.String get messageId => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get messageId => $_getSZ(1);
+  @$pb.TagNumber(2)
   set messageId($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasMessageId() => $_has(1);
+  @$pb.TagNumber(2)
   void clearMessageId() => clearField(2);
 
+  @$pb.TagNumber(3)
   $3.Int32Value get code => $_getN(2);
+  @$pb.TagNumber(3)
   set code($3.Int32Value v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasCode() => $_has(2);
+  @$pb.TagNumber(3)
   void clearCode() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.Int32Value ensureCode() => $_ensure(2);
 
-  $core.String get senderId => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get senderId => $_getSZ(3);
+  @$pb.TagNumber(4)
   set senderId($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasSenderId() => $_has(3);
+  @$pb.TagNumber(4)
   void clearSenderId() => clearField(4);
 
-  $core.String get username => $_getS(4, '');
+  @$pb.TagNumber(5)
+  $core.String get username => $_getSZ(4);
+  @$pb.TagNumber(5)
   set username($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasUsername() => $_has(4);
+  @$pb.TagNumber(5)
   void clearUsername() => clearField(5);
 
-  $core.String get content => $_getS(5, '');
+  @$pb.TagNumber(6)
+  $core.String get content => $_getSZ(5);
+  @$pb.TagNumber(6)
   set content($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
   $core.bool hasContent() => $_has(5);
+  @$pb.TagNumber(6)
   void clearContent() => clearField(6);
 
+  @$pb.TagNumber(7)
   $2.Timestamp get createTime => $_getN(6);
+  @$pb.TagNumber(7)
   set createTime($2.Timestamp v) { setField(7, v); }
+  @$pb.TagNumber(7)
   $core.bool hasCreateTime() => $_has(6);
+  @$pb.TagNumber(7)
   void clearCreateTime() => clearField(7);
+  @$pb.TagNumber(7)
+  $2.Timestamp ensureCreateTime() => $_ensure(6);
 
+  @$pb.TagNumber(8)
   $2.Timestamp get updateTime => $_getN(7);
+  @$pb.TagNumber(8)
   set updateTime($2.Timestamp v) { setField(8, v); }
+  @$pb.TagNumber(8)
   $core.bool hasUpdateTime() => $_has(7);
+  @$pb.TagNumber(8)
   void clearUpdateTime() => clearField(8);
+  @$pb.TagNumber(8)
+  $2.Timestamp ensureUpdateTime() => $_ensure(7);
 
+  @$pb.TagNumber(9)
   $3.BoolValue get persistent => $_getN(8);
+  @$pb.TagNumber(9)
   set persistent($3.BoolValue v) { setField(9, v); }
+  @$pb.TagNumber(9)
   $core.bool hasPersistent() => $_has(8);
+  @$pb.TagNumber(9)
   void clearPersistent() => clearField(9);
+  @$pb.TagNumber(9)
+  $3.BoolValue ensurePersistent() => $_ensure(8);
 
-  $core.String get roomName => $_getS(9, '');
+  @$pb.TagNumber(10)
+  $core.String get roomName => $_getSZ(9);
+  @$pb.TagNumber(10)
   set roomName($core.String v) { $_setString(9, v); }
+  @$pb.TagNumber(10)
   $core.bool hasRoomName() => $_has(9);
+  @$pb.TagNumber(10)
   void clearRoomName() => clearField(10);
 
-  $core.String get groupId => $_getS(10, '');
+  @$pb.TagNumber(11)
+  $core.String get groupId => $_getSZ(10);
+  @$pb.TagNumber(11)
   set groupId($core.String v) { $_setString(10, v); }
+  @$pb.TagNumber(11)
   $core.bool hasGroupId() => $_has(10);
+  @$pb.TagNumber(11)
   void clearGroupId() => clearField(11);
 
-  $core.String get userIdOne => $_getS(11, '');
+  @$pb.TagNumber(12)
+  $core.String get userIdOne => $_getSZ(11);
+  @$pb.TagNumber(12)
   set userIdOne($core.String v) { $_setString(11, v); }
+  @$pb.TagNumber(12)
   $core.bool hasUserIdOne() => $_has(11);
+  @$pb.TagNumber(12)
   void clearUserIdOne() => clearField(12);
 
-  $core.String get userIdTwo => $_getS(12, '');
+  @$pb.TagNumber(13)
+  $core.String get userIdTwo => $_getSZ(12);
+  @$pb.TagNumber(13)
   set userIdTwo($core.String v) { $_setString(12, v); }
+  @$pb.TagNumber(13)
   $core.bool hasUserIdTwo() => $_has(12);
+  @$pb.TagNumber(13)
   void clearUserIdTwo() => clearField(13);
 }
 
@@ -777,19 +1067,29 @@ class ChannelMessageList extends $pb.GeneratedMessage {
   static ChannelMessageList create() => ChannelMessageList._();
   ChannelMessageList createEmptyInstance() => create();
   static $pb.PbList<ChannelMessageList> createRepeated() => $pb.PbList<ChannelMessageList>();
-  static ChannelMessageList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ChannelMessageList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ChannelMessageList>(create);
   static ChannelMessageList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<ChannelMessage> get messages => $_getList(0);
 
-  $core.String get nextCursor => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get nextCursor => $_getSZ(1);
+  @$pb.TagNumber(2)
   set nextCursor($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasNextCursor() => $_has(1);
+  @$pb.TagNumber(2)
   void clearNextCursor() => clearField(2);
 
-  $core.String get prevCursor => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get prevCursor => $_getSZ(2);
+  @$pb.TagNumber(3)
   set prevCursor($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasPrevCursor() => $_has(2);
+  @$pb.TagNumber(3)
   void clearPrevCursor() => clearField(3);
 }
 
@@ -815,37 +1115,62 @@ class CreateGroupRequest extends $pb.GeneratedMessage {
   static CreateGroupRequest create() => CreateGroupRequest._();
   CreateGroupRequest createEmptyInstance() => create();
   static $pb.PbList<CreateGroupRequest> createRepeated() => $pb.PbList<CreateGroupRequest>();
-  static CreateGroupRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static CreateGroupRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CreateGroupRequest>(create);
   static CreateGroupRequest _defaultInstance;
 
-  $core.String get name => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
   set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
-  $core.String get description => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get description => $_getSZ(1);
+  @$pb.TagNumber(2)
   set description($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasDescription() => $_has(1);
+  @$pb.TagNumber(2)
   void clearDescription() => clearField(2);
 
-  $core.String get langTag => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get langTag => $_getSZ(2);
+  @$pb.TagNumber(3)
   set langTag($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasLangTag() => $_has(2);
+  @$pb.TagNumber(3)
   void clearLangTag() => clearField(3);
 
-  $core.String get avatarUrl => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get avatarUrl => $_getSZ(3);
+  @$pb.TagNumber(4)
   set avatarUrl($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasAvatarUrl() => $_has(3);
+  @$pb.TagNumber(4)
   void clearAvatarUrl() => clearField(4);
 
-  $core.bool get open => $_get(4, false);
+  @$pb.TagNumber(5)
+  $core.bool get open => $_getBF(4);
+  @$pb.TagNumber(5)
   set open($core.bool v) { $_setBool(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasOpen() => $_has(4);
+  @$pb.TagNumber(5)
   void clearOpen() => clearField(5);
 
-  $core.int get maxCount => $_get(5, 0);
+  @$pb.TagNumber(6)
+  $core.int get maxCount => $_getIZ(5);
+  @$pb.TagNumber(6)
   set maxCount($core.int v) { $_setSignedInt32(5, v); }
+  @$pb.TagNumber(6)
   $core.bool hasMaxCount() => $_has(5);
+  @$pb.TagNumber(6)
   void clearMaxCount() => clearField(6);
 }
 
@@ -867,11 +1192,14 @@ class DeleteFriendsRequest extends $pb.GeneratedMessage {
   static DeleteFriendsRequest create() => DeleteFriendsRequest._();
   DeleteFriendsRequest createEmptyInstance() => create();
   static $pb.PbList<DeleteFriendsRequest> createRepeated() => $pb.PbList<DeleteFriendsRequest>();
-  static DeleteFriendsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static DeleteFriendsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeleteFriendsRequest>(create);
   static DeleteFriendsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<$core.String> get ids => $_getList(0);
 
+  @$pb.TagNumber(2)
   $core.List<$core.String> get usernames => $_getList(1);
 }
 
@@ -892,12 +1220,17 @@ class DeleteGroupRequest extends $pb.GeneratedMessage {
   static DeleteGroupRequest create() => DeleteGroupRequest._();
   DeleteGroupRequest createEmptyInstance() => create();
   static $pb.PbList<DeleteGroupRequest> createRepeated() => $pb.PbList<DeleteGroupRequest>();
-  static DeleteGroupRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static DeleteGroupRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeleteGroupRequest>(create);
   static DeleteGroupRequest _defaultInstance;
 
-  $core.String get groupId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set groupId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearGroupId() => clearField(1);
 }
 
@@ -918,12 +1251,17 @@ class DeleteLeaderboardRecordRequest extends $pb.GeneratedMessage {
   static DeleteLeaderboardRecordRequest create() => DeleteLeaderboardRecordRequest._();
   DeleteLeaderboardRecordRequest createEmptyInstance() => create();
   static $pb.PbList<DeleteLeaderboardRecordRequest> createRepeated() => $pb.PbList<DeleteLeaderboardRecordRequest>();
-  static DeleteLeaderboardRecordRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static DeleteLeaderboardRecordRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeleteLeaderboardRecordRequest>(create);
   static DeleteLeaderboardRecordRequest _defaultInstance;
 
-  $core.String get leaderboardId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get leaderboardId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set leaderboardId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasLeaderboardId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearLeaderboardId() => clearField(1);
 }
 
@@ -944,9 +1282,11 @@ class DeleteNotificationsRequest extends $pb.GeneratedMessage {
   static DeleteNotificationsRequest create() => DeleteNotificationsRequest._();
   DeleteNotificationsRequest createEmptyInstance() => create();
   static $pb.PbList<DeleteNotificationsRequest> createRepeated() => $pb.PbList<DeleteNotificationsRequest>();
-  static DeleteNotificationsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static DeleteNotificationsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeleteNotificationsRequest>(create);
   static DeleteNotificationsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<$core.String> get ids => $_getList(0);
 }
 
@@ -969,22 +1309,35 @@ class DeleteStorageObjectId extends $pb.GeneratedMessage {
   static DeleteStorageObjectId create() => DeleteStorageObjectId._();
   DeleteStorageObjectId createEmptyInstance() => create();
   static $pb.PbList<DeleteStorageObjectId> createRepeated() => $pb.PbList<DeleteStorageObjectId>();
-  static DeleteStorageObjectId getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static DeleteStorageObjectId getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeleteStorageObjectId>(create);
   static DeleteStorageObjectId _defaultInstance;
 
-  $core.String get collection => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get collection => $_getSZ(0);
+  @$pb.TagNumber(1)
   set collection($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasCollection() => $_has(0);
+  @$pb.TagNumber(1)
   void clearCollection() => clearField(1);
 
-  $core.String get key => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get key => $_getSZ(1);
+  @$pb.TagNumber(2)
   set key($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasKey() => $_has(1);
+  @$pb.TagNumber(2)
   void clearKey() => clearField(2);
 
-  $core.String get version => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get version => $_getSZ(2);
+  @$pb.TagNumber(3)
   set version($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasVersion() => $_has(2);
+  @$pb.TagNumber(3)
   void clearVersion() => clearField(3);
 }
 
@@ -1005,9 +1358,11 @@ class DeleteStorageObjectsRequest extends $pb.GeneratedMessage {
   static DeleteStorageObjectsRequest create() => DeleteStorageObjectsRequest._();
   DeleteStorageObjectsRequest createEmptyInstance() => create();
   static $pb.PbList<DeleteStorageObjectsRequest> createRepeated() => $pb.PbList<DeleteStorageObjectsRequest>();
-  static DeleteStorageObjectsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static DeleteStorageObjectsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeleteStorageObjectsRequest>(create);
   static DeleteStorageObjectsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<DeleteStorageObjectId> get objectIds => $_getList(0);
 }
 
@@ -1015,7 +1370,7 @@ class Event extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Event', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'name')
     ..m<$core.String, $core.String>(2, 'properties', entryClassName: 'Event.PropertiesEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS, packageName: const $pb.PackageName('nakama.api'))
-    ..a<$2.Timestamp>(3, 'timestamp', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(3, 'timestamp', subBuilder: $2.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -1030,26 +1385,38 @@ class Event extends $pb.GeneratedMessage {
   static Event create() => Event._();
   Event createEmptyInstance() => create();
   static $pb.PbList<Event> createRepeated() => $pb.PbList<Event>();
-  static Event getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Event getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Event>(create);
   static Event _defaultInstance;
 
-  $core.String get name => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
   set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.Map<$core.String, $core.String> get properties => $_getMap(1);
 
+  @$pb.TagNumber(3)
   $2.Timestamp get timestamp => $_getN(2);
+  @$pb.TagNumber(3)
   set timestamp($2.Timestamp v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasTimestamp() => $_has(2);
+  @$pb.TagNumber(3)
   void clearTimestamp() => clearField(3);
+  @$pb.TagNumber(3)
+  $2.Timestamp ensureTimestamp() => $_ensure(2);
 }
 
 class Friend extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Friend', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<User>(1, 'user', $pb.PbFieldType.OM, defaultOrMaker: User.getDefault, subBuilder: User.create)
-    ..a<$3.Int32Value>(2, 'state', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<User>(1, 'user', subBuilder: User.create)
+    ..aOM<$3.Int32Value>(2, 'state', subBuilder: $3.Int32Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -1064,18 +1431,31 @@ class Friend extends $pb.GeneratedMessage {
   static Friend create() => Friend._();
   Friend createEmptyInstance() => create();
   static $pb.PbList<Friend> createRepeated() => $pb.PbList<Friend>();
-  static Friend getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Friend getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Friend>(create);
   static Friend _defaultInstance;
 
+  @$pb.TagNumber(1)
   User get user => $_getN(0);
+  @$pb.TagNumber(1)
   set user(User v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasUser() => $_has(0);
+  @$pb.TagNumber(1)
   void clearUser() => clearField(1);
+  @$pb.TagNumber(1)
+  User ensureUser() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.Int32Value get state => $_getN(1);
+  @$pb.TagNumber(2)
   set state($3.Int32Value v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasState() => $_has(1);
+  @$pb.TagNumber(2)
   void clearState() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.Int32Value ensureState() => $_ensure(1);
 }
 
 class FriendList extends $pb.GeneratedMessage {
@@ -1096,14 +1476,20 @@ class FriendList extends $pb.GeneratedMessage {
   static FriendList create() => FriendList._();
   FriendList createEmptyInstance() => create();
   static $pb.PbList<FriendList> createRepeated() => $pb.PbList<FriendList>();
-  static FriendList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static FriendList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FriendList>(create);
   static FriendList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<Friend> get friends => $_getList(0);
 
-  $core.String get cursor => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get cursor => $_getSZ(1);
+  @$pb.TagNumber(2)
   set cursor($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCursor() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCursor() => clearField(2);
 }
 
@@ -1126,13 +1512,17 @@ class GetUsersRequest extends $pb.GeneratedMessage {
   static GetUsersRequest create() => GetUsersRequest._();
   GetUsersRequest createEmptyInstance() => create();
   static $pb.PbList<GetUsersRequest> createRepeated() => $pb.PbList<GetUsersRequest>();
-  static GetUsersRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static GetUsersRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetUsersRequest>(create);
   static GetUsersRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<$core.String> get ids => $_getList(0);
 
+  @$pb.TagNumber(2)
   $core.List<$core.String> get usernames => $_getList(1);
 
+  @$pb.TagNumber(3)
   $core.List<$core.String> get facebookIds => $_getList(2);
 }
 
@@ -1145,11 +1535,11 @@ class Group extends $pb.GeneratedMessage {
     ..aOS(5, 'langTag')
     ..aOS(6, 'metadata')
     ..aOS(7, 'avatarUrl')
-    ..a<$3.BoolValue>(8, 'open', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<$3.BoolValue>(8, 'open', subBuilder: $3.BoolValue.create)
     ..a<$core.int>(9, 'edgeCount', $pb.PbFieldType.O3)
     ..a<$core.int>(10, 'maxCount', $pb.PbFieldType.O3)
-    ..a<$2.Timestamp>(11, 'createTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
-    ..a<$2.Timestamp>(12, 'updateTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(11, 'createTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(12, 'updateTime', subBuilder: $2.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -1164,68 +1554,123 @@ class Group extends $pb.GeneratedMessage {
   static Group create() => Group._();
   Group createEmptyInstance() => create();
   static $pb.PbList<Group> createRepeated() => $pb.PbList<Group>();
-  static Group getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Group getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Group>(create);
   static Group _defaultInstance;
 
-  $core.String get id => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
   set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearId() => clearField(1);
 
-  $core.String get creatorId => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get creatorId => $_getSZ(1);
+  @$pb.TagNumber(2)
   set creatorId($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCreatorId() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCreatorId() => clearField(2);
 
-  $core.String get name => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get name => $_getSZ(2);
+  @$pb.TagNumber(3)
   set name($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasName() => $_has(2);
+  @$pb.TagNumber(3)
   void clearName() => clearField(3);
 
-  $core.String get description => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get description => $_getSZ(3);
+  @$pb.TagNumber(4)
   set description($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasDescription() => $_has(3);
+  @$pb.TagNumber(4)
   void clearDescription() => clearField(4);
 
-  $core.String get langTag => $_getS(4, '');
+  @$pb.TagNumber(5)
+  $core.String get langTag => $_getSZ(4);
+  @$pb.TagNumber(5)
   set langTag($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasLangTag() => $_has(4);
+  @$pb.TagNumber(5)
   void clearLangTag() => clearField(5);
 
-  $core.String get metadata => $_getS(5, '');
+  @$pb.TagNumber(6)
+  $core.String get metadata => $_getSZ(5);
+  @$pb.TagNumber(6)
   set metadata($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
   $core.bool hasMetadata() => $_has(5);
+  @$pb.TagNumber(6)
   void clearMetadata() => clearField(6);
 
-  $core.String get avatarUrl => $_getS(6, '');
+  @$pb.TagNumber(7)
+  $core.String get avatarUrl => $_getSZ(6);
+  @$pb.TagNumber(7)
   set avatarUrl($core.String v) { $_setString(6, v); }
+  @$pb.TagNumber(7)
   $core.bool hasAvatarUrl() => $_has(6);
+  @$pb.TagNumber(7)
   void clearAvatarUrl() => clearField(7);
 
+  @$pb.TagNumber(8)
   $3.BoolValue get open => $_getN(7);
+  @$pb.TagNumber(8)
   set open($3.BoolValue v) { setField(8, v); }
+  @$pb.TagNumber(8)
   $core.bool hasOpen() => $_has(7);
+  @$pb.TagNumber(8)
   void clearOpen() => clearField(8);
+  @$pb.TagNumber(8)
+  $3.BoolValue ensureOpen() => $_ensure(7);
 
-  $core.int get edgeCount => $_get(8, 0);
+  @$pb.TagNumber(9)
+  $core.int get edgeCount => $_getIZ(8);
+  @$pb.TagNumber(9)
   set edgeCount($core.int v) { $_setSignedInt32(8, v); }
+  @$pb.TagNumber(9)
   $core.bool hasEdgeCount() => $_has(8);
+  @$pb.TagNumber(9)
   void clearEdgeCount() => clearField(9);
 
-  $core.int get maxCount => $_get(9, 0);
+  @$pb.TagNumber(10)
+  $core.int get maxCount => $_getIZ(9);
+  @$pb.TagNumber(10)
   set maxCount($core.int v) { $_setSignedInt32(9, v); }
+  @$pb.TagNumber(10)
   $core.bool hasMaxCount() => $_has(9);
+  @$pb.TagNumber(10)
   void clearMaxCount() => clearField(10);
 
+  @$pb.TagNumber(11)
   $2.Timestamp get createTime => $_getN(10);
+  @$pb.TagNumber(11)
   set createTime($2.Timestamp v) { setField(11, v); }
+  @$pb.TagNumber(11)
   $core.bool hasCreateTime() => $_has(10);
+  @$pb.TagNumber(11)
   void clearCreateTime() => clearField(11);
+  @$pb.TagNumber(11)
+  $2.Timestamp ensureCreateTime() => $_ensure(10);
 
+  @$pb.TagNumber(12)
   $2.Timestamp get updateTime => $_getN(11);
+  @$pb.TagNumber(12)
   set updateTime($2.Timestamp v) { setField(12, v); }
+  @$pb.TagNumber(12)
   $core.bool hasUpdateTime() => $_has(11);
+  @$pb.TagNumber(12)
   void clearUpdateTime() => clearField(12);
+  @$pb.TagNumber(12)
+  $2.Timestamp ensureUpdateTime() => $_ensure(11);
 }
 
 class GroupList extends $pb.GeneratedMessage {
@@ -1246,21 +1691,27 @@ class GroupList extends $pb.GeneratedMessage {
   static GroupList create() => GroupList._();
   GroupList createEmptyInstance() => create();
   static $pb.PbList<GroupList> createRepeated() => $pb.PbList<GroupList>();
-  static GroupList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static GroupList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GroupList>(create);
   static GroupList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<Group> get groups => $_getList(0);
 
-  $core.String get cursor => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get cursor => $_getSZ(1);
+  @$pb.TagNumber(2)
   set cursor($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCursor() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCursor() => clearField(2);
 }
 
 class GroupUserList_GroupUser extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GroupUserList.GroupUser', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<User>(1, 'user', $pb.PbFieldType.OM, defaultOrMaker: User.getDefault, subBuilder: User.create)
-    ..a<$3.Int32Value>(2, 'state', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<User>(1, 'user', subBuilder: User.create)
+    ..aOM<$3.Int32Value>(2, 'state', subBuilder: $3.Int32Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -1275,18 +1726,31 @@ class GroupUserList_GroupUser extends $pb.GeneratedMessage {
   static GroupUserList_GroupUser create() => GroupUserList_GroupUser._();
   GroupUserList_GroupUser createEmptyInstance() => create();
   static $pb.PbList<GroupUserList_GroupUser> createRepeated() => $pb.PbList<GroupUserList_GroupUser>();
-  static GroupUserList_GroupUser getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static GroupUserList_GroupUser getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GroupUserList_GroupUser>(create);
   static GroupUserList_GroupUser _defaultInstance;
 
+  @$pb.TagNumber(1)
   User get user => $_getN(0);
+  @$pb.TagNumber(1)
   set user(User v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasUser() => $_has(0);
+  @$pb.TagNumber(1)
   void clearUser() => clearField(1);
+  @$pb.TagNumber(1)
+  User ensureUser() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.Int32Value get state => $_getN(1);
+  @$pb.TagNumber(2)
   set state($3.Int32Value v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasState() => $_has(1);
+  @$pb.TagNumber(2)
   void clearState() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.Int32Value ensureState() => $_ensure(1);
 }
 
 class GroupUserList extends $pb.GeneratedMessage {
@@ -1307,21 +1771,27 @@ class GroupUserList extends $pb.GeneratedMessage {
   static GroupUserList create() => GroupUserList._();
   GroupUserList createEmptyInstance() => create();
   static $pb.PbList<GroupUserList> createRepeated() => $pb.PbList<GroupUserList>();
-  static GroupUserList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static GroupUserList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GroupUserList>(create);
   static GroupUserList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<GroupUserList_GroupUser> get groupUsers => $_getList(0);
 
-  $core.String get cursor => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get cursor => $_getSZ(1);
+  @$pb.TagNumber(2)
   set cursor($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCursor() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCursor() => clearField(2);
 }
 
 class ImportFacebookFriendsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ImportFacebookFriendsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<AccountFacebook>(1, 'account', $pb.PbFieldType.OM, defaultOrMaker: AccountFacebook.getDefault, subBuilder: AccountFacebook.create)
-    ..a<$3.BoolValue>(2, 'reset', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<AccountFacebook>(1, 'account', subBuilder: AccountFacebook.create)
+    ..aOM<$3.BoolValue>(2, 'reset', subBuilder: $3.BoolValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -1336,18 +1806,31 @@ class ImportFacebookFriendsRequest extends $pb.GeneratedMessage {
   static ImportFacebookFriendsRequest create() => ImportFacebookFriendsRequest._();
   ImportFacebookFriendsRequest createEmptyInstance() => create();
   static $pb.PbList<ImportFacebookFriendsRequest> createRepeated() => $pb.PbList<ImportFacebookFriendsRequest>();
-  static ImportFacebookFriendsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ImportFacebookFriendsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ImportFacebookFriendsRequest>(create);
   static ImportFacebookFriendsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   AccountFacebook get account => $_getN(0);
+  @$pb.TagNumber(1)
   set account(AccountFacebook v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
   void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountFacebook ensureAccount() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.BoolValue get reset => $_getN(1);
+  @$pb.TagNumber(2)
   set reset($3.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasReset() => $_has(1);
+  @$pb.TagNumber(2)
   void clearReset() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.BoolValue ensureReset() => $_ensure(1);
 }
 
 class JoinGroupRequest extends $pb.GeneratedMessage {
@@ -1367,12 +1850,17 @@ class JoinGroupRequest extends $pb.GeneratedMessage {
   static JoinGroupRequest create() => JoinGroupRequest._();
   JoinGroupRequest createEmptyInstance() => create();
   static $pb.PbList<JoinGroupRequest> createRepeated() => $pb.PbList<JoinGroupRequest>();
-  static JoinGroupRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static JoinGroupRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<JoinGroupRequest>(create);
   static JoinGroupRequest _defaultInstance;
 
-  $core.String get groupId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set groupId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearGroupId() => clearField(1);
 }
 
@@ -1393,12 +1881,17 @@ class JoinTournamentRequest extends $pb.GeneratedMessage {
   static JoinTournamentRequest create() => JoinTournamentRequest._();
   JoinTournamentRequest createEmptyInstance() => create();
   static $pb.PbList<JoinTournamentRequest> createRepeated() => $pb.PbList<JoinTournamentRequest>();
-  static JoinTournamentRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static JoinTournamentRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<JoinTournamentRequest>(create);
   static JoinTournamentRequest _defaultInstance;
 
-  $core.String get tournamentId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get tournamentId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set tournamentId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasTournamentId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearTournamentId() => clearField(1);
 }
 
@@ -1420,14 +1913,20 @@ class KickGroupUsersRequest extends $pb.GeneratedMessage {
   static KickGroupUsersRequest create() => KickGroupUsersRequest._();
   KickGroupUsersRequest createEmptyInstance() => create();
   static $pb.PbList<KickGroupUsersRequest> createRepeated() => $pb.PbList<KickGroupUsersRequest>();
-  static KickGroupUsersRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static KickGroupUsersRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<KickGroupUsersRequest>(create);
   static KickGroupUsersRequest _defaultInstance;
 
-  $core.String get groupId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set groupId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearGroupId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.List<$core.String> get userIds => $_getList(1);
 }
 
@@ -1435,14 +1934,14 @@ class LeaderboardRecord extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('LeaderboardRecord', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'leaderboardId')
     ..aOS(2, 'ownerId')
-    ..a<$3.StringValue>(3, 'username', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(3, 'username', subBuilder: $3.StringValue.create)
     ..aInt64(4, 'score')
     ..aInt64(5, 'subscore')
     ..a<$core.int>(6, 'numScore', $pb.PbFieldType.O3)
     ..aOS(7, 'metadata')
-    ..a<$2.Timestamp>(8, 'createTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
-    ..a<$2.Timestamp>(9, 'updateTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
-    ..a<$2.Timestamp>(10, 'expiryTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(8, 'createTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(9, 'updateTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(10, 'expiryTime', subBuilder: $2.Timestamp.create)
     ..aInt64(11, 'rank')
     ..a<$core.int>(12, 'maxNumScore', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
@@ -1459,67 +1958,124 @@ class LeaderboardRecord extends $pb.GeneratedMessage {
   static LeaderboardRecord create() => LeaderboardRecord._();
   LeaderboardRecord createEmptyInstance() => create();
   static $pb.PbList<LeaderboardRecord> createRepeated() => $pb.PbList<LeaderboardRecord>();
-  static LeaderboardRecord getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static LeaderboardRecord getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LeaderboardRecord>(create);
   static LeaderboardRecord _defaultInstance;
 
-  $core.String get leaderboardId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get leaderboardId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set leaderboardId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasLeaderboardId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearLeaderboardId() => clearField(1);
 
-  $core.String get ownerId => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get ownerId => $_getSZ(1);
+  @$pb.TagNumber(2)
   set ownerId($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasOwnerId() => $_has(1);
+  @$pb.TagNumber(2)
   void clearOwnerId() => clearField(2);
 
+  @$pb.TagNumber(3)
   $3.StringValue get username => $_getN(2);
+  @$pb.TagNumber(3)
   set username($3.StringValue v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(3)
   void clearUsername() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.StringValue ensureUsername() => $_ensure(2);
 
-  Int64 get score => $_getI64(3);
-  set score(Int64 v) { $_setInt64(3, v); }
+  @$pb.TagNumber(4)
+  $fixnum.Int64 get score => $_getI64(3);
+  @$pb.TagNumber(4)
+  set score($fixnum.Int64 v) { $_setInt64(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasScore() => $_has(3);
+  @$pb.TagNumber(4)
   void clearScore() => clearField(4);
 
-  Int64 get subscore => $_getI64(4);
-  set subscore(Int64 v) { $_setInt64(4, v); }
+  @$pb.TagNumber(5)
+  $fixnum.Int64 get subscore => $_getI64(4);
+  @$pb.TagNumber(5)
+  set subscore($fixnum.Int64 v) { $_setInt64(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasSubscore() => $_has(4);
+  @$pb.TagNumber(5)
   void clearSubscore() => clearField(5);
 
-  $core.int get numScore => $_get(5, 0);
+  @$pb.TagNumber(6)
+  $core.int get numScore => $_getIZ(5);
+  @$pb.TagNumber(6)
   set numScore($core.int v) { $_setSignedInt32(5, v); }
+  @$pb.TagNumber(6)
   $core.bool hasNumScore() => $_has(5);
+  @$pb.TagNumber(6)
   void clearNumScore() => clearField(6);
 
-  $core.String get metadata => $_getS(6, '');
+  @$pb.TagNumber(7)
+  $core.String get metadata => $_getSZ(6);
+  @$pb.TagNumber(7)
   set metadata($core.String v) { $_setString(6, v); }
+  @$pb.TagNumber(7)
   $core.bool hasMetadata() => $_has(6);
+  @$pb.TagNumber(7)
   void clearMetadata() => clearField(7);
 
+  @$pb.TagNumber(8)
   $2.Timestamp get createTime => $_getN(7);
+  @$pb.TagNumber(8)
   set createTime($2.Timestamp v) { setField(8, v); }
+  @$pb.TagNumber(8)
   $core.bool hasCreateTime() => $_has(7);
+  @$pb.TagNumber(8)
   void clearCreateTime() => clearField(8);
+  @$pb.TagNumber(8)
+  $2.Timestamp ensureCreateTime() => $_ensure(7);
 
+  @$pb.TagNumber(9)
   $2.Timestamp get updateTime => $_getN(8);
+  @$pb.TagNumber(9)
   set updateTime($2.Timestamp v) { setField(9, v); }
+  @$pb.TagNumber(9)
   $core.bool hasUpdateTime() => $_has(8);
+  @$pb.TagNumber(9)
   void clearUpdateTime() => clearField(9);
+  @$pb.TagNumber(9)
+  $2.Timestamp ensureUpdateTime() => $_ensure(8);
 
+  @$pb.TagNumber(10)
   $2.Timestamp get expiryTime => $_getN(9);
+  @$pb.TagNumber(10)
   set expiryTime($2.Timestamp v) { setField(10, v); }
+  @$pb.TagNumber(10)
   $core.bool hasExpiryTime() => $_has(9);
+  @$pb.TagNumber(10)
   void clearExpiryTime() => clearField(10);
+  @$pb.TagNumber(10)
+  $2.Timestamp ensureExpiryTime() => $_ensure(9);
 
-  Int64 get rank => $_getI64(10);
-  set rank(Int64 v) { $_setInt64(10, v); }
+  @$pb.TagNumber(11)
+  $fixnum.Int64 get rank => $_getI64(10);
+  @$pb.TagNumber(11)
+  set rank($fixnum.Int64 v) { $_setInt64(10, v); }
+  @$pb.TagNumber(11)
   $core.bool hasRank() => $_has(10);
+  @$pb.TagNumber(11)
   void clearRank() => clearField(11);
 
-  $core.int get maxNumScore => $_get(11, 0);
+  @$pb.TagNumber(12)
+  $core.int get maxNumScore => $_getIZ(11);
+  @$pb.TagNumber(12)
   set maxNumScore($core.int v) { $_setUnsignedInt32(11, v); }
+  @$pb.TagNumber(12)
   $core.bool hasMaxNumScore() => $_has(11);
+  @$pb.TagNumber(12)
   void clearMaxNumScore() => clearField(12);
 }
 
@@ -1543,21 +2099,32 @@ class LeaderboardRecordList extends $pb.GeneratedMessage {
   static LeaderboardRecordList create() => LeaderboardRecordList._();
   LeaderboardRecordList createEmptyInstance() => create();
   static $pb.PbList<LeaderboardRecordList> createRepeated() => $pb.PbList<LeaderboardRecordList>();
-  static LeaderboardRecordList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static LeaderboardRecordList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LeaderboardRecordList>(create);
   static LeaderboardRecordList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<LeaderboardRecord> get records => $_getList(0);
 
+  @$pb.TagNumber(2)
   $core.List<LeaderboardRecord> get ownerRecords => $_getList(1);
 
-  $core.String get nextCursor => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get nextCursor => $_getSZ(2);
+  @$pb.TagNumber(3)
   set nextCursor($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasNextCursor() => $_has(2);
+  @$pb.TagNumber(3)
   void clearNextCursor() => clearField(3);
 
-  $core.String get prevCursor => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get prevCursor => $_getSZ(3);
+  @$pb.TagNumber(4)
   set prevCursor($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasPrevCursor() => $_has(3);
+  @$pb.TagNumber(4)
   void clearPrevCursor() => clearField(4);
 }
 
@@ -1578,19 +2145,24 @@ class LeaveGroupRequest extends $pb.GeneratedMessage {
   static LeaveGroupRequest create() => LeaveGroupRequest._();
   LeaveGroupRequest createEmptyInstance() => create();
   static $pb.PbList<LeaveGroupRequest> createRepeated() => $pb.PbList<LeaveGroupRequest>();
-  static LeaveGroupRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static LeaveGroupRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LeaveGroupRequest>(create);
   static LeaveGroupRequest _defaultInstance;
 
-  $core.String get groupId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set groupId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearGroupId() => clearField(1);
 }
 
 class LinkFacebookRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('LinkFacebookRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<AccountFacebook>(1, 'account', $pb.PbFieldType.OM, defaultOrMaker: AccountFacebook.getDefault, subBuilder: AccountFacebook.create)
-    ..a<$3.BoolValue>(4, 'sync', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<AccountFacebook>(1, 'account', subBuilder: AccountFacebook.create)
+    ..aOM<$3.BoolValue>(4, 'sync', subBuilder: $3.BoolValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -1605,25 +2177,38 @@ class LinkFacebookRequest extends $pb.GeneratedMessage {
   static LinkFacebookRequest create() => LinkFacebookRequest._();
   LinkFacebookRequest createEmptyInstance() => create();
   static $pb.PbList<LinkFacebookRequest> createRepeated() => $pb.PbList<LinkFacebookRequest>();
-  static LinkFacebookRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static LinkFacebookRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LinkFacebookRequest>(create);
   static LinkFacebookRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   AccountFacebook get account => $_getN(0);
+  @$pb.TagNumber(1)
   set account(AccountFacebook v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
   void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountFacebook ensureAccount() => $_ensure(0);
 
+  @$pb.TagNumber(4)
   $3.BoolValue get sync => $_getN(1);
+  @$pb.TagNumber(4)
   set sync($3.BoolValue v) { setField(4, v); }
+  @$pb.TagNumber(4)
   $core.bool hasSync() => $_has(1);
+  @$pb.TagNumber(4)
   void clearSync() => clearField(4);
+  @$pb.TagNumber(4)
+  $3.BoolValue ensureSync() => $_ensure(1);
 }
 
 class ListChannelMessagesRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListChannelMessagesRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'channelId')
-    ..a<$3.Int32Value>(2, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
-    ..a<$3.BoolValue>(3, 'forward', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<$3.Int32Value>(2, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$3.BoolValue>(3, 'forward', subBuilder: $3.BoolValue.create)
     ..aOS(4, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -1639,34 +2224,55 @@ class ListChannelMessagesRequest extends $pb.GeneratedMessage {
   static ListChannelMessagesRequest create() => ListChannelMessagesRequest._();
   ListChannelMessagesRequest createEmptyInstance() => create();
   static $pb.PbList<ListChannelMessagesRequest> createRepeated() => $pb.PbList<ListChannelMessagesRequest>();
-  static ListChannelMessagesRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListChannelMessagesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListChannelMessagesRequest>(create);
   static ListChannelMessagesRequest _defaultInstance;
 
-  $core.String get channelId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get channelId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set channelId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasChannelId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearChannelId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $3.Int32Value get limit => $_getN(1);
+  @$pb.TagNumber(2)
   set limit($3.Int32Value v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasLimit() => $_has(1);
+  @$pb.TagNumber(2)
   void clearLimit() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.Int32Value ensureLimit() => $_ensure(1);
 
+  @$pb.TagNumber(3)
   $3.BoolValue get forward => $_getN(2);
+  @$pb.TagNumber(3)
   set forward($3.BoolValue v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasForward() => $_has(2);
+  @$pb.TagNumber(3)
   void clearForward() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.BoolValue ensureForward() => $_ensure(2);
 
-  $core.String get cursor => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get cursor => $_getSZ(3);
+  @$pb.TagNumber(4)
   set cursor($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasCursor() => $_has(3);
+  @$pb.TagNumber(4)
   void clearCursor() => clearField(4);
 }
 
 class ListFriendsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListFriendsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<$3.Int32Value>(1, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
-    ..a<$3.Int32Value>(2, 'state', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(1, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(2, 'state', subBuilder: $3.Int32Value.create)
     ..aOS(3, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -1682,22 +2288,39 @@ class ListFriendsRequest extends $pb.GeneratedMessage {
   static ListFriendsRequest create() => ListFriendsRequest._();
   ListFriendsRequest createEmptyInstance() => create();
   static $pb.PbList<ListFriendsRequest> createRepeated() => $pb.PbList<ListFriendsRequest>();
-  static ListFriendsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListFriendsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListFriendsRequest>(create);
   static ListFriendsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $3.Int32Value get limit => $_getN(0);
+  @$pb.TagNumber(1)
   set limit($3.Int32Value v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasLimit() => $_has(0);
+  @$pb.TagNumber(1)
   void clearLimit() => clearField(1);
+  @$pb.TagNumber(1)
+  $3.Int32Value ensureLimit() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.Int32Value get state => $_getN(1);
+  @$pb.TagNumber(2)
   set state($3.Int32Value v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasState() => $_has(1);
+  @$pb.TagNumber(2)
   void clearState() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.Int32Value ensureState() => $_ensure(1);
 
-  $core.String get cursor => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get cursor => $_getSZ(2);
+  @$pb.TagNumber(3)
   set cursor($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasCursor() => $_has(2);
+  @$pb.TagNumber(3)
   void clearCursor() => clearField(3);
 }
 
@@ -1705,7 +2328,7 @@ class ListGroupsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListGroupsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'name')
     ..aOS(2, 'cursor')
-    ..a<$3.Int32Value>(3, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(3, 'limit', subBuilder: $3.Int32Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -1720,30 +2343,45 @@ class ListGroupsRequest extends $pb.GeneratedMessage {
   static ListGroupsRequest create() => ListGroupsRequest._();
   ListGroupsRequest createEmptyInstance() => create();
   static $pb.PbList<ListGroupsRequest> createRepeated() => $pb.PbList<ListGroupsRequest>();
-  static ListGroupsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListGroupsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListGroupsRequest>(create);
   static ListGroupsRequest _defaultInstance;
 
-  $core.String get name => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
   set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
-  $core.String get cursor => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get cursor => $_getSZ(1);
+  @$pb.TagNumber(2)
   set cursor($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCursor() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCursor() => clearField(2);
 
+  @$pb.TagNumber(3)
   $3.Int32Value get limit => $_getN(2);
+  @$pb.TagNumber(3)
   set limit($3.Int32Value v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasLimit() => $_has(2);
+  @$pb.TagNumber(3)
   void clearLimit() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.Int32Value ensureLimit() => $_ensure(2);
 }
 
 class ListGroupUsersRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListGroupUsersRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'groupId')
-    ..a<$3.Int32Value>(2, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
-    ..a<$3.Int32Value>(3, 'state', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(2, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(3, 'state', subBuilder: $3.Int32Value.create)
     ..aOS(4, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -1759,36 +2397,57 @@ class ListGroupUsersRequest extends $pb.GeneratedMessage {
   static ListGroupUsersRequest create() => ListGroupUsersRequest._();
   ListGroupUsersRequest createEmptyInstance() => create();
   static $pb.PbList<ListGroupUsersRequest> createRepeated() => $pb.PbList<ListGroupUsersRequest>();
-  static ListGroupUsersRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListGroupUsersRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListGroupUsersRequest>(create);
   static ListGroupUsersRequest _defaultInstance;
 
-  $core.String get groupId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set groupId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearGroupId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $3.Int32Value get limit => $_getN(1);
+  @$pb.TagNumber(2)
   set limit($3.Int32Value v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasLimit() => $_has(1);
+  @$pb.TagNumber(2)
   void clearLimit() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.Int32Value ensureLimit() => $_ensure(1);
 
+  @$pb.TagNumber(3)
   $3.Int32Value get state => $_getN(2);
+  @$pb.TagNumber(3)
   set state($3.Int32Value v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasState() => $_has(2);
+  @$pb.TagNumber(3)
   void clearState() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.Int32Value ensureState() => $_ensure(2);
 
-  $core.String get cursor => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get cursor => $_getSZ(3);
+  @$pb.TagNumber(4)
   set cursor($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasCursor() => $_has(3);
+  @$pb.TagNumber(4)
   void clearCursor() => clearField(4);
 }
 
 class ListLeaderboardRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListLeaderboardRecordsAroundOwnerRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'leaderboardId')
-    ..a<$3.UInt32Value>(2, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.UInt32Value.getDefault, subBuilder: $3.UInt32Value.create)
+    ..aOM<$3.UInt32Value>(2, 'limit', subBuilder: $3.UInt32Value.create)
     ..aOS(3, 'ownerId')
-    ..a<$3.Int64Value>(4, 'expiry', $pb.PbFieldType.OM, defaultOrMaker: $3.Int64Value.getDefault, subBuilder: $3.Int64Value.create)
+    ..aOM<$3.Int64Value>(4, 'expiry', subBuilder: $3.Int64Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -1803,37 +2462,58 @@ class ListLeaderboardRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   static ListLeaderboardRecordsAroundOwnerRequest create() => ListLeaderboardRecordsAroundOwnerRequest._();
   ListLeaderboardRecordsAroundOwnerRequest createEmptyInstance() => create();
   static $pb.PbList<ListLeaderboardRecordsAroundOwnerRequest> createRepeated() => $pb.PbList<ListLeaderboardRecordsAroundOwnerRequest>();
-  static ListLeaderboardRecordsAroundOwnerRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListLeaderboardRecordsAroundOwnerRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListLeaderboardRecordsAroundOwnerRequest>(create);
   static ListLeaderboardRecordsAroundOwnerRequest _defaultInstance;
 
-  $core.String get leaderboardId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get leaderboardId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set leaderboardId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasLeaderboardId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearLeaderboardId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $3.UInt32Value get limit => $_getN(1);
+  @$pb.TagNumber(2)
   set limit($3.UInt32Value v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasLimit() => $_has(1);
+  @$pb.TagNumber(2)
   void clearLimit() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.UInt32Value ensureLimit() => $_ensure(1);
 
-  $core.String get ownerId => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get ownerId => $_getSZ(2);
+  @$pb.TagNumber(3)
   set ownerId($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasOwnerId() => $_has(2);
+  @$pb.TagNumber(3)
   void clearOwnerId() => clearField(3);
 
+  @$pb.TagNumber(4)
   $3.Int64Value get expiry => $_getN(3);
+  @$pb.TagNumber(4)
   set expiry($3.Int64Value v) { setField(4, v); }
+  @$pb.TagNumber(4)
   $core.bool hasExpiry() => $_has(3);
+  @$pb.TagNumber(4)
   void clearExpiry() => clearField(4);
+  @$pb.TagNumber(4)
+  $3.Int64Value ensureExpiry() => $_ensure(3);
 }
 
 class ListLeaderboardRecordsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListLeaderboardRecordsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'leaderboardId')
     ..pPS(2, 'ownerIds')
-    ..a<$3.Int32Value>(3, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(3, 'limit', subBuilder: $3.Int32Value.create)
     ..aOS(4, 'cursor')
-    ..a<$3.Int64Value>(5, 'expiry', $pb.PbFieldType.OM, defaultOrMaker: $3.Int64Value.getDefault, subBuilder: $3.Int64Value.create)
+    ..aOM<$3.Int64Value>(5, 'expiry', subBuilder: $3.Int64Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -1848,40 +2528,62 @@ class ListLeaderboardRecordsRequest extends $pb.GeneratedMessage {
   static ListLeaderboardRecordsRequest create() => ListLeaderboardRecordsRequest._();
   ListLeaderboardRecordsRequest createEmptyInstance() => create();
   static $pb.PbList<ListLeaderboardRecordsRequest> createRepeated() => $pb.PbList<ListLeaderboardRecordsRequest>();
-  static ListLeaderboardRecordsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListLeaderboardRecordsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListLeaderboardRecordsRequest>(create);
   static ListLeaderboardRecordsRequest _defaultInstance;
 
-  $core.String get leaderboardId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get leaderboardId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set leaderboardId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasLeaderboardId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearLeaderboardId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.List<$core.String> get ownerIds => $_getList(1);
 
+  @$pb.TagNumber(3)
   $3.Int32Value get limit => $_getN(2);
+  @$pb.TagNumber(3)
   set limit($3.Int32Value v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasLimit() => $_has(2);
+  @$pb.TagNumber(3)
   void clearLimit() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.Int32Value ensureLimit() => $_ensure(2);
 
-  $core.String get cursor => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get cursor => $_getSZ(3);
+  @$pb.TagNumber(4)
   set cursor($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasCursor() => $_has(3);
+  @$pb.TagNumber(4)
   void clearCursor() => clearField(4);
 
+  @$pb.TagNumber(5)
   $3.Int64Value get expiry => $_getN(4);
+  @$pb.TagNumber(5)
   set expiry($3.Int64Value v) { setField(5, v); }
+  @$pb.TagNumber(5)
   $core.bool hasExpiry() => $_has(4);
+  @$pb.TagNumber(5)
   void clearExpiry() => clearField(5);
+  @$pb.TagNumber(5)
+  $3.Int64Value ensureExpiry() => $_ensure(4);
 }
 
 class ListMatchesRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListMatchesRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<$3.Int32Value>(1, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
-    ..a<$3.BoolValue>(2, 'authoritative', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
-    ..a<$3.StringValue>(3, 'label', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
-    ..a<$3.Int32Value>(4, 'minSize', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
-    ..a<$3.Int32Value>(5, 'maxSize', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
-    ..a<$3.StringValue>(6, 'query', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
+    ..aOM<$3.Int32Value>(1, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$3.BoolValue>(2, 'authoritative', subBuilder: $3.BoolValue.create)
+    ..aOM<$3.StringValue>(3, 'label', subBuilder: $3.StringValue.create)
+    ..aOM<$3.Int32Value>(4, 'minSize', subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(5, 'maxSize', subBuilder: $3.Int32Value.create)
+    ..aOM<$3.StringValue>(6, 'query', subBuilder: $3.StringValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -1896,43 +2598,80 @@ class ListMatchesRequest extends $pb.GeneratedMessage {
   static ListMatchesRequest create() => ListMatchesRequest._();
   ListMatchesRequest createEmptyInstance() => create();
   static $pb.PbList<ListMatchesRequest> createRepeated() => $pb.PbList<ListMatchesRequest>();
-  static ListMatchesRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListMatchesRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListMatchesRequest>(create);
   static ListMatchesRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $3.Int32Value get limit => $_getN(0);
+  @$pb.TagNumber(1)
   set limit($3.Int32Value v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasLimit() => $_has(0);
+  @$pb.TagNumber(1)
   void clearLimit() => clearField(1);
+  @$pb.TagNumber(1)
+  $3.Int32Value ensureLimit() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.BoolValue get authoritative => $_getN(1);
+  @$pb.TagNumber(2)
   set authoritative($3.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasAuthoritative() => $_has(1);
+  @$pb.TagNumber(2)
   void clearAuthoritative() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.BoolValue ensureAuthoritative() => $_ensure(1);
 
+  @$pb.TagNumber(3)
   $3.StringValue get label => $_getN(2);
+  @$pb.TagNumber(3)
   set label($3.StringValue v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasLabel() => $_has(2);
+  @$pb.TagNumber(3)
   void clearLabel() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.StringValue ensureLabel() => $_ensure(2);
 
+  @$pb.TagNumber(4)
   $3.Int32Value get minSize => $_getN(3);
+  @$pb.TagNumber(4)
   set minSize($3.Int32Value v) { setField(4, v); }
+  @$pb.TagNumber(4)
   $core.bool hasMinSize() => $_has(3);
+  @$pb.TagNumber(4)
   void clearMinSize() => clearField(4);
+  @$pb.TagNumber(4)
+  $3.Int32Value ensureMinSize() => $_ensure(3);
 
+  @$pb.TagNumber(5)
   $3.Int32Value get maxSize => $_getN(4);
+  @$pb.TagNumber(5)
   set maxSize($3.Int32Value v) { setField(5, v); }
+  @$pb.TagNumber(5)
   $core.bool hasMaxSize() => $_has(4);
+  @$pb.TagNumber(5)
   void clearMaxSize() => clearField(5);
+  @$pb.TagNumber(5)
+  $3.Int32Value ensureMaxSize() => $_ensure(4);
 
+  @$pb.TagNumber(6)
   $3.StringValue get query => $_getN(5);
+  @$pb.TagNumber(6)
   set query($3.StringValue v) { setField(6, v); }
+  @$pb.TagNumber(6)
   $core.bool hasQuery() => $_has(5);
+  @$pb.TagNumber(6)
   void clearQuery() => clearField(6);
+  @$pb.TagNumber(6)
+  $3.StringValue ensureQuery() => $_ensure(5);
 }
 
 class ListNotificationsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListNotificationsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<$3.Int32Value>(1, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(1, 'limit', subBuilder: $3.Int32Value.create)
     ..aOS(2, 'cacheableCursor')
     ..hasRequiredFields = false
   ;
@@ -1948,17 +2687,28 @@ class ListNotificationsRequest extends $pb.GeneratedMessage {
   static ListNotificationsRequest create() => ListNotificationsRequest._();
   ListNotificationsRequest createEmptyInstance() => create();
   static $pb.PbList<ListNotificationsRequest> createRepeated() => $pb.PbList<ListNotificationsRequest>();
-  static ListNotificationsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListNotificationsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListNotificationsRequest>(create);
   static ListNotificationsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $3.Int32Value get limit => $_getN(0);
+  @$pb.TagNumber(1)
   set limit($3.Int32Value v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasLimit() => $_has(0);
+  @$pb.TagNumber(1)
   void clearLimit() => clearField(1);
+  @$pb.TagNumber(1)
+  $3.Int32Value ensureLimit() => $_ensure(0);
 
-  $core.String get cacheableCursor => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get cacheableCursor => $_getSZ(1);
+  @$pb.TagNumber(2)
   set cacheableCursor($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCacheableCursor() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCacheableCursor() => clearField(2);
 }
 
@@ -1966,7 +2716,7 @@ class ListStorageObjectsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListStorageObjectsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'userId')
     ..aOS(2, 'collection')
-    ..a<$3.Int32Value>(3, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(3, 'limit', subBuilder: $3.Int32Value.create)
     ..aOS(4, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -1982,36 +2732,55 @@ class ListStorageObjectsRequest extends $pb.GeneratedMessage {
   static ListStorageObjectsRequest create() => ListStorageObjectsRequest._();
   ListStorageObjectsRequest createEmptyInstance() => create();
   static $pb.PbList<ListStorageObjectsRequest> createRepeated() => $pb.PbList<ListStorageObjectsRequest>();
-  static ListStorageObjectsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListStorageObjectsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListStorageObjectsRequest>(create);
   static ListStorageObjectsRequest _defaultInstance;
 
-  $core.String get userId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get userId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set userId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearUserId() => clearField(1);
 
-  $core.String get collection => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get collection => $_getSZ(1);
+  @$pb.TagNumber(2)
   set collection($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCollection() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCollection() => clearField(2);
 
+  @$pb.TagNumber(3)
   $3.Int32Value get limit => $_getN(2);
+  @$pb.TagNumber(3)
   set limit($3.Int32Value v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasLimit() => $_has(2);
+  @$pb.TagNumber(3)
   void clearLimit() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.Int32Value ensureLimit() => $_ensure(2);
 
-  $core.String get cursor => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get cursor => $_getSZ(3);
+  @$pb.TagNumber(4)
   set cursor($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasCursor() => $_has(3);
+  @$pb.TagNumber(4)
   void clearCursor() => clearField(4);
 }
 
 class ListTournamentRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListTournamentRecordsAroundOwnerRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'tournamentId')
-    ..a<$3.UInt32Value>(2, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.UInt32Value.getDefault, subBuilder: $3.UInt32Value.create)
+    ..aOM<$3.UInt32Value>(2, 'limit', subBuilder: $3.UInt32Value.create)
     ..aOS(3, 'ownerId')
-    ..a<$3.Int64Value>(4, 'expiry', $pb.PbFieldType.OM, defaultOrMaker: $3.Int64Value.getDefault, subBuilder: $3.Int64Value.create)
+    ..aOM<$3.Int64Value>(4, 'expiry', subBuilder: $3.Int64Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -2026,37 +2795,58 @@ class ListTournamentRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   static ListTournamentRecordsAroundOwnerRequest create() => ListTournamentRecordsAroundOwnerRequest._();
   ListTournamentRecordsAroundOwnerRequest createEmptyInstance() => create();
   static $pb.PbList<ListTournamentRecordsAroundOwnerRequest> createRepeated() => $pb.PbList<ListTournamentRecordsAroundOwnerRequest>();
-  static ListTournamentRecordsAroundOwnerRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListTournamentRecordsAroundOwnerRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListTournamentRecordsAroundOwnerRequest>(create);
   static ListTournamentRecordsAroundOwnerRequest _defaultInstance;
 
-  $core.String get tournamentId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get tournamentId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set tournamentId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasTournamentId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearTournamentId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $3.UInt32Value get limit => $_getN(1);
+  @$pb.TagNumber(2)
   set limit($3.UInt32Value v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasLimit() => $_has(1);
+  @$pb.TagNumber(2)
   void clearLimit() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.UInt32Value ensureLimit() => $_ensure(1);
 
-  $core.String get ownerId => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get ownerId => $_getSZ(2);
+  @$pb.TagNumber(3)
   set ownerId($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasOwnerId() => $_has(2);
+  @$pb.TagNumber(3)
   void clearOwnerId() => clearField(3);
 
+  @$pb.TagNumber(4)
   $3.Int64Value get expiry => $_getN(3);
+  @$pb.TagNumber(4)
   set expiry($3.Int64Value v) { setField(4, v); }
+  @$pb.TagNumber(4)
   $core.bool hasExpiry() => $_has(3);
+  @$pb.TagNumber(4)
   void clearExpiry() => clearField(4);
+  @$pb.TagNumber(4)
+  $3.Int64Value ensureExpiry() => $_ensure(3);
 }
 
 class ListTournamentRecordsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListTournamentRecordsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'tournamentId')
     ..pPS(2, 'ownerIds')
-    ..a<$3.Int32Value>(3, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(3, 'limit', subBuilder: $3.Int32Value.create)
     ..aOS(4, 'cursor')
-    ..a<$3.Int64Value>(5, 'expiry', $pb.PbFieldType.OM, defaultOrMaker: $3.Int64Value.getDefault, subBuilder: $3.Int64Value.create)
+    ..aOM<$3.Int64Value>(5, 'expiry', subBuilder: $3.Int64Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -2071,39 +2861,61 @@ class ListTournamentRecordsRequest extends $pb.GeneratedMessage {
   static ListTournamentRecordsRequest create() => ListTournamentRecordsRequest._();
   ListTournamentRecordsRequest createEmptyInstance() => create();
   static $pb.PbList<ListTournamentRecordsRequest> createRepeated() => $pb.PbList<ListTournamentRecordsRequest>();
-  static ListTournamentRecordsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListTournamentRecordsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListTournamentRecordsRequest>(create);
   static ListTournamentRecordsRequest _defaultInstance;
 
-  $core.String get tournamentId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get tournamentId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set tournamentId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasTournamentId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearTournamentId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.List<$core.String> get ownerIds => $_getList(1);
 
+  @$pb.TagNumber(3)
   $3.Int32Value get limit => $_getN(2);
+  @$pb.TagNumber(3)
   set limit($3.Int32Value v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasLimit() => $_has(2);
+  @$pb.TagNumber(3)
   void clearLimit() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.Int32Value ensureLimit() => $_ensure(2);
 
-  $core.String get cursor => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get cursor => $_getSZ(3);
+  @$pb.TagNumber(4)
   set cursor($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasCursor() => $_has(3);
+  @$pb.TagNumber(4)
   void clearCursor() => clearField(4);
 
+  @$pb.TagNumber(5)
   $3.Int64Value get expiry => $_getN(4);
+  @$pb.TagNumber(5)
   set expiry($3.Int64Value v) { setField(5, v); }
+  @$pb.TagNumber(5)
   $core.bool hasExpiry() => $_has(4);
+  @$pb.TagNumber(5)
   void clearExpiry() => clearField(5);
+  @$pb.TagNumber(5)
+  $3.Int64Value ensureExpiry() => $_ensure(4);
 }
 
 class ListTournamentsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListTournamentsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<$3.UInt32Value>(1, 'categoryStart', $pb.PbFieldType.OM, defaultOrMaker: $3.UInt32Value.getDefault, subBuilder: $3.UInt32Value.create)
-    ..a<$3.UInt32Value>(2, 'categoryEnd', $pb.PbFieldType.OM, defaultOrMaker: $3.UInt32Value.getDefault, subBuilder: $3.UInt32Value.create)
-    ..a<$3.UInt32Value>(3, 'startTime', $pb.PbFieldType.OM, defaultOrMaker: $3.UInt32Value.getDefault, subBuilder: $3.UInt32Value.create)
-    ..a<$3.UInt32Value>(4, 'endTime', $pb.PbFieldType.OM, defaultOrMaker: $3.UInt32Value.getDefault, subBuilder: $3.UInt32Value.create)
-    ..a<$3.Int32Value>(6, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.UInt32Value>(1, 'categoryStart', subBuilder: $3.UInt32Value.create)
+    ..aOM<$3.UInt32Value>(2, 'categoryEnd', subBuilder: $3.UInt32Value.create)
+    ..aOM<$3.UInt32Value>(3, 'startTime', subBuilder: $3.UInt32Value.create)
+    ..aOM<$3.UInt32Value>(4, 'endTime', subBuilder: $3.UInt32Value.create)
+    ..aOM<$3.Int32Value>(6, 'limit', subBuilder: $3.Int32Value.create)
     ..aOS(8, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -2119,45 +2931,80 @@ class ListTournamentsRequest extends $pb.GeneratedMessage {
   static ListTournamentsRequest create() => ListTournamentsRequest._();
   ListTournamentsRequest createEmptyInstance() => create();
   static $pb.PbList<ListTournamentsRequest> createRepeated() => $pb.PbList<ListTournamentsRequest>();
-  static ListTournamentsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListTournamentsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListTournamentsRequest>(create);
   static ListTournamentsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $3.UInt32Value get categoryStart => $_getN(0);
+  @$pb.TagNumber(1)
   set categoryStart($3.UInt32Value v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasCategoryStart() => $_has(0);
+  @$pb.TagNumber(1)
   void clearCategoryStart() => clearField(1);
+  @$pb.TagNumber(1)
+  $3.UInt32Value ensureCategoryStart() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.UInt32Value get categoryEnd => $_getN(1);
+  @$pb.TagNumber(2)
   set categoryEnd($3.UInt32Value v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCategoryEnd() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCategoryEnd() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.UInt32Value ensureCategoryEnd() => $_ensure(1);
 
+  @$pb.TagNumber(3)
   $3.UInt32Value get startTime => $_getN(2);
+  @$pb.TagNumber(3)
   set startTime($3.UInt32Value v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasStartTime() => $_has(2);
+  @$pb.TagNumber(3)
   void clearStartTime() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.UInt32Value ensureStartTime() => $_ensure(2);
 
+  @$pb.TagNumber(4)
   $3.UInt32Value get endTime => $_getN(3);
+  @$pb.TagNumber(4)
   set endTime($3.UInt32Value v) { setField(4, v); }
+  @$pb.TagNumber(4)
   $core.bool hasEndTime() => $_has(3);
+  @$pb.TagNumber(4)
   void clearEndTime() => clearField(4);
+  @$pb.TagNumber(4)
+  $3.UInt32Value ensureEndTime() => $_ensure(3);
 
+  @$pb.TagNumber(6)
   $3.Int32Value get limit => $_getN(4);
+  @$pb.TagNumber(6)
   set limit($3.Int32Value v) { setField(6, v); }
+  @$pb.TagNumber(6)
   $core.bool hasLimit() => $_has(4);
+  @$pb.TagNumber(6)
   void clearLimit() => clearField(6);
+  @$pb.TagNumber(6)
+  $3.Int32Value ensureLimit() => $_ensure(4);
 
-  $core.String get cursor => $_getS(5, '');
+  @$pb.TagNumber(8)
+  $core.String get cursor => $_getSZ(5);
+  @$pb.TagNumber(8)
   set cursor($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(8)
   $core.bool hasCursor() => $_has(5);
+  @$pb.TagNumber(8)
   void clearCursor() => clearField(8);
 }
 
 class ListUserGroupsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListUserGroupsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'userId')
-    ..a<$3.Int32Value>(2, 'limit', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
-    ..a<$3.Int32Value>(3, 'state', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(2, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(3, 'state', subBuilder: $3.Int32Value.create)
     ..aOS(4, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -2173,27 +3020,48 @@ class ListUserGroupsRequest extends $pb.GeneratedMessage {
   static ListUserGroupsRequest create() => ListUserGroupsRequest._();
   ListUserGroupsRequest createEmptyInstance() => create();
   static $pb.PbList<ListUserGroupsRequest> createRepeated() => $pb.PbList<ListUserGroupsRequest>();
-  static ListUserGroupsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ListUserGroupsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ListUserGroupsRequest>(create);
   static ListUserGroupsRequest _defaultInstance;
 
-  $core.String get userId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get userId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set userId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearUserId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $3.Int32Value get limit => $_getN(1);
+  @$pb.TagNumber(2)
   set limit($3.Int32Value v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasLimit() => $_has(1);
+  @$pb.TagNumber(2)
   void clearLimit() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.Int32Value ensureLimit() => $_ensure(1);
 
+  @$pb.TagNumber(3)
   $3.Int32Value get state => $_getN(2);
+  @$pb.TagNumber(3)
   set state($3.Int32Value v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasState() => $_has(2);
+  @$pb.TagNumber(3)
   void clearState() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.Int32Value ensureState() => $_ensure(2);
 
-  $core.String get cursor => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get cursor => $_getSZ(3);
+  @$pb.TagNumber(4)
   set cursor($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasCursor() => $_has(3);
+  @$pb.TagNumber(4)
   void clearCursor() => clearField(4);
 }
 
@@ -2201,7 +3069,7 @@ class Match extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Match', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'matchId')
     ..aOB(2, 'authoritative')
-    ..a<$3.StringValue>(3, 'label', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(3, 'label', subBuilder: $3.StringValue.create)
     ..a<$core.int>(4, 'size', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
@@ -2217,27 +3085,46 @@ class Match extends $pb.GeneratedMessage {
   static Match create() => Match._();
   Match createEmptyInstance() => create();
   static $pb.PbList<Match> createRepeated() => $pb.PbList<Match>();
-  static Match getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Match getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Match>(create);
   static Match _defaultInstance;
 
-  $core.String get matchId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get matchId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set matchId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasMatchId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearMatchId() => clearField(1);
 
-  $core.bool get authoritative => $_get(1, false);
+  @$pb.TagNumber(2)
+  $core.bool get authoritative => $_getBF(1);
+  @$pb.TagNumber(2)
   set authoritative($core.bool v) { $_setBool(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasAuthoritative() => $_has(1);
+  @$pb.TagNumber(2)
   void clearAuthoritative() => clearField(2);
 
+  @$pb.TagNumber(3)
   $3.StringValue get label => $_getN(2);
+  @$pb.TagNumber(3)
   set label($3.StringValue v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasLabel() => $_has(2);
+  @$pb.TagNumber(3)
   void clearLabel() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.StringValue ensureLabel() => $_ensure(2);
 
-  $core.int get size => $_get(3, 0);
+  @$pb.TagNumber(4)
+  $core.int get size => $_getIZ(3);
+  @$pb.TagNumber(4)
   set size($core.int v) { $_setSignedInt32(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasSize() => $_has(3);
+  @$pb.TagNumber(4)
   void clearSize() => clearField(4);
 }
 
@@ -2258,9 +3145,11 @@ class MatchList extends $pb.GeneratedMessage {
   static MatchList create() => MatchList._();
   MatchList createEmptyInstance() => create();
   static $pb.PbList<MatchList> createRepeated() => $pb.PbList<MatchList>();
-  static MatchList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static MatchList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MatchList>(create);
   static MatchList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<Match> get matches => $_getList(0);
 }
 
@@ -2271,7 +3160,7 @@ class Notification extends $pb.GeneratedMessage {
     ..aOS(3, 'content')
     ..a<$core.int>(4, 'code', $pb.PbFieldType.O3)
     ..aOS(5, 'senderId')
-    ..a<$2.Timestamp>(6, 'createTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(6, 'createTime', subBuilder: $2.Timestamp.create)
     ..aOB(7, 'persistent')
     ..hasRequiredFields = false
   ;
@@ -2287,42 +3176,73 @@ class Notification extends $pb.GeneratedMessage {
   static Notification create() => Notification._();
   Notification createEmptyInstance() => create();
   static $pb.PbList<Notification> createRepeated() => $pb.PbList<Notification>();
-  static Notification getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Notification getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Notification>(create);
   static Notification _defaultInstance;
 
-  $core.String get id => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
   set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearId() => clearField(1);
 
-  $core.String get subject => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get subject => $_getSZ(1);
+  @$pb.TagNumber(2)
   set subject($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasSubject() => $_has(1);
+  @$pb.TagNumber(2)
   void clearSubject() => clearField(2);
 
-  $core.String get content => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get content => $_getSZ(2);
+  @$pb.TagNumber(3)
   set content($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasContent() => $_has(2);
+  @$pb.TagNumber(3)
   void clearContent() => clearField(3);
 
-  $core.int get code => $_get(3, 0);
+  @$pb.TagNumber(4)
+  $core.int get code => $_getIZ(3);
+  @$pb.TagNumber(4)
   set code($core.int v) { $_setSignedInt32(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasCode() => $_has(3);
+  @$pb.TagNumber(4)
   void clearCode() => clearField(4);
 
-  $core.String get senderId => $_getS(4, '');
+  @$pb.TagNumber(5)
+  $core.String get senderId => $_getSZ(4);
+  @$pb.TagNumber(5)
   set senderId($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasSenderId() => $_has(4);
+  @$pb.TagNumber(5)
   void clearSenderId() => clearField(5);
 
+  @$pb.TagNumber(6)
   $2.Timestamp get createTime => $_getN(5);
+  @$pb.TagNumber(6)
   set createTime($2.Timestamp v) { setField(6, v); }
+  @$pb.TagNumber(6)
   $core.bool hasCreateTime() => $_has(5);
+  @$pb.TagNumber(6)
   void clearCreateTime() => clearField(6);
+  @$pb.TagNumber(6)
+  $2.Timestamp ensureCreateTime() => $_ensure(5);
 
-  $core.bool get persistent => $_get(6, false);
+  @$pb.TagNumber(7)
+  $core.bool get persistent => $_getBF(6);
+  @$pb.TagNumber(7)
   set persistent($core.bool v) { $_setBool(6, v); }
+  @$pb.TagNumber(7)
   $core.bool hasPersistent() => $_has(6);
+  @$pb.TagNumber(7)
   void clearPersistent() => clearField(7);
 }
 
@@ -2344,14 +3264,20 @@ class NotificationList extends $pb.GeneratedMessage {
   static NotificationList create() => NotificationList._();
   NotificationList createEmptyInstance() => create();
   static $pb.PbList<NotificationList> createRepeated() => $pb.PbList<NotificationList>();
-  static NotificationList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static NotificationList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<NotificationList>(create);
   static NotificationList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<Notification> get notifications => $_getList(0);
 
-  $core.String get cacheableCursor => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get cacheableCursor => $_getSZ(1);
+  @$pb.TagNumber(2)
   set cacheableCursor($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCacheableCursor() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCacheableCursor() => clearField(2);
 }
 
@@ -2373,14 +3299,20 @@ class PromoteGroupUsersRequest extends $pb.GeneratedMessage {
   static PromoteGroupUsersRequest create() => PromoteGroupUsersRequest._();
   PromoteGroupUsersRequest createEmptyInstance() => create();
   static $pb.PbList<PromoteGroupUsersRequest> createRepeated() => $pb.PbList<PromoteGroupUsersRequest>();
-  static PromoteGroupUsersRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static PromoteGroupUsersRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PromoteGroupUsersRequest>(create);
   static PromoteGroupUsersRequest _defaultInstance;
 
-  $core.String get groupId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set groupId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearGroupId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.List<$core.String> get userIds => $_getList(1);
 }
 
@@ -2403,22 +3335,35 @@ class ReadStorageObjectId extends $pb.GeneratedMessage {
   static ReadStorageObjectId create() => ReadStorageObjectId._();
   ReadStorageObjectId createEmptyInstance() => create();
   static $pb.PbList<ReadStorageObjectId> createRepeated() => $pb.PbList<ReadStorageObjectId>();
-  static ReadStorageObjectId getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ReadStorageObjectId getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ReadStorageObjectId>(create);
   static ReadStorageObjectId _defaultInstance;
 
-  $core.String get collection => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get collection => $_getSZ(0);
+  @$pb.TagNumber(1)
   set collection($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasCollection() => $_has(0);
+  @$pb.TagNumber(1)
   void clearCollection() => clearField(1);
 
-  $core.String get key => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get key => $_getSZ(1);
+  @$pb.TagNumber(2)
   set key($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasKey() => $_has(1);
+  @$pb.TagNumber(2)
   void clearKey() => clearField(2);
 
-  $core.String get userId => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get userId => $_getSZ(2);
+  @$pb.TagNumber(3)
   set userId($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasUserId() => $_has(2);
+  @$pb.TagNumber(3)
   void clearUserId() => clearField(3);
 }
 
@@ -2439,9 +3384,11 @@ class ReadStorageObjectsRequest extends $pb.GeneratedMessage {
   static ReadStorageObjectsRequest create() => ReadStorageObjectsRequest._();
   ReadStorageObjectsRequest createEmptyInstance() => create();
   static $pb.PbList<ReadStorageObjectsRequest> createRepeated() => $pb.PbList<ReadStorageObjectsRequest>();
-  static ReadStorageObjectsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static ReadStorageObjectsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ReadStorageObjectsRequest>(create);
   static ReadStorageObjectsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<ReadStorageObjectId> get objectIds => $_getList(0);
 }
 
@@ -2464,22 +3411,35 @@ class Rpc extends $pb.GeneratedMessage {
   static Rpc create() => Rpc._();
   Rpc createEmptyInstance() => create();
   static $pb.PbList<Rpc> createRepeated() => $pb.PbList<Rpc>();
-  static Rpc getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Rpc getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Rpc>(create);
   static Rpc _defaultInstance;
 
-  $core.String get id => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
   set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearId() => clearField(1);
 
-  $core.String get payload => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get payload => $_getSZ(1);
+  @$pb.TagNumber(2)
   set payload($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasPayload() => $_has(1);
+  @$pb.TagNumber(2)
   void clearPayload() => clearField(2);
 
-  $core.String get httpKey => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get httpKey => $_getSZ(2);
+  @$pb.TagNumber(3)
   set httpKey($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasHttpKey() => $_has(2);
+  @$pb.TagNumber(3)
   void clearHttpKey() => clearField(3);
 }
 
@@ -2501,17 +3461,26 @@ class Session extends $pb.GeneratedMessage {
   static Session create() => Session._();
   Session createEmptyInstance() => create();
   static $pb.PbList<Session> createRepeated() => $pb.PbList<Session>();
-  static Session getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Session getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Session>(create);
   static Session _defaultInstance;
 
-  $core.bool get created => $_get(0, false);
+  @$pb.TagNumber(1)
+  $core.bool get created => $_getBF(0);
+  @$pb.TagNumber(1)
   set created($core.bool v) { $_setBool(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasCreated() => $_has(0);
+  @$pb.TagNumber(1)
   void clearCreated() => clearField(1);
 
-  $core.String get token => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get token => $_getSZ(1);
+  @$pb.TagNumber(2)
   set token($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasToken() => $_has(1);
+  @$pb.TagNumber(2)
   void clearToken() => clearField(2);
 }
 
@@ -2524,8 +3493,8 @@ class StorageObject extends $pb.GeneratedMessage {
     ..aOS(5, 'version')
     ..a<$core.int>(6, 'permissionRead', $pb.PbFieldType.O3)
     ..a<$core.int>(7, 'permissionWrite', $pb.PbFieldType.O3)
-    ..a<$2.Timestamp>(8, 'createTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
-    ..a<$2.Timestamp>(9, 'updateTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(8, 'createTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(9, 'updateTime', subBuilder: $2.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -2540,53 +3509,94 @@ class StorageObject extends $pb.GeneratedMessage {
   static StorageObject create() => StorageObject._();
   StorageObject createEmptyInstance() => create();
   static $pb.PbList<StorageObject> createRepeated() => $pb.PbList<StorageObject>();
-  static StorageObject getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static StorageObject getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StorageObject>(create);
   static StorageObject _defaultInstance;
 
-  $core.String get collection => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get collection => $_getSZ(0);
+  @$pb.TagNumber(1)
   set collection($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasCollection() => $_has(0);
+  @$pb.TagNumber(1)
   void clearCollection() => clearField(1);
 
-  $core.String get key => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get key => $_getSZ(1);
+  @$pb.TagNumber(2)
   set key($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasKey() => $_has(1);
+  @$pb.TagNumber(2)
   void clearKey() => clearField(2);
 
-  $core.String get userId => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get userId => $_getSZ(2);
+  @$pb.TagNumber(3)
   set userId($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasUserId() => $_has(2);
+  @$pb.TagNumber(3)
   void clearUserId() => clearField(3);
 
-  $core.String get value => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get value => $_getSZ(3);
+  @$pb.TagNumber(4)
   set value($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasValue() => $_has(3);
+  @$pb.TagNumber(4)
   void clearValue() => clearField(4);
 
-  $core.String get version => $_getS(4, '');
+  @$pb.TagNumber(5)
+  $core.String get version => $_getSZ(4);
+  @$pb.TagNumber(5)
   set version($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasVersion() => $_has(4);
+  @$pb.TagNumber(5)
   void clearVersion() => clearField(5);
 
-  $core.int get permissionRead => $_get(5, 0);
+  @$pb.TagNumber(6)
+  $core.int get permissionRead => $_getIZ(5);
+  @$pb.TagNumber(6)
   set permissionRead($core.int v) { $_setSignedInt32(5, v); }
+  @$pb.TagNumber(6)
   $core.bool hasPermissionRead() => $_has(5);
+  @$pb.TagNumber(6)
   void clearPermissionRead() => clearField(6);
 
-  $core.int get permissionWrite => $_get(6, 0);
+  @$pb.TagNumber(7)
+  $core.int get permissionWrite => $_getIZ(6);
+  @$pb.TagNumber(7)
   set permissionWrite($core.int v) { $_setSignedInt32(6, v); }
+  @$pb.TagNumber(7)
   $core.bool hasPermissionWrite() => $_has(6);
+  @$pb.TagNumber(7)
   void clearPermissionWrite() => clearField(7);
 
+  @$pb.TagNumber(8)
   $2.Timestamp get createTime => $_getN(7);
+  @$pb.TagNumber(8)
   set createTime($2.Timestamp v) { setField(8, v); }
+  @$pb.TagNumber(8)
   $core.bool hasCreateTime() => $_has(7);
+  @$pb.TagNumber(8)
   void clearCreateTime() => clearField(8);
+  @$pb.TagNumber(8)
+  $2.Timestamp ensureCreateTime() => $_ensure(7);
 
+  @$pb.TagNumber(9)
   $2.Timestamp get updateTime => $_getN(8);
+  @$pb.TagNumber(9)
   set updateTime($2.Timestamp v) { setField(9, v); }
+  @$pb.TagNumber(9)
   $core.bool hasUpdateTime() => $_has(8);
+  @$pb.TagNumber(9)
   void clearUpdateTime() => clearField(9);
+  @$pb.TagNumber(9)
+  $2.Timestamp ensureUpdateTime() => $_ensure(8);
 }
 
 class StorageObjectAck extends $pb.GeneratedMessage {
@@ -2609,27 +3619,44 @@ class StorageObjectAck extends $pb.GeneratedMessage {
   static StorageObjectAck create() => StorageObjectAck._();
   StorageObjectAck createEmptyInstance() => create();
   static $pb.PbList<StorageObjectAck> createRepeated() => $pb.PbList<StorageObjectAck>();
-  static StorageObjectAck getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static StorageObjectAck getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StorageObjectAck>(create);
   static StorageObjectAck _defaultInstance;
 
-  $core.String get collection => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get collection => $_getSZ(0);
+  @$pb.TagNumber(1)
   set collection($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasCollection() => $_has(0);
+  @$pb.TagNumber(1)
   void clearCollection() => clearField(1);
 
-  $core.String get key => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get key => $_getSZ(1);
+  @$pb.TagNumber(2)
   set key($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasKey() => $_has(1);
+  @$pb.TagNumber(2)
   void clearKey() => clearField(2);
 
-  $core.String get version => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get version => $_getSZ(2);
+  @$pb.TagNumber(3)
   set version($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasVersion() => $_has(2);
+  @$pb.TagNumber(3)
   void clearVersion() => clearField(3);
 
-  $core.String get userId => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get userId => $_getSZ(3);
+  @$pb.TagNumber(4)
   set userId($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasUserId() => $_has(3);
+  @$pb.TagNumber(4)
   void clearUserId() => clearField(4);
 }
 
@@ -2650,9 +3677,11 @@ class StorageObjectAcks extends $pb.GeneratedMessage {
   static StorageObjectAcks create() => StorageObjectAcks._();
   StorageObjectAcks createEmptyInstance() => create();
   static $pb.PbList<StorageObjectAcks> createRepeated() => $pb.PbList<StorageObjectAcks>();
-  static StorageObjectAcks getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static StorageObjectAcks getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StorageObjectAcks>(create);
   static StorageObjectAcks _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<StorageObjectAck> get acks => $_getList(0);
 }
 
@@ -2673,9 +3702,11 @@ class StorageObjects extends $pb.GeneratedMessage {
   static StorageObjects create() => StorageObjects._();
   StorageObjects createEmptyInstance() => create();
   static $pb.PbList<StorageObjects> createRepeated() => $pb.PbList<StorageObjects>();
-  static StorageObjects getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static StorageObjects getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StorageObjects>(create);
   static StorageObjects _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<StorageObject> get objects => $_getList(0);
 }
 
@@ -2697,14 +3728,20 @@ class StorageObjectList extends $pb.GeneratedMessage {
   static StorageObjectList create() => StorageObjectList._();
   StorageObjectList createEmptyInstance() => create();
   static $pb.PbList<StorageObjectList> createRepeated() => $pb.PbList<StorageObjectList>();
-  static StorageObjectList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static StorageObjectList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<StorageObjectList>(create);
   static StorageObjectList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<StorageObject> get objects => $_getList(0);
 
-  $core.String get cursor => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get cursor => $_getSZ(1);
+  @$pb.TagNumber(2)
   set cursor($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCursor() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCursor() => clearField(2);
 }
 
@@ -2722,9 +3759,9 @@ class Tournament extends $pb.GeneratedMessage {
     ..a<$core.int>(10, 'endActive', $pb.PbFieldType.OU3)
     ..a<$core.int>(11, 'nextReset', $pb.PbFieldType.OU3)
     ..aOS(12, 'metadata')
-    ..a<$2.Timestamp>(13, 'createTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
-    ..a<$2.Timestamp>(14, 'startTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
-    ..a<$2.Timestamp>(15, 'endTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(13, 'createTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(14, 'startTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(15, 'endTime', subBuilder: $2.Timestamp.create)
     ..a<$core.int>(16, 'duration', $pb.PbFieldType.OU3)
     ..a<$core.int>(17, 'startActive', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
@@ -2741,92 +3778,167 @@ class Tournament extends $pb.GeneratedMessage {
   static Tournament create() => Tournament._();
   Tournament createEmptyInstance() => create();
   static $pb.PbList<Tournament> createRepeated() => $pb.PbList<Tournament>();
-  static Tournament getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Tournament getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Tournament>(create);
   static Tournament _defaultInstance;
 
-  $core.String get id => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
   set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearId() => clearField(1);
 
-  $core.String get title => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get title => $_getSZ(1);
+  @$pb.TagNumber(2)
   set title($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasTitle() => $_has(1);
+  @$pb.TagNumber(2)
   void clearTitle() => clearField(2);
 
-  $core.String get description => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get description => $_getSZ(2);
+  @$pb.TagNumber(3)
   set description($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasDescription() => $_has(2);
+  @$pb.TagNumber(3)
   void clearDescription() => clearField(3);
 
-  $core.int get category => $_get(3, 0);
+  @$pb.TagNumber(4)
+  $core.int get category => $_getIZ(3);
+  @$pb.TagNumber(4)
   set category($core.int v) { $_setUnsignedInt32(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasCategory() => $_has(3);
+  @$pb.TagNumber(4)
   void clearCategory() => clearField(4);
 
-  $core.int get sortOrder => $_get(4, 0);
+  @$pb.TagNumber(5)
+  $core.int get sortOrder => $_getIZ(4);
+  @$pb.TagNumber(5)
   set sortOrder($core.int v) { $_setUnsignedInt32(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasSortOrder() => $_has(4);
+  @$pb.TagNumber(5)
   void clearSortOrder() => clearField(5);
 
-  $core.int get size => $_get(5, 0);
+  @$pb.TagNumber(6)
+  $core.int get size => $_getIZ(5);
+  @$pb.TagNumber(6)
   set size($core.int v) { $_setUnsignedInt32(5, v); }
+  @$pb.TagNumber(6)
   $core.bool hasSize() => $_has(5);
+  @$pb.TagNumber(6)
   void clearSize() => clearField(6);
 
-  $core.int get maxSize => $_get(6, 0);
+  @$pb.TagNumber(7)
+  $core.int get maxSize => $_getIZ(6);
+  @$pb.TagNumber(7)
   set maxSize($core.int v) { $_setUnsignedInt32(6, v); }
+  @$pb.TagNumber(7)
   $core.bool hasMaxSize() => $_has(6);
+  @$pb.TagNumber(7)
   void clearMaxSize() => clearField(7);
 
-  $core.int get maxNumScore => $_get(7, 0);
+  @$pb.TagNumber(8)
+  $core.int get maxNumScore => $_getIZ(7);
+  @$pb.TagNumber(8)
   set maxNumScore($core.int v) { $_setUnsignedInt32(7, v); }
+  @$pb.TagNumber(8)
   $core.bool hasMaxNumScore() => $_has(7);
+  @$pb.TagNumber(8)
   void clearMaxNumScore() => clearField(8);
 
-  $core.bool get canEnter => $_get(8, false);
+  @$pb.TagNumber(9)
+  $core.bool get canEnter => $_getBF(8);
+  @$pb.TagNumber(9)
   set canEnter($core.bool v) { $_setBool(8, v); }
+  @$pb.TagNumber(9)
   $core.bool hasCanEnter() => $_has(8);
+  @$pb.TagNumber(9)
   void clearCanEnter() => clearField(9);
 
-  $core.int get endActive => $_get(9, 0);
+  @$pb.TagNumber(10)
+  $core.int get endActive => $_getIZ(9);
+  @$pb.TagNumber(10)
   set endActive($core.int v) { $_setUnsignedInt32(9, v); }
+  @$pb.TagNumber(10)
   $core.bool hasEndActive() => $_has(9);
+  @$pb.TagNumber(10)
   void clearEndActive() => clearField(10);
 
-  $core.int get nextReset => $_get(10, 0);
+  @$pb.TagNumber(11)
+  $core.int get nextReset => $_getIZ(10);
+  @$pb.TagNumber(11)
   set nextReset($core.int v) { $_setUnsignedInt32(10, v); }
+  @$pb.TagNumber(11)
   $core.bool hasNextReset() => $_has(10);
+  @$pb.TagNumber(11)
   void clearNextReset() => clearField(11);
 
-  $core.String get metadata => $_getS(11, '');
+  @$pb.TagNumber(12)
+  $core.String get metadata => $_getSZ(11);
+  @$pb.TagNumber(12)
   set metadata($core.String v) { $_setString(11, v); }
+  @$pb.TagNumber(12)
   $core.bool hasMetadata() => $_has(11);
+  @$pb.TagNumber(12)
   void clearMetadata() => clearField(12);
 
+  @$pb.TagNumber(13)
   $2.Timestamp get createTime => $_getN(12);
+  @$pb.TagNumber(13)
   set createTime($2.Timestamp v) { setField(13, v); }
+  @$pb.TagNumber(13)
   $core.bool hasCreateTime() => $_has(12);
+  @$pb.TagNumber(13)
   void clearCreateTime() => clearField(13);
+  @$pb.TagNumber(13)
+  $2.Timestamp ensureCreateTime() => $_ensure(12);
 
+  @$pb.TagNumber(14)
   $2.Timestamp get startTime => $_getN(13);
+  @$pb.TagNumber(14)
   set startTime($2.Timestamp v) { setField(14, v); }
+  @$pb.TagNumber(14)
   $core.bool hasStartTime() => $_has(13);
+  @$pb.TagNumber(14)
   void clearStartTime() => clearField(14);
+  @$pb.TagNumber(14)
+  $2.Timestamp ensureStartTime() => $_ensure(13);
 
+  @$pb.TagNumber(15)
   $2.Timestamp get endTime => $_getN(14);
+  @$pb.TagNumber(15)
   set endTime($2.Timestamp v) { setField(15, v); }
+  @$pb.TagNumber(15)
   $core.bool hasEndTime() => $_has(14);
+  @$pb.TagNumber(15)
   void clearEndTime() => clearField(15);
+  @$pb.TagNumber(15)
+  $2.Timestamp ensureEndTime() => $_ensure(14);
 
-  $core.int get duration => $_get(15, 0);
+  @$pb.TagNumber(16)
+  $core.int get duration => $_getIZ(15);
+  @$pb.TagNumber(16)
   set duration($core.int v) { $_setUnsignedInt32(15, v); }
+  @$pb.TagNumber(16)
   $core.bool hasDuration() => $_has(15);
+  @$pb.TagNumber(16)
   void clearDuration() => clearField(16);
 
-  $core.int get startActive => $_get(16, 0);
+  @$pb.TagNumber(17)
+  $core.int get startActive => $_getIZ(16);
+  @$pb.TagNumber(17)
   set startActive($core.int v) { $_setUnsignedInt32(16, v); }
+  @$pb.TagNumber(17)
   $core.bool hasStartActive() => $_has(16);
+  @$pb.TagNumber(17)
   void clearStartActive() => clearField(17);
 }
 
@@ -2848,14 +3960,20 @@ class TournamentList extends $pb.GeneratedMessage {
   static TournamentList create() => TournamentList._();
   TournamentList createEmptyInstance() => create();
   static $pb.PbList<TournamentList> createRepeated() => $pb.PbList<TournamentList>();
-  static TournamentList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static TournamentList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TournamentList>(create);
   static TournamentList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<Tournament> get tournaments => $_getList(0);
 
-  $core.String get cursor => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get cursor => $_getSZ(1);
+  @$pb.TagNumber(2)
   set cursor($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCursor() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCursor() => clearField(2);
 }
 
@@ -2879,32 +3997,43 @@ class TournamentRecordList extends $pb.GeneratedMessage {
   static TournamentRecordList create() => TournamentRecordList._();
   TournamentRecordList createEmptyInstance() => create();
   static $pb.PbList<TournamentRecordList> createRepeated() => $pb.PbList<TournamentRecordList>();
-  static TournamentRecordList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static TournamentRecordList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TournamentRecordList>(create);
   static TournamentRecordList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<LeaderboardRecord> get records => $_getList(0);
 
+  @$pb.TagNumber(2)
   $core.List<LeaderboardRecord> get ownerRecords => $_getList(1);
 
-  $core.String get nextCursor => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get nextCursor => $_getSZ(2);
+  @$pb.TagNumber(3)
   set nextCursor($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasNextCursor() => $_has(2);
+  @$pb.TagNumber(3)
   void clearNextCursor() => clearField(3);
 
-  $core.String get prevCursor => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get prevCursor => $_getSZ(3);
+  @$pb.TagNumber(4)
   set prevCursor($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasPrevCursor() => $_has(3);
+  @$pb.TagNumber(4)
   void clearPrevCursor() => clearField(4);
 }
 
 class UpdateAccountRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('UpdateAccountRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<$3.StringValue>(1, 'username', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
-    ..a<$3.StringValue>(2, 'displayName', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
-    ..a<$3.StringValue>(3, 'avatarUrl', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
-    ..a<$3.StringValue>(4, 'langTag', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
-    ..a<$3.StringValue>(5, 'location', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
-    ..a<$3.StringValue>(6, 'timezone', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(1, 'username', subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(2, 'displayName', subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(3, 'avatarUrl', subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(4, 'langTag', subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(5, 'location', subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(6, 'timezone', subBuilder: $3.StringValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -2919,48 +4048,85 @@ class UpdateAccountRequest extends $pb.GeneratedMessage {
   static UpdateAccountRequest create() => UpdateAccountRequest._();
   UpdateAccountRequest createEmptyInstance() => create();
   static $pb.PbList<UpdateAccountRequest> createRepeated() => $pb.PbList<UpdateAccountRequest>();
-  static UpdateAccountRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static UpdateAccountRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdateAccountRequest>(create);
   static UpdateAccountRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $3.StringValue get username => $_getN(0);
+  @$pb.TagNumber(1)
   set username($3.StringValue v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasUsername() => $_has(0);
+  @$pb.TagNumber(1)
   void clearUsername() => clearField(1);
+  @$pb.TagNumber(1)
+  $3.StringValue ensureUsername() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.StringValue get displayName => $_getN(1);
+  @$pb.TagNumber(2)
   set displayName($3.StringValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasDisplayName() => $_has(1);
+  @$pb.TagNumber(2)
   void clearDisplayName() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.StringValue ensureDisplayName() => $_ensure(1);
 
+  @$pb.TagNumber(3)
   $3.StringValue get avatarUrl => $_getN(2);
+  @$pb.TagNumber(3)
   set avatarUrl($3.StringValue v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasAvatarUrl() => $_has(2);
+  @$pb.TagNumber(3)
   void clearAvatarUrl() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.StringValue ensureAvatarUrl() => $_ensure(2);
 
+  @$pb.TagNumber(4)
   $3.StringValue get langTag => $_getN(3);
+  @$pb.TagNumber(4)
   set langTag($3.StringValue v) { setField(4, v); }
+  @$pb.TagNumber(4)
   $core.bool hasLangTag() => $_has(3);
+  @$pb.TagNumber(4)
   void clearLangTag() => clearField(4);
+  @$pb.TagNumber(4)
+  $3.StringValue ensureLangTag() => $_ensure(3);
 
+  @$pb.TagNumber(5)
   $3.StringValue get location => $_getN(4);
+  @$pb.TagNumber(5)
   set location($3.StringValue v) { setField(5, v); }
+  @$pb.TagNumber(5)
   $core.bool hasLocation() => $_has(4);
+  @$pb.TagNumber(5)
   void clearLocation() => clearField(5);
+  @$pb.TagNumber(5)
+  $3.StringValue ensureLocation() => $_ensure(4);
 
+  @$pb.TagNumber(6)
   $3.StringValue get timezone => $_getN(5);
+  @$pb.TagNumber(6)
   set timezone($3.StringValue v) { setField(6, v); }
+  @$pb.TagNumber(6)
   $core.bool hasTimezone() => $_has(5);
+  @$pb.TagNumber(6)
   void clearTimezone() => clearField(6);
+  @$pb.TagNumber(6)
+  $3.StringValue ensureTimezone() => $_ensure(5);
 }
 
 class UpdateGroupRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('UpdateGroupRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'groupId')
-    ..a<$3.StringValue>(2, 'name', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
-    ..a<$3.StringValue>(3, 'description', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
-    ..a<$3.StringValue>(4, 'langTag', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
-    ..a<$3.StringValue>(5, 'avatarUrl', $pb.PbFieldType.OM, defaultOrMaker: $3.StringValue.getDefault, subBuilder: $3.StringValue.create)
-    ..a<$3.BoolValue>(6, 'open', $pb.PbFieldType.OM, defaultOrMaker: $3.BoolValue.getDefault, subBuilder: $3.BoolValue.create)
+    ..aOM<$3.StringValue>(2, 'name', subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(3, 'description', subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(4, 'langTag', subBuilder: $3.StringValue.create)
+    ..aOM<$3.StringValue>(5, 'avatarUrl', subBuilder: $3.StringValue.create)
+    ..aOM<$3.BoolValue>(6, 'open', subBuilder: $3.BoolValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -2975,38 +4141,73 @@ class UpdateGroupRequest extends $pb.GeneratedMessage {
   static UpdateGroupRequest create() => UpdateGroupRequest._();
   UpdateGroupRequest createEmptyInstance() => create();
   static $pb.PbList<UpdateGroupRequest> createRepeated() => $pb.PbList<UpdateGroupRequest>();
-  static UpdateGroupRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static UpdateGroupRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdateGroupRequest>(create);
   static UpdateGroupRequest _defaultInstance;
 
-  $core.String get groupId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set groupId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearGroupId() => clearField(1);
 
+  @$pb.TagNumber(2)
   $3.StringValue get name => $_getN(1);
+  @$pb.TagNumber(2)
   set name($3.StringValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(2)
   void clearName() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.StringValue ensureName() => $_ensure(1);
 
+  @$pb.TagNumber(3)
   $3.StringValue get description => $_getN(2);
+  @$pb.TagNumber(3)
   set description($3.StringValue v) { setField(3, v); }
+  @$pb.TagNumber(3)
   $core.bool hasDescription() => $_has(2);
+  @$pb.TagNumber(3)
   void clearDescription() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.StringValue ensureDescription() => $_ensure(2);
 
+  @$pb.TagNumber(4)
   $3.StringValue get langTag => $_getN(3);
+  @$pb.TagNumber(4)
   set langTag($3.StringValue v) { setField(4, v); }
+  @$pb.TagNumber(4)
   $core.bool hasLangTag() => $_has(3);
+  @$pb.TagNumber(4)
   void clearLangTag() => clearField(4);
+  @$pb.TagNumber(4)
+  $3.StringValue ensureLangTag() => $_ensure(3);
 
+  @$pb.TagNumber(5)
   $3.StringValue get avatarUrl => $_getN(4);
+  @$pb.TagNumber(5)
   set avatarUrl($3.StringValue v) { setField(5, v); }
+  @$pb.TagNumber(5)
   $core.bool hasAvatarUrl() => $_has(4);
+  @$pb.TagNumber(5)
   void clearAvatarUrl() => clearField(5);
+  @$pb.TagNumber(5)
+  $3.StringValue ensureAvatarUrl() => $_ensure(4);
 
+  @$pb.TagNumber(6)
   $3.BoolValue get open => $_getN(5);
+  @$pb.TagNumber(6)
   set open($3.BoolValue v) { setField(6, v); }
+  @$pb.TagNumber(6)
   $core.bool hasOpen() => $_has(5);
+  @$pb.TagNumber(6)
   void clearOpen() => clearField(6);
+  @$pb.TagNumber(6)
+  $3.BoolValue ensureOpen() => $_ensure(5);
 }
 
 class User extends $pb.GeneratedMessage {
@@ -3025,8 +4226,8 @@ class User extends $pb.GeneratedMessage {
     ..aOS(12, 'steamId')
     ..aOB(13, 'online')
     ..a<$core.int>(14, 'edgeCount', $pb.PbFieldType.O3)
-    ..a<$2.Timestamp>(15, 'createTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
-    ..a<$2.Timestamp>(16, 'updateTime', $pb.PbFieldType.OM, defaultOrMaker: $2.Timestamp.getDefault, subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(15, 'createTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(16, 'updateTime', subBuilder: $2.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -3041,94 +4242,163 @@ class User extends $pb.GeneratedMessage {
   static User create() => User._();
   User createEmptyInstance() => create();
   static $pb.PbList<User> createRepeated() => $pb.PbList<User>();
-  static User getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static User getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<User>(create);
   static User _defaultInstance;
 
-  $core.String get id => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
   set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearId() => clearField(1);
 
-  $core.String get username => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get username => $_getSZ(1);
+  @$pb.TagNumber(2)
   set username($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasUsername() => $_has(1);
+  @$pb.TagNumber(2)
   void clearUsername() => clearField(2);
 
-  $core.String get displayName => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get displayName => $_getSZ(2);
+  @$pb.TagNumber(3)
   set displayName($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasDisplayName() => $_has(2);
+  @$pb.TagNumber(3)
   void clearDisplayName() => clearField(3);
 
-  $core.String get avatarUrl => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get avatarUrl => $_getSZ(3);
+  @$pb.TagNumber(4)
   set avatarUrl($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasAvatarUrl() => $_has(3);
+  @$pb.TagNumber(4)
   void clearAvatarUrl() => clearField(4);
 
-  $core.String get langTag => $_getS(4, '');
+  @$pb.TagNumber(5)
+  $core.String get langTag => $_getSZ(4);
+  @$pb.TagNumber(5)
   set langTag($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
   $core.bool hasLangTag() => $_has(4);
+  @$pb.TagNumber(5)
   void clearLangTag() => clearField(5);
 
-  $core.String get location => $_getS(5, '');
+  @$pb.TagNumber(6)
+  $core.String get location => $_getSZ(5);
+  @$pb.TagNumber(6)
   set location($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
   $core.bool hasLocation() => $_has(5);
+  @$pb.TagNumber(6)
   void clearLocation() => clearField(6);
 
-  $core.String get timezone => $_getS(6, '');
+  @$pb.TagNumber(7)
+  $core.String get timezone => $_getSZ(6);
+  @$pb.TagNumber(7)
   set timezone($core.String v) { $_setString(6, v); }
+  @$pb.TagNumber(7)
   $core.bool hasTimezone() => $_has(6);
+  @$pb.TagNumber(7)
   void clearTimezone() => clearField(7);
 
-  $core.String get metadata => $_getS(7, '');
+  @$pb.TagNumber(8)
+  $core.String get metadata => $_getSZ(7);
+  @$pb.TagNumber(8)
   set metadata($core.String v) { $_setString(7, v); }
+  @$pb.TagNumber(8)
   $core.bool hasMetadata() => $_has(7);
+  @$pb.TagNumber(8)
   void clearMetadata() => clearField(8);
 
-  $core.String get facebookId => $_getS(8, '');
+  @$pb.TagNumber(9)
+  $core.String get facebookId => $_getSZ(8);
+  @$pb.TagNumber(9)
   set facebookId($core.String v) { $_setString(8, v); }
+  @$pb.TagNumber(9)
   $core.bool hasFacebookId() => $_has(8);
+  @$pb.TagNumber(9)
   void clearFacebookId() => clearField(9);
 
-  $core.String get googleId => $_getS(9, '');
+  @$pb.TagNumber(10)
+  $core.String get googleId => $_getSZ(9);
+  @$pb.TagNumber(10)
   set googleId($core.String v) { $_setString(9, v); }
+  @$pb.TagNumber(10)
   $core.bool hasGoogleId() => $_has(9);
+  @$pb.TagNumber(10)
   void clearGoogleId() => clearField(10);
 
-  $core.String get gamecenterId => $_getS(10, '');
+  @$pb.TagNumber(11)
+  $core.String get gamecenterId => $_getSZ(10);
+  @$pb.TagNumber(11)
   set gamecenterId($core.String v) { $_setString(10, v); }
+  @$pb.TagNumber(11)
   $core.bool hasGamecenterId() => $_has(10);
+  @$pb.TagNumber(11)
   void clearGamecenterId() => clearField(11);
 
-  $core.String get steamId => $_getS(11, '');
+  @$pb.TagNumber(12)
+  $core.String get steamId => $_getSZ(11);
+  @$pb.TagNumber(12)
   set steamId($core.String v) { $_setString(11, v); }
+  @$pb.TagNumber(12)
   $core.bool hasSteamId() => $_has(11);
+  @$pb.TagNumber(12)
   void clearSteamId() => clearField(12);
 
-  $core.bool get online => $_get(12, false);
+  @$pb.TagNumber(13)
+  $core.bool get online => $_getBF(12);
+  @$pb.TagNumber(13)
   set online($core.bool v) { $_setBool(12, v); }
+  @$pb.TagNumber(13)
   $core.bool hasOnline() => $_has(12);
+  @$pb.TagNumber(13)
   void clearOnline() => clearField(13);
 
-  $core.int get edgeCount => $_get(13, 0);
+  @$pb.TagNumber(14)
+  $core.int get edgeCount => $_getIZ(13);
+  @$pb.TagNumber(14)
   set edgeCount($core.int v) { $_setSignedInt32(13, v); }
+  @$pb.TagNumber(14)
   $core.bool hasEdgeCount() => $_has(13);
+  @$pb.TagNumber(14)
   void clearEdgeCount() => clearField(14);
 
+  @$pb.TagNumber(15)
   $2.Timestamp get createTime => $_getN(14);
+  @$pb.TagNumber(15)
   set createTime($2.Timestamp v) { setField(15, v); }
+  @$pb.TagNumber(15)
   $core.bool hasCreateTime() => $_has(14);
+  @$pb.TagNumber(15)
   void clearCreateTime() => clearField(15);
+  @$pb.TagNumber(15)
+  $2.Timestamp ensureCreateTime() => $_ensure(14);
 
+  @$pb.TagNumber(16)
   $2.Timestamp get updateTime => $_getN(15);
+  @$pb.TagNumber(16)
   set updateTime($2.Timestamp v) { setField(16, v); }
+  @$pb.TagNumber(16)
   $core.bool hasUpdateTime() => $_has(15);
+  @$pb.TagNumber(16)
   void clearUpdateTime() => clearField(16);
+  @$pb.TagNumber(16)
+  $2.Timestamp ensureUpdateTime() => $_ensure(15);
 }
 
 class UserGroupList_UserGroup extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('UserGroupList.UserGroup', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..a<Group>(1, 'group', $pb.PbFieldType.OM, defaultOrMaker: Group.getDefault, subBuilder: Group.create)
-    ..a<$3.Int32Value>(2, 'state', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<Group>(1, 'group', subBuilder: Group.create)
+    ..aOM<$3.Int32Value>(2, 'state', subBuilder: $3.Int32Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -3143,18 +4413,31 @@ class UserGroupList_UserGroup extends $pb.GeneratedMessage {
   static UserGroupList_UserGroup create() => UserGroupList_UserGroup._();
   UserGroupList_UserGroup createEmptyInstance() => create();
   static $pb.PbList<UserGroupList_UserGroup> createRepeated() => $pb.PbList<UserGroupList_UserGroup>();
-  static UserGroupList_UserGroup getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static UserGroupList_UserGroup getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UserGroupList_UserGroup>(create);
   static UserGroupList_UserGroup _defaultInstance;
 
+  @$pb.TagNumber(1)
   Group get group => $_getN(0);
+  @$pb.TagNumber(1)
   set group(Group v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasGroup() => $_has(0);
+  @$pb.TagNumber(1)
   void clearGroup() => clearField(1);
+  @$pb.TagNumber(1)
+  Group ensureGroup() => $_ensure(0);
 
+  @$pb.TagNumber(2)
   $3.Int32Value get state => $_getN(1);
+  @$pb.TagNumber(2)
   set state($3.Int32Value v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasState() => $_has(1);
+  @$pb.TagNumber(2)
   void clearState() => clearField(2);
+  @$pb.TagNumber(2)
+  $3.Int32Value ensureState() => $_ensure(1);
 }
 
 class UserGroupList extends $pb.GeneratedMessage {
@@ -3175,14 +4458,20 @@ class UserGroupList extends $pb.GeneratedMessage {
   static UserGroupList create() => UserGroupList._();
   UserGroupList createEmptyInstance() => create();
   static $pb.PbList<UserGroupList> createRepeated() => $pb.PbList<UserGroupList>();
-  static UserGroupList getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static UserGroupList getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UserGroupList>(create);
   static UserGroupList _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<UserGroupList_UserGroup> get userGroups => $_getList(0);
 
-  $core.String get cursor => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get cursor => $_getSZ(1);
+  @$pb.TagNumber(2)
   set cursor($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCursor() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCursor() => clearField(2);
 }
 
@@ -3203,9 +4492,11 @@ class Users extends $pb.GeneratedMessage {
   static Users create() => Users._();
   Users createEmptyInstance() => create();
   static $pb.PbList<Users> createRepeated() => $pb.PbList<Users>();
-  static Users getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Users getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Users>(create);
   static Users _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<User> get users => $_getList(0);
 }
 
@@ -3228,29 +4519,42 @@ class WriteLeaderboardRecordRequest_LeaderboardRecordWrite extends $pb.Generated
   static WriteLeaderboardRecordRequest_LeaderboardRecordWrite create() => WriteLeaderboardRecordRequest_LeaderboardRecordWrite._();
   WriteLeaderboardRecordRequest_LeaderboardRecordWrite createEmptyInstance() => create();
   static $pb.PbList<WriteLeaderboardRecordRequest_LeaderboardRecordWrite> createRepeated() => $pb.PbList<WriteLeaderboardRecordRequest_LeaderboardRecordWrite>();
-  static WriteLeaderboardRecordRequest_LeaderboardRecordWrite getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static WriteLeaderboardRecordRequest_LeaderboardRecordWrite getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<WriteLeaderboardRecordRequest_LeaderboardRecordWrite>(create);
   static WriteLeaderboardRecordRequest_LeaderboardRecordWrite _defaultInstance;
 
-  Int64 get score => $_getI64(0);
-  set score(Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get score => $_getI64(0);
+  @$pb.TagNumber(1)
+  set score($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasScore() => $_has(0);
+  @$pb.TagNumber(1)
   void clearScore() => clearField(1);
 
-  Int64 get subscore => $_getI64(1);
-  set subscore(Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get subscore => $_getI64(1);
+  @$pb.TagNumber(2)
+  set subscore($fixnum.Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasSubscore() => $_has(1);
+  @$pb.TagNumber(2)
   void clearSubscore() => clearField(2);
 
-  $core.String get metadata => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get metadata => $_getSZ(2);
+  @$pb.TagNumber(3)
   set metadata($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasMetadata() => $_has(2);
+  @$pb.TagNumber(3)
   void clearMetadata() => clearField(3);
 }
 
 class WriteLeaderboardRecordRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('WriteLeaderboardRecordRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'leaderboardId')
-    ..a<WriteLeaderboardRecordRequest_LeaderboardRecordWrite>(2, 'record', $pb.PbFieldType.OM, defaultOrMaker: WriteLeaderboardRecordRequest_LeaderboardRecordWrite.getDefault, subBuilder: WriteLeaderboardRecordRequest_LeaderboardRecordWrite.create)
+    ..aOM<WriteLeaderboardRecordRequest_LeaderboardRecordWrite>(2, 'record', subBuilder: WriteLeaderboardRecordRequest_LeaderboardRecordWrite.create)
     ..hasRequiredFields = false
   ;
 
@@ -3265,18 +4569,29 @@ class WriteLeaderboardRecordRequest extends $pb.GeneratedMessage {
   static WriteLeaderboardRecordRequest create() => WriteLeaderboardRecordRequest._();
   WriteLeaderboardRecordRequest createEmptyInstance() => create();
   static $pb.PbList<WriteLeaderboardRecordRequest> createRepeated() => $pb.PbList<WriteLeaderboardRecordRequest>();
-  static WriteLeaderboardRecordRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static WriteLeaderboardRecordRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<WriteLeaderboardRecordRequest>(create);
   static WriteLeaderboardRecordRequest _defaultInstance;
 
-  $core.String get leaderboardId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get leaderboardId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set leaderboardId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasLeaderboardId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearLeaderboardId() => clearField(1);
 
+  @$pb.TagNumber(2)
   WriteLeaderboardRecordRequest_LeaderboardRecordWrite get record => $_getN(1);
+  @$pb.TagNumber(2)
   set record(WriteLeaderboardRecordRequest_LeaderboardRecordWrite v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasRecord() => $_has(1);
+  @$pb.TagNumber(2)
   void clearRecord() => clearField(2);
+  @$pb.TagNumber(2)
+  WriteLeaderboardRecordRequest_LeaderboardRecordWrite ensureRecord() => $_ensure(1);
 }
 
 class WriteStorageObject extends $pb.GeneratedMessage {
@@ -3285,8 +4600,8 @@ class WriteStorageObject extends $pb.GeneratedMessage {
     ..aOS(2, 'key')
     ..aOS(3, 'value')
     ..aOS(4, 'version')
-    ..a<$3.Int32Value>(5, 'permissionRead', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
-    ..a<$3.Int32Value>(6, 'permissionWrite', $pb.PbFieldType.OM, defaultOrMaker: $3.Int32Value.getDefault, subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(5, 'permissionRead', subBuilder: $3.Int32Value.create)
+    ..aOM<$3.Int32Value>(6, 'permissionWrite', subBuilder: $3.Int32Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -3301,38 +4616,67 @@ class WriteStorageObject extends $pb.GeneratedMessage {
   static WriteStorageObject create() => WriteStorageObject._();
   WriteStorageObject createEmptyInstance() => create();
   static $pb.PbList<WriteStorageObject> createRepeated() => $pb.PbList<WriteStorageObject>();
-  static WriteStorageObject getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static WriteStorageObject getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<WriteStorageObject>(create);
   static WriteStorageObject _defaultInstance;
 
-  $core.String get collection => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get collection => $_getSZ(0);
+  @$pb.TagNumber(1)
   set collection($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasCollection() => $_has(0);
+  @$pb.TagNumber(1)
   void clearCollection() => clearField(1);
 
-  $core.String get key => $_getS(1, '');
+  @$pb.TagNumber(2)
+  $core.String get key => $_getSZ(1);
+  @$pb.TagNumber(2)
   set key($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasKey() => $_has(1);
+  @$pb.TagNumber(2)
   void clearKey() => clearField(2);
 
-  $core.String get value => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get value => $_getSZ(2);
+  @$pb.TagNumber(3)
   set value($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasValue() => $_has(2);
+  @$pb.TagNumber(3)
   void clearValue() => clearField(3);
 
-  $core.String get version => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get version => $_getSZ(3);
+  @$pb.TagNumber(4)
   set version($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasVersion() => $_has(3);
+  @$pb.TagNumber(4)
   void clearVersion() => clearField(4);
 
+  @$pb.TagNumber(5)
   $3.Int32Value get permissionRead => $_getN(4);
+  @$pb.TagNumber(5)
   set permissionRead($3.Int32Value v) { setField(5, v); }
+  @$pb.TagNumber(5)
   $core.bool hasPermissionRead() => $_has(4);
+  @$pb.TagNumber(5)
   void clearPermissionRead() => clearField(5);
+  @$pb.TagNumber(5)
+  $3.Int32Value ensurePermissionRead() => $_ensure(4);
 
+  @$pb.TagNumber(6)
   $3.Int32Value get permissionWrite => $_getN(5);
+  @$pb.TagNumber(6)
   set permissionWrite($3.Int32Value v) { setField(6, v); }
+  @$pb.TagNumber(6)
   $core.bool hasPermissionWrite() => $_has(5);
+  @$pb.TagNumber(6)
   void clearPermissionWrite() => clearField(6);
+  @$pb.TagNumber(6)
+  $3.Int32Value ensurePermissionWrite() => $_ensure(5);
 }
 
 class WriteStorageObjectsRequest extends $pb.GeneratedMessage {
@@ -3352,9 +4696,11 @@ class WriteStorageObjectsRequest extends $pb.GeneratedMessage {
   static WriteStorageObjectsRequest create() => WriteStorageObjectsRequest._();
   WriteStorageObjectsRequest createEmptyInstance() => create();
   static $pb.PbList<WriteStorageObjectsRequest> createRepeated() => $pb.PbList<WriteStorageObjectsRequest>();
-  static WriteStorageObjectsRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static WriteStorageObjectsRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<WriteStorageObjectsRequest>(create);
   static WriteStorageObjectsRequest _defaultInstance;
 
+  @$pb.TagNumber(1)
   $core.List<WriteStorageObject> get objects => $_getList(0);
 }
 
@@ -3377,29 +4723,42 @@ class WriteTournamentRecordRequest_TournamentRecordWrite extends $pb.GeneratedMe
   static WriteTournamentRecordRequest_TournamentRecordWrite create() => WriteTournamentRecordRequest_TournamentRecordWrite._();
   WriteTournamentRecordRequest_TournamentRecordWrite createEmptyInstance() => create();
   static $pb.PbList<WriteTournamentRecordRequest_TournamentRecordWrite> createRepeated() => $pb.PbList<WriteTournamentRecordRequest_TournamentRecordWrite>();
-  static WriteTournamentRecordRequest_TournamentRecordWrite getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static WriteTournamentRecordRequest_TournamentRecordWrite getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<WriteTournamentRecordRequest_TournamentRecordWrite>(create);
   static WriteTournamentRecordRequest_TournamentRecordWrite _defaultInstance;
 
-  Int64 get score => $_getI64(0);
-  set score(Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get score => $_getI64(0);
+  @$pb.TagNumber(1)
+  set score($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasScore() => $_has(0);
+  @$pb.TagNumber(1)
   void clearScore() => clearField(1);
 
-  Int64 get subscore => $_getI64(1);
-  set subscore(Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get subscore => $_getI64(1);
+  @$pb.TagNumber(2)
+  set subscore($fixnum.Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasSubscore() => $_has(1);
+  @$pb.TagNumber(2)
   void clearSubscore() => clearField(2);
 
-  $core.String get metadata => $_getS(2, '');
+  @$pb.TagNumber(3)
+  $core.String get metadata => $_getSZ(2);
+  @$pb.TagNumber(3)
   set metadata($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasMetadata() => $_has(2);
+  @$pb.TagNumber(3)
   void clearMetadata() => clearField(3);
 }
 
 class WriteTournamentRecordRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('WriteTournamentRecordRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'tournamentId')
-    ..a<WriteTournamentRecordRequest_TournamentRecordWrite>(2, 'record', $pb.PbFieldType.OM, defaultOrMaker: WriteTournamentRecordRequest_TournamentRecordWrite.getDefault, subBuilder: WriteTournamentRecordRequest_TournamentRecordWrite.create)
+    ..aOM<WriteTournamentRecordRequest_TournamentRecordWrite>(2, 'record', subBuilder: WriteTournamentRecordRequest_TournamentRecordWrite.create)
     ..hasRequiredFields = false
   ;
 
@@ -3414,17 +4773,28 @@ class WriteTournamentRecordRequest extends $pb.GeneratedMessage {
   static WriteTournamentRecordRequest create() => WriteTournamentRecordRequest._();
   WriteTournamentRecordRequest createEmptyInstance() => create();
   static $pb.PbList<WriteTournamentRecordRequest> createRepeated() => $pb.PbList<WriteTournamentRecordRequest>();
-  static WriteTournamentRecordRequest getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static WriteTournamentRecordRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<WriteTournamentRecordRequest>(create);
   static WriteTournamentRecordRequest _defaultInstance;
 
-  $core.String get tournamentId => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get tournamentId => $_getSZ(0);
+  @$pb.TagNumber(1)
   set tournamentId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasTournamentId() => $_has(0);
+  @$pb.TagNumber(1)
   void clearTournamentId() => clearField(1);
 
+  @$pb.TagNumber(2)
   WriteTournamentRecordRequest_TournamentRecordWrite get record => $_getN(1);
+  @$pb.TagNumber(2)
   set record(WriteTournamentRecordRequest_TournamentRecordWrite v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasRecord() => $_has(1);
+  @$pb.TagNumber(2)
   void clearRecord() => clearField(2);
+  @$pb.TagNumber(2)
+  WriteTournamentRecordRequest_TournamentRecordWrite ensureRecord() => $_ensure(1);
 }
 

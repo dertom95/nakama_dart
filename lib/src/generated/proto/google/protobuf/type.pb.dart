@@ -22,7 +22,7 @@ class Type extends $pb.GeneratedMessage {
     ..pc<Field>(2, 'fields', $pb.PbFieldType.PM, subBuilder: Field.create)
     ..pPS(3, 'oneofs')
     ..pc<Option>(4, 'options', $pb.PbFieldType.PM, subBuilder: Option.create)
-    ..a<$0.SourceContext>(5, 'sourceContext', $pb.PbFieldType.OM, defaultOrMaker: $0.SourceContext.getDefault, subBuilder: $0.SourceContext.create)
+    ..aOM<$0.SourceContext>(5, 'sourceContext', subBuilder: $0.SourceContext.create)
     ..e<Syntax>(6, 'syntax', $pb.PbFieldType.OE, defaultOrMaker: Syntax.SYNTAX_PROTO2, valueOf: Syntax.valueOf, enumValues: Syntax.values)
     ..hasRequiredFields = false
   ;
@@ -38,28 +38,46 @@ class Type extends $pb.GeneratedMessage {
   static Type create() => Type._();
   Type createEmptyInstance() => create();
   static $pb.PbList<Type> createRepeated() => $pb.PbList<Type>();
-  static Type getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Type getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Type>(create);
   static Type _defaultInstance;
 
-  $core.String get name => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
   set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.List<Field> get fields => $_getList(1);
 
+  @$pb.TagNumber(3)
   $core.List<$core.String> get oneofs => $_getList(2);
 
+  @$pb.TagNumber(4)
   $core.List<Option> get options => $_getList(3);
 
+  @$pb.TagNumber(5)
   $0.SourceContext get sourceContext => $_getN(4);
+  @$pb.TagNumber(5)
   set sourceContext($0.SourceContext v) { setField(5, v); }
+  @$pb.TagNumber(5)
   $core.bool hasSourceContext() => $_has(4);
+  @$pb.TagNumber(5)
   void clearSourceContext() => clearField(5);
+  @$pb.TagNumber(5)
+  $0.SourceContext ensureSourceContext() => $_ensure(4);
 
+  @$pb.TagNumber(6)
   Syntax get syntax => $_getN(5);
+  @$pb.TagNumber(6)
   set syntax(Syntax v) { setField(6, v); }
+  @$pb.TagNumber(6)
   $core.bool hasSyntax() => $_has(5);
+  @$pb.TagNumber(6)
   void clearSyntax() => clearField(6);
 }
 
@@ -89,54 +107,92 @@ class Field extends $pb.GeneratedMessage {
   static Field create() => Field._();
   Field createEmptyInstance() => create();
   static $pb.PbList<Field> createRepeated() => $pb.PbList<Field>();
-  static Field getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Field getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Field>(create);
   static Field _defaultInstance;
 
+  @$pb.TagNumber(1)
   Field_Kind get kind => $_getN(0);
+  @$pb.TagNumber(1)
   set kind(Field_Kind v) { setField(1, v); }
+  @$pb.TagNumber(1)
   $core.bool hasKind() => $_has(0);
+  @$pb.TagNumber(1)
   void clearKind() => clearField(1);
 
+  @$pb.TagNumber(2)
   Field_Cardinality get cardinality => $_getN(1);
+  @$pb.TagNumber(2)
   set cardinality(Field_Cardinality v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasCardinality() => $_has(1);
+  @$pb.TagNumber(2)
   void clearCardinality() => clearField(2);
 
-  $core.int get number => $_get(2, 0);
+  @$pb.TagNumber(3)
+  $core.int get number => $_getIZ(2);
+  @$pb.TagNumber(3)
   set number($core.int v) { $_setSignedInt32(2, v); }
+  @$pb.TagNumber(3)
   $core.bool hasNumber() => $_has(2);
+  @$pb.TagNumber(3)
   void clearNumber() => clearField(3);
 
-  $core.String get name => $_getS(3, '');
+  @$pb.TagNumber(4)
+  $core.String get name => $_getSZ(3);
+  @$pb.TagNumber(4)
   set name($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
   $core.bool hasName() => $_has(3);
+  @$pb.TagNumber(4)
   void clearName() => clearField(4);
 
-  $core.String get typeUrl => $_getS(4, '');
+  @$pb.TagNumber(6)
+  $core.String get typeUrl => $_getSZ(4);
+  @$pb.TagNumber(6)
   set typeUrl($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(6)
   $core.bool hasTypeUrl() => $_has(4);
+  @$pb.TagNumber(6)
   void clearTypeUrl() => clearField(6);
 
-  $core.int get oneofIndex => $_get(5, 0);
+  @$pb.TagNumber(7)
+  $core.int get oneofIndex => $_getIZ(5);
+  @$pb.TagNumber(7)
   set oneofIndex($core.int v) { $_setSignedInt32(5, v); }
+  @$pb.TagNumber(7)
   $core.bool hasOneofIndex() => $_has(5);
+  @$pb.TagNumber(7)
   void clearOneofIndex() => clearField(7);
 
-  $core.bool get packed => $_get(6, false);
+  @$pb.TagNumber(8)
+  $core.bool get packed => $_getBF(6);
+  @$pb.TagNumber(8)
   set packed($core.bool v) { $_setBool(6, v); }
+  @$pb.TagNumber(8)
   $core.bool hasPacked() => $_has(6);
+  @$pb.TagNumber(8)
   void clearPacked() => clearField(8);
 
+  @$pb.TagNumber(9)
   $core.List<Option> get options => $_getList(7);
 
-  $core.String get jsonName => $_getS(8, '');
+  @$pb.TagNumber(10)
+  $core.String get jsonName => $_getSZ(8);
+  @$pb.TagNumber(10)
   set jsonName($core.String v) { $_setString(8, v); }
+  @$pb.TagNumber(10)
   $core.bool hasJsonName() => $_has(8);
+  @$pb.TagNumber(10)
   void clearJsonName() => clearField(10);
 
-  $core.String get defaultValue => $_getS(9, '');
+  @$pb.TagNumber(11)
+  $core.String get defaultValue => $_getSZ(9);
+  @$pb.TagNumber(11)
   set defaultValue($core.String v) { $_setString(9, v); }
+  @$pb.TagNumber(11)
   $core.bool hasDefaultValue() => $_has(9);
+  @$pb.TagNumber(11)
   void clearDefaultValue() => clearField(11);
 }
 
@@ -145,7 +201,7 @@ class Enum extends $pb.GeneratedMessage {
     ..aOS(1, 'name')
     ..pc<EnumValue>(2, 'enumvalue', $pb.PbFieldType.PM, subBuilder: EnumValue.create)
     ..pc<Option>(3, 'options', $pb.PbFieldType.PM, subBuilder: Option.create)
-    ..a<$0.SourceContext>(4, 'sourceContext', $pb.PbFieldType.OM, defaultOrMaker: $0.SourceContext.getDefault, subBuilder: $0.SourceContext.create)
+    ..aOM<$0.SourceContext>(4, 'sourceContext', subBuilder: $0.SourceContext.create)
     ..e<Syntax>(5, 'syntax', $pb.PbFieldType.OE, defaultOrMaker: Syntax.SYNTAX_PROTO2, valueOf: Syntax.valueOf, enumValues: Syntax.values)
     ..hasRequiredFields = false
   ;
@@ -161,26 +217,43 @@ class Enum extends $pb.GeneratedMessage {
   static Enum create() => Enum._();
   Enum createEmptyInstance() => create();
   static $pb.PbList<Enum> createRepeated() => $pb.PbList<Enum>();
-  static Enum getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Enum getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Enum>(create);
   static Enum _defaultInstance;
 
-  $core.String get name => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
   set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$pb.TagNumber(2)
   $core.List<EnumValue> get enumvalue => $_getList(1);
 
+  @$pb.TagNumber(3)
   $core.List<Option> get options => $_getList(2);
 
+  @$pb.TagNumber(4)
   $0.SourceContext get sourceContext => $_getN(3);
+  @$pb.TagNumber(4)
   set sourceContext($0.SourceContext v) { setField(4, v); }
+  @$pb.TagNumber(4)
   $core.bool hasSourceContext() => $_has(3);
+  @$pb.TagNumber(4)
   void clearSourceContext() => clearField(4);
+  @$pb.TagNumber(4)
+  $0.SourceContext ensureSourceContext() => $_ensure(3);
 
+  @$pb.TagNumber(5)
   Syntax get syntax => $_getN(4);
+  @$pb.TagNumber(5)
   set syntax(Syntax v) { setField(5, v); }
+  @$pb.TagNumber(5)
   $core.bool hasSyntax() => $_has(4);
+  @$pb.TagNumber(5)
   void clearSyntax() => clearField(5);
 }
 
@@ -203,26 +276,36 @@ class EnumValue extends $pb.GeneratedMessage {
   static EnumValue create() => EnumValue._();
   EnumValue createEmptyInstance() => create();
   static $pb.PbList<EnumValue> createRepeated() => $pb.PbList<EnumValue>();
-  static EnumValue getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static EnumValue getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<EnumValue>(create);
   static EnumValue _defaultInstance;
 
-  $core.String get name => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
   set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
-  $core.int get number => $_get(1, 0);
+  @$pb.TagNumber(2)
+  $core.int get number => $_getIZ(1);
+  @$pb.TagNumber(2)
   set number($core.int v) { $_setSignedInt32(1, v); }
+  @$pb.TagNumber(2)
   $core.bool hasNumber() => $_has(1);
+  @$pb.TagNumber(2)
   void clearNumber() => clearField(2);
 
+  @$pb.TagNumber(3)
   $core.List<Option> get options => $_getList(2);
 }
 
 class Option extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Option', package: const $pb.PackageName('google.protobuf'), createEmptyInstance: create)
     ..aOS(1, 'name')
-    ..a<$1.Any>(2, 'value', $pb.PbFieldType.OM, defaultOrMaker: $1.Any.getDefault, subBuilder: $1.Any.create)
+    ..aOM<$1.Any>(2, 'value', subBuilder: $1.Any.create)
     ..hasRequiredFields = false
   ;
 
@@ -237,17 +320,28 @@ class Option extends $pb.GeneratedMessage {
   static Option create() => Option._();
   Option createEmptyInstance() => create();
   static $pb.PbList<Option> createRepeated() => $pb.PbList<Option>();
-  static Option getDefault() => _defaultInstance ??= create()..freeze();
+  @$core.pragma('dart2js:noInline')
+  static Option getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Option>(create);
   static Option _defaultInstance;
 
-  $core.String get name => $_getS(0, '');
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
   set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
+  @$pb.TagNumber(2)
   $1.Any get value => $_getN(1);
+  @$pb.TagNumber(2)
   set value($1.Any v) { setField(2, v); }
+  @$pb.TagNumber(2)
   $core.bool hasValue() => $_has(1);
+  @$pb.TagNumber(2)
   void clearValue() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.Any ensureValue() => $_ensure(1);
 }
 

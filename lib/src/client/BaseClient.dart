@@ -1,12 +1,13 @@
 import 'dart:convert';
 
 import 'package:grpc/grpc.dart';
-import 'package:nakama_client/src/client/session.dart';
+import 'package:nakama_client/src/client/BaseClientInterface.dart';
+import 'package:nakama_client/src/client/BaseClientMixing.dart';
+import 'package:nakama_client/src/generated/proto/api.pb.dart';
 import 'package:nakama_client/src/generated/proto/apigrpc.pbgrpc.dart';
 import 'package:nakama_client/src/generated/proto/google/protobuf/empty.pbserver.dart';
-import 'package:nakama_client/src/generated/proto/google/protobuf/wrappers.pbserver.dart';
 
-class BaseClient {
+abstract class BaseClient implements BaseClientInterface {
   String nakama_host = "127.0.0.1";
   int nakama_port = 7349;
   String serverKey = "defaultkey";
@@ -24,8 +25,8 @@ class BaseClient {
   /// after authentication set the session
   void setSession(Session session) {
     this._session = session;
-    calloptJWT = CallOptions(
-        metadata: {"authorization": "Bearer ${session.authToken()}"});
+    calloptJWT =
+        CallOptions(metadata: {"authorization": "Bearer ${session.token}"});
   }
 
   ClientChannel _channel;

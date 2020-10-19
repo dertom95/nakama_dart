@@ -87,6 +87,7 @@ const FieldDescriptorProto$json = const {
     const {'1': 'oneof_index', '3': 9, '4': 1, '5': 5, '10': 'oneofIndex'},
     const {'1': 'json_name', '3': 10, '4': 1, '5': 9, '10': 'jsonName'},
     const {'1': 'options', '3': 8, '4': 1, '5': 11, '6': '.google.protobuf.FieldOptions', '10': 'options'},
+    const {'1': 'proto3_optional', '3': 17, '4': 1, '5': 8, '10': 'proto3Optional'},
   ],
   '4': const [FieldDescriptorProto_Type$json, FieldDescriptorProto_Label$json],
 };
@@ -204,7 +205,7 @@ const FileOptions$json = const {
     const {'1': 'py_generic_services', '3': 18, '4': 1, '5': 8, '7': 'false', '10': 'pyGenericServices'},
     const {'1': 'php_generic_services', '3': 42, '4': 1, '5': 8, '7': 'false', '10': 'phpGenericServices'},
     const {'1': 'deprecated', '3': 23, '4': 1, '5': 8, '7': 'false', '10': 'deprecated'},
-    const {'1': 'cc_enable_arenas', '3': 31, '4': 1, '5': 8, '7': 'false', '10': 'ccEnableArenas'},
+    const {'1': 'cc_enable_arenas', '3': 31, '4': 1, '5': 8, '7': 'true', '10': 'ccEnableArenas'},
     const {'1': 'objc_class_prefix', '3': 36, '4': 1, '5': 9, '10': 'objcClassPrefix'},
     const {'1': 'csharp_namespace', '3': 37, '4': 1, '5': 9, '10': 'csharpNamespace'},
     const {'1': 'swift_prefix', '3': 39, '4': 1, '5': 9, '10': 'swiftPrefix'},

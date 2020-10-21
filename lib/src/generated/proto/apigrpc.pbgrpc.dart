@@ -10,7 +10,7 @@ import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:grpc/service_api.dart' as $grpc;
-import 'api.pb.dart' as $0;
+import 'github.com/heroiclabs/nakama-common/api/api.pb.dart' as $0;
 import 'google/protobuf/empty.pb.dart' as $1;
 export 'apigrpc.pb.dart';
 
@@ -45,6 +45,12 @@ class NakamaClient extends $grpc.Client {
           '/nakama.api.Nakama/AuthenticateFacebook',
           ($0.AuthenticateFacebookRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+  static final _$authenticateFacebookInstantGame =
+      $grpc.ClientMethod<$0.AuthenticateFacebookInstantGameRequest, $0.Session>(
+          '/nakama.api.Nakama/AuthenticateFacebookInstantGame',
+          ($0.AuthenticateFacebookInstantGameRequest value) =>
+              value.writeToBuffer(),
+          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
   static final _$authenticateGameCenter =
       $grpc.ClientMethod<$0.AuthenticateGameCenterRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateGameCenter',
@@ -60,6 +66,11 @@ class NakamaClient extends $grpc.Client {
           '/nakama.api.Nakama/AuthenticateSteam',
           ($0.AuthenticateSteamRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+  static final _$banGroupUsers =
+      $grpc.ClientMethod<$0.BanGroupUsersRequest, $1.Empty>(
+          '/nakama.api.Nakama/BanGroupUsers',
+          ($0.BanGroupUsersRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
   static final _$blockFriends =
       $grpc.ClientMethod<$0.BlockFriendsRequest, $1.Empty>(
           '/nakama.api.Nakama/BlockFriends',
@@ -95,6 +106,10 @@ class NakamaClient extends $grpc.Client {
           '/nakama.api.Nakama/DeleteStorageObjects',
           ($0.DeleteStorageObjectsRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$event = $grpc.ClientMethod<$0.Event, $1.Empty>(
+      '/nakama.api.Nakama/Event',
+      ($0.Event value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
   static final _$getAccount = $grpc.ClientMethod<$1.Empty, $0.Account>(
       '/nakama.api.Nakama/GetAccount',
       ($1.Empty value) => value.writeToBuffer(),
@@ -147,6 +162,11 @@ class NakamaClient extends $grpc.Client {
       $grpc.ClientMethod<$0.LinkFacebookRequest, $1.Empty>(
           '/nakama.api.Nakama/LinkFacebook',
           ($0.LinkFacebookRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$linkFacebookInstantGame =
+      $grpc.ClientMethod<$0.AccountFacebookInstantGame, $1.Empty>(
+          '/nakama.api.Nakama/LinkFacebookInstantGame',
+          ($0.AccountFacebookInstantGame value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
   static final _$linkGameCenter =
       $grpc.ClientMethod<$0.AccountGameCenter, $1.Empty>(
@@ -267,6 +287,11 @@ class NakamaClient extends $grpc.Client {
           '/nakama.api.Nakama/UnlinkFacebook',
           ($0.AccountFacebook value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$unlinkFacebookInstantGame =
+      $grpc.ClientMethod<$0.AccountFacebookInstantGame, $1.Empty>(
+          '/nakama.api.Nakama/UnlinkFacebookInstantGame',
+          ($0.AccountFacebookInstantGame value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
   static final _$unlinkGameCenter =
       $grpc.ClientMethod<$0.AccountGameCenter, $1.Empty>(
           '/nakama.api.Nakama/UnlinkGameCenter',
@@ -363,6 +388,15 @@ class NakamaClient extends $grpc.Client {
     return $grpc.ResponseFuture(call);
   }
 
+  $grpc.ResponseFuture<$0.Session> authenticateFacebookInstantGame(
+      $0.AuthenticateFacebookInstantGameRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(_$authenticateFacebookInstantGame,
+        $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
   $grpc.ResponseFuture<$0.Session> authenticateGameCenter(
       $0.AuthenticateGameCenterRequest request,
       {$grpc.CallOptions options}) {
@@ -386,6 +420,14 @@ class NakamaClient extends $grpc.Client {
       {$grpc.CallOptions options}) {
     final call = $createCall(
         _$authenticateSteam, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> banGroupUsers($0.BanGroupUsersRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$banGroupUsers, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
@@ -445,6 +487,13 @@ class NakamaClient extends $grpc.Client {
       {$grpc.CallOptions options}) {
     final call = $createCall(
         _$deleteStorageObjects, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> event($0.Event request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(_$event, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
@@ -541,6 +590,15 @@ class NakamaClient extends $grpc.Client {
       {$grpc.CallOptions options}) {
     final call = $createCall(
         _$linkFacebook, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> linkFacebookInstantGame(
+      $0.AccountFacebookInstantGame request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$linkFacebookInstantGame, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
@@ -741,6 +799,15 @@ class NakamaClient extends $grpc.Client {
     return $grpc.ResponseFuture(call);
   }
 
+  $grpc.ResponseFuture<$1.Empty> unlinkFacebookInstantGame(
+      $0.AccountFacebookInstantGame request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$unlinkFacebookInstantGame, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
   $grpc.ResponseFuture<$1.Empty> unlinkGameCenter($0.AccountGameCenter request,
       {$grpc.CallOptions options}) {
     final call = $createCall(
@@ -860,6 +927,15 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.AuthenticateFacebookRequest.fromBuffer(value),
         ($0.Session value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.AuthenticateFacebookInstantGameRequest,
+            $0.Session>(
+        'AuthenticateFacebookInstantGame',
+        authenticateFacebookInstantGame_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.AuthenticateFacebookInstantGameRequest.fromBuffer(value),
+        ($0.Session value) => value.writeToBuffer()));
     $addMethod(
         $grpc.ServiceMethod<$0.AuthenticateGameCenterRequest, $0.Session>(
             'AuthenticateGameCenter',
@@ -885,6 +961,14 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.AuthenticateSteamRequest.fromBuffer(value),
         ($0.Session value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.BanGroupUsersRequest, $1.Empty>(
+        'BanGroupUsers',
+        banGroupUsers_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.BanGroupUsersRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.BlockFriendsRequest, $1.Empty>(
         'BlockFriends',
         blockFriends_Pre,
@@ -940,6 +1024,13 @@ abstract class NakamaServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) =>
             $0.DeleteStorageObjectsRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.Event, $1.Empty>(
+        'Event',
+        event_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.Event.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.Empty, $0.Account>(
         'GetAccount',
@@ -1028,6 +1119,14 @@ abstract class NakamaServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) =>
             $0.LinkFacebookRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.AccountFacebookInstantGame, $1.Empty>(
+        'LinkFacebookInstantGame',
+        linkFacebookInstantGame_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.AccountFacebookInstantGame.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.AccountGameCenter, $1.Empty>(
         'LinkGameCenter',
@@ -1213,6 +1312,14 @@ abstract class NakamaServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.AccountFacebook.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.AccountFacebookInstantGame, $1.Empty>(
+        'UnlinkFacebookInstantGame',
+        unlinkFacebookInstantGame_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.AccountFacebookInstantGame.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.AccountGameCenter, $1.Empty>(
         'UnlinkGameCenter',
         unlinkGameCenter_Pre,
@@ -1309,6 +1416,12 @@ abstract class NakamaServiceBase extends $grpc.Service {
     return authenticateFacebook(call, await request);
   }
 
+  $async.Future<$0.Session> authenticateFacebookInstantGame_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.AuthenticateFacebookInstantGameRequest> request) async {
+    return authenticateFacebookInstantGame(call, await request);
+  }
+
   $async.Future<$0.Session> authenticateGameCenter_Pre($grpc.ServiceCall call,
       $async.Future<$0.AuthenticateGameCenterRequest> request) async {
     return authenticateGameCenter(call, await request);
@@ -1322,6 +1435,11 @@ abstract class NakamaServiceBase extends $grpc.Service {
   $async.Future<$0.Session> authenticateSteam_Pre($grpc.ServiceCall call,
       $async.Future<$0.AuthenticateSteamRequest> request) async {
     return authenticateSteam(call, await request);
+  }
+
+  $async.Future<$1.Empty> banGroupUsers_Pre($grpc.ServiceCall call,
+      $async.Future<$0.BanGroupUsersRequest> request) async {
+    return banGroupUsers(call, await request);
   }
 
   $async.Future<$1.Empty> blockFriends_Pre($grpc.ServiceCall call,
@@ -1357,6 +1475,11 @@ abstract class NakamaServiceBase extends $grpc.Service {
   $async.Future<$1.Empty> deleteStorageObjects_Pre($grpc.ServiceCall call,
       $async.Future<$0.DeleteStorageObjectsRequest> request) async {
     return deleteStorageObjects(call, await request);
+  }
+
+  $async.Future<$1.Empty> event_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.Event> request) async {
+    return event(call, await request);
   }
 
   $async.Future<$0.Account> getAccount_Pre(
@@ -1417,6 +1540,11 @@ abstract class NakamaServiceBase extends $grpc.Service {
   $async.Future<$1.Empty> linkFacebook_Pre($grpc.ServiceCall call,
       $async.Future<$0.LinkFacebookRequest> request) async {
     return linkFacebook(call, await request);
+  }
+
+  $async.Future<$1.Empty> linkFacebookInstantGame_Pre($grpc.ServiceCall call,
+      $async.Future<$0.AccountFacebookInstantGame> request) async {
+    return linkFacebookInstantGame(call, await request);
   }
 
   $async.Future<$1.Empty> linkGameCenter_Pre($grpc.ServiceCall call,
@@ -1543,6 +1671,11 @@ abstract class NakamaServiceBase extends $grpc.Service {
     return unlinkFacebook(call, await request);
   }
 
+  $async.Future<$1.Empty> unlinkFacebookInstantGame_Pre($grpc.ServiceCall call,
+      $async.Future<$0.AccountFacebookInstantGame> request) async {
+    return unlinkFacebookInstantGame(call, await request);
+  }
+
   $async.Future<$1.Empty> unlinkGameCenter_Pre($grpc.ServiceCall call,
       $async.Future<$0.AccountGameCenter> request) async {
     return unlinkGameCenter(call, await request);
@@ -1598,12 +1731,17 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.AuthenticateEmailRequest request);
   $async.Future<$0.Session> authenticateFacebook(
       $grpc.ServiceCall call, $0.AuthenticateFacebookRequest request);
+  $async.Future<$0.Session> authenticateFacebookInstantGame(
+      $grpc.ServiceCall call,
+      $0.AuthenticateFacebookInstantGameRequest request);
   $async.Future<$0.Session> authenticateGameCenter(
       $grpc.ServiceCall call, $0.AuthenticateGameCenterRequest request);
   $async.Future<$0.Session> authenticateGoogle(
       $grpc.ServiceCall call, $0.AuthenticateGoogleRequest request);
   $async.Future<$0.Session> authenticateSteam(
       $grpc.ServiceCall call, $0.AuthenticateSteamRequest request);
+  $async.Future<$1.Empty> banGroupUsers(
+      $grpc.ServiceCall call, $0.BanGroupUsersRequest request);
   $async.Future<$1.Empty> blockFriends(
       $grpc.ServiceCall call, $0.BlockFriendsRequest request);
   $async.Future<$0.Group> createGroup(
@@ -1618,6 +1756,7 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.DeleteNotificationsRequest request);
   $async.Future<$1.Empty> deleteStorageObjects(
       $grpc.ServiceCall call, $0.DeleteStorageObjectsRequest request);
+  $async.Future<$1.Empty> event($grpc.ServiceCall call, $0.Event request);
   $async.Future<$0.Account> getAccount(
       $grpc.ServiceCall call, $1.Empty request);
   $async.Future<$0.Users> getUsers(
@@ -1641,6 +1780,8 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.AccountEmail request);
   $async.Future<$1.Empty> linkFacebook(
       $grpc.ServiceCall call, $0.LinkFacebookRequest request);
+  $async.Future<$1.Empty> linkFacebookInstantGame(
+      $grpc.ServiceCall call, $0.AccountFacebookInstantGame request);
   $async.Future<$1.Empty> linkGameCenter(
       $grpc.ServiceCall call, $0.AccountGameCenter request);
   $async.Future<$1.Empty> linkGoogle(
@@ -1688,6 +1829,8 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.AccountEmail request);
   $async.Future<$1.Empty> unlinkFacebook(
       $grpc.ServiceCall call, $0.AccountFacebook request);
+  $async.Future<$1.Empty> unlinkFacebookInstantGame(
+      $grpc.ServiceCall call, $0.AccountFacebookInstantGame request);
   $async.Future<$1.Empty> unlinkGameCenter(
       $grpc.ServiceCall call, $0.AccountGameCenter request);
   $async.Future<$1.Empty> unlinkGoogle(

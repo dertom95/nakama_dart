@@ -1,273 +1,460 @@
+import 'dart:convert';
 
-import 'package:nakama_client/src/generated/proto/api.pb.dart';
-import 'package:nakama_client/src/generated/proto/google/protobuf/wrappers.pbserver.dart';
 import 'package:grpc/grpc.dart';
-import 'package:meta/meta.dart';
-import 'package:nakama_client/src/client/BaseClient.dart';
 import 'package:nakama_client/src/generated/proto/google/protobuf/empty.pbserver.dart';
+import 'package:nakama_client/src/generated/proto/google/protobuf/wrappers.pbserver.dart';
+import 'package:nakama_client/src/client/BaseClient.dart';
+import 'package:nakama_client/src/generated/proto/github.com/heroiclabs/nakama-common/api/api.pb.dart';
 
-  BoolValue boolTrue = BoolValue()..value = true;
-  BoolValue boolFalse = BoolValue()..value = false;
-  BoolValue getBool(bool b) => b ? boolTrue : boolFalse;
-  Int32Value getInt32(int i) {
-    var val = Int32Value()..value = i;
-    //val.value = i;
-    return val;
+BoolValue boolTrue = BoolValue()..value = true;
+BoolValue boolFalse = BoolValue()..value = false;
+BoolValue getBool(bool b) => b ? boolTrue : boolFalse;
+Int32Value getInt32(int i) {
+  var val = Int32Value()..value = i;
+  //val.value = i;
+  return val;
+}
+
+class DefaultClient extends BaseClient {
+  DefaultClient({String nakama_host, int nakama_port, String serverKey})
+      : super(
+            nakama_host: nakama_host,
+            nakama_port: nakama_port,
+            serverKey: serverKey);
+
+  @override
+  ResponseFuture<Empty> addFriends(NakamaSession session, List<String> ids,
+      {List<String> usernames}) {
+    var req = AddFriendsRequest()..ids.addAll(ids);
+    if (usernames != null) {
+      req..usernames.addAll(usernames);
+    }
+    return client.addFriends(req);
   }
 
+  @override
+  ResponseFuture<Empty> addGroupUsers(
+      NakamaSession session, String groupId, List<String> ids) {
+    // TODO: implement addGroupUsers
+    throw UnimplementedError();
+  }
 
+  @override
+  Future<NakamaSession> authenticateCustom(String id,
+      {String username, bool create = false}) async {
+    var req = AuthenticateCustomRequest()
+      ..create_2 = getBool(create)
+      ..account = (AccountCustom()..id = id);
 
-   class DefaultClient extends BaseClient {
-		DefaultClient({String nakama_host, int nakama_port, String serverKey})
-		: super(
-			  nakama_host: nakama_host,
-			  nakama_port: nakama_port,
-			  serverKey: serverKey);
+    if (username != null) req..username = username;
 
-	ResponseFuture<Account> getAccount(){ return client.getAccount(
-GetAccountRequest());
+    var session = await client.authenticateCustom(req);
+    return NakamaSession(session);
+  }
+
+  @override
+  Future<NakamaSession> authenticateDevice(String id,
+      {String username, bool create = false}) {
+    // TODO: implement authenticateDevice
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<NakamaSession> authenticateEmail(String email, String password,
+      {String username, bool create = false}) {
+    // TODO: implement authenticateEmail
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<NakamaSession> authenticateFacebook(String accessToken,
+      {String username, bool create = false, bool importFriends = false}) {
+    // TODO: implement authenticateFacebook
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<NakamaSession> authenticateGameCenter(String playerId, String bundleId,
+      int timestampSeconds, String salt, String signature, String publicKeyUrl,
+      {String username, bool create = false}) {
+    // TODO: implement authenticateGameCenter
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<NakamaSession> authenticateGoogle(String accessToken,
+      {String username, bool create = false}) {
+    // TODO: implement authenticateGoogle
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<NakamaSession> authenticateSteam(String token,
+      {String username, bool create = false}) {
+    // TODO: implement authenticateSteam
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> blockFriends(NakamaSession session, List<String> ids,
+      {List<String> usernames}) {
+    // TODO: implement blockFriends
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Group> createGroup(NakamaSession session, String name,
+      {String description, String avatarUrl, String langTag, bool open}) {
+    // TODO: implement createGroup
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> deleteFriends(NakamaSession session, List<String> ids,
+      {List<String> usernames}) {
+    // TODO: implement deleteFriends
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> deleteGroup(NakamaSession session, String groupId) {
+    // TODO: implement deleteGroup
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> deleteLeaderboardRecord(
+      NakamaSession session, String leaderboardId) {
+    // TODO: implement deleteLeaderboardRecord
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> deleteNotifications(
+      NakamaSession session, List<String> notificationIds) {
+    // TODO: implement deleteNotifications
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> disconnect({int timeout, Duration unit}) {
+    // TODO: implement disconnect
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Account> getAccount(NakamaSession session) {
+    return client.getAccount(Empty(), options: session.calloptJWT);
+  }
+
+  @override
+  ResponseFuture<Users> getUsers(NakamaSession session, List<String> ids,
+      {List<String> usernames, List<String> facebookIds}) {
+    // TODO: implement getUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> importFacebookFriends(
+      NakamaSession session, String token,
+      {bool reset = false}) {
+    // TODO: implement importFacebookFriends
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> joinGroup(NakamaSession session, String groupId) {
+    // TODO: implement joinGroup
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> joinTournament(
+      NakamaSession session, String tournamentId) {
+    // TODO: implement joinTournament
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> kickGroupUsers(
+      NakamaSession session, String groupId, List<String> ids) {
+    // TODO: implement kickGroupUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> leaveGroup(NakamaSession session, String groupId) {
+    // TODO: implement leaveGroup
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> linkCustom(NakamaSession session, String id) {
+    // TODO: implement linkCustom
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> linkDevice(NakamaSession session, String id) {
+    // TODO: implement linkDevice
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> linkEmail(
+      NakamaSession session, String email, String password) {
+    // TODO: implement linkEmail
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> linkFacebook(NakamaSession session, String accessToken,
+      {bool importFriends = false}) {
+    // TODO: implement linkFacebook
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> linkGameCenter(
+      NakamaSession session,
+      String playerId,
+      String bundleId,
+      int timestampSeconds,
+      String salt,
+      String signature,
+      String publicKeyUrl) {
+    // TODO: implement linkGameCenter
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> linkGoogle(NakamaSession session, String accessToken) {
+    // TODO: implement linkGoogle
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> linkSteam(NakamaSession session, String token) {
+    // TODO: implement linkSteam
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<ChannelMessageList> listChannelMessages(
+      NakamaSession session, String channelId,
+      {int limit, String cursor, bool forward = false}) {
+    // TODO: implement listChannelMessages
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<FriendList> listFriends(NakamaSession session) {
+    // TODO: implement listFriends
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<GroupUserList> listGroupUsers(
+      NakamaSession session, String groupId) {
+    // TODO: implement listGroupUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<GroupList> listGroups(NakamaSession session, String name,
+      {int limit, String cursor}) {
+    // TODO: implement listGroups
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<LeaderboardRecordList> listLeaderboardRecords(
+      NakamaSession session, String leaderboardId,
+      {List<String> ownerIds, int expiry, int limit, String cursor}) {
+    // TODO: implement listLeaderboardRecords
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<LeaderboardRecordList> listLeaderboardRecordsAroundOwner(
+      NakamaSession session, String leaderboardId, String ownerId,
+      {int expiry, int limit}) {
+    // TODO: implement listLeaderboardRecordsAroundOwner
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<MatchList> listMatches(NakamaSession session,
+      {int min, int max, int limit, String label, bool authoritative = false}) {
+    // TODO: implement listMatches
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<NotificationList> listNotifications(NakamaSession session,
+      {int limit, String cacheableCursor}) {
+    // TODO: implement listNotifications
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<StorageObjectList> listStorageObjects(
+      NakamaSession session, String collection,
+      {int limit, String cursor}) {
+    // TODO: implement listStorageObjects
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<TournamentRecordList> listTournamentRecords(
+      NakamaSession session, String tournamentId,
+      {int expiry, int limit, String cursor, List<String> ownerIds}) {
+    // TODO: implement listTournamentRecords
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<TournamentRecordList> listTournamentRecordsAroundOwner(
+      NakamaSession session, String tournamentId, String ownerId,
+      {int expiry, int limit}) {
+    // TODO: implement listTournamentRecordsAroundOwner
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<TournamentList> listTournaments(NakamaSession session,
+      {int categoryStart = 0,
+      int categoryEnd = 128,
+      int startTime,
+      int endTime,
+      int limit,
+      String cursor}) {
+    // TODO: implement listTournaments
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<UserGroupList> listUserGroups(NakamaSession session,
+      {String userId}) {
+    // TODO: implement listUserGroups
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<StorageObjectList> listUsersStorageObjects(
+      NakamaSession session, String collection, String userId,
+      {int limit, String cursor}) {
+    // TODO: implement listUsersStorageObjects
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> promoteGroupUsers(
+      NakamaSession session, String groupId, List<String> ids) {
+    // TODO: implement promoteGroupUsers
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Rpc> rpc(NakamaSession session, String id, {String payload}) {
+    // TODO: implement rpc
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> unlinkCustom(NakamaSession session, String id) {
+    // TODO: implement unlinkCustom
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> unlinkDevice(NakamaSession session, String id) {
+    // TODO: implement unlinkDevice
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> unlinkEmail(
+      NakamaSession session, String email, String password) {
+    // TODO: implement unlinkEmail
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> unlinkFacebook(
+      NakamaSession session, String accessToken) {
+    // TODO: implement unlinkFacebook
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> unlinkGameCenter(
+      NakamaSession session,
+      String playerId,
+      String bundleId,
+      int timestampSeconds,
+      String salt,
+      String signature,
+      String publicKeyUrl) {
+    // TODO: implement unlinkGameCenter
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> unlinkGoogle(
+      NakamaSession session, String accessToken) {
+    // TODO: implement unlinkGoogle
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> unlinkSteam(NakamaSession session, String token) {
+    // TODO: implement unlinkSteam
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<Empty> updateAccount(NakamaSession session,
+      {String username,
+      String displayName,
+      String avatarUrl,
+      String langTag,
+      String location,
+      String timezone}) {
+    var req = UpdateAccountRequest();
+
+    if (username != null) req.username = StringValue()..value = username;
+    if (displayName != null)
+      req.displayName = StringValue()..value = displayName;
+    if (avatarUrl != null) req.avatarUrl = StringValue()..value = avatarUrl;
+    if (langTag != null) req.langTag = StringValue()..value = langTag;
+    if (location != null) req.location = StringValue()..value = location;
+    if (timezone != null) req.timezone = StringValue()..value = timezone;
+
+    client.updateAccount(req, options: session.calloptJWT);
+  }
+
+  @override
+  ResponseFuture<Empty> updateGroup(
+      NakamaSession session, String groupId, String name,
+      {String description, String avatarUrl, String langTag, bool open}) {
+    // TODO: implement updateGroup
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<LeaderboardRecord> writeLeaderboardRecord(
+      NakamaSession session, String leaderboardId, int score,
+      {int subscore, String metadata}) {
+    // TODO: implement writeLeaderboardRecord
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<LeaderboardRecord> writeTournamentRecord(
+      NakamaSession session, String tournamentId, int score,
+      {int subscore, String metadata}) {
+    // TODO: implement writeTournamentRecord
+    throw UnimplementedError();
+  }
 }
-
-ResponseFuture<void> updateAccount(String timezone,String username,String displayName,String avatarUrl,String langTag,String location){ return client.updateAccount(
-UpdateAccountRequest()(UpdateAccountRequest()..timezone=timezone..username=username..displayName=displayName..avatarUrl=avatarUrl..langTag=langTag..location=location));
-}
-
-ResponseFuture<Session> authenticateCustom(String id,bool create,String username){ return client.authenticateCustom(
-AuthenticateCustomRequest()(AccountCustom()..id=id)..create=getBool(create)..username=username);
-}
-
-ResponseFuture<Session> authenticateGameCenter(String bundleId,String timestampSeconds,String salt,String signature,String publicKeyUrl,String playerId,bool create,String username){ return client.authenticateGameCenter(
-AuthenticateGameCenterRequest()(AccountGameCenter()..bundleId=bundleId..timestampSeconds=timestampSeconds..salt=salt..signature=signature..publicKeyUrl=publicKeyUrl..playerId=playerId)..create=getBool(create)..username=username);
-}
-
-ResponseFuture<void> unlinkDevice(String id){ return client.unlinkDevice(
-UnlinkDeviceRequest()(AccountDevice()..id=id));
-}
-
-ResponseFuture<void> blockFriends(List<String> ids,List<String> usernames){ return client.blockFriends(
-BlockFriendsRequest()..ids.addAll(ids)..usernames.addAll(usernames));
-}
-
-ResponseFuture<LeaderboardRecordList> listLeaderboardRecords(String leaderboardId,List<String> ownerIds, limit,String cursor,String expiry){ return client.listLeaderboardRecords(
-ListLeaderboardRecordsRequest()..leaderboardId=leaderboardId..ownerIds.addAll(ownerIds)..limit=getInt32(limit)..cursor=cursor..expiry=expiry);
-}
-
-ResponseFuture<void> deleteLeaderboardRecord(String leaderboardId){ return client.deleteLeaderboardRecord(
-DeleteLeaderboardRecordRequest()..leaderboardId=leaderboardId);
-}
-
-ResponseFuture<LeaderboardRecord> writeLeaderboardRecord(String leaderboardId,String score,String subscore,String metadata){ return client.writeLeaderboardRecord(
-WriteLeaderboardRecordRequest()..leaderboardId=leaderboardId(teLeaderboardRecordRequestLeaderboardRecordWrite()..score=score..subscore=subscore..metadata=metadata));
-}
-
-ResponseFuture<void> joinTournament(String tournamentId){ return client.joinTournament(
-JoinTournamentRequest()..tournamentId=tournamentId);
-}
-
-ResponseFuture<void> importFacebookFriends(String token,bool reset){ return client.importFacebookFriends(
-ImportFacebookFriendsRequest()(AccountFacebook()..token=token)..reset=getBool(reset));
-}
-
-ResponseFuture<void> deleteNotifications(List<String> ids){ return client.deleteNotifications(
-DeleteNotificationsRequest()..ids.addAll(ids));
-}
-
-ResponseFuture<NotificationList> listNotifications( limit,String cacheableCursor){ return client.listNotifications(
-ListNotificationsRequest()..limit=getInt32(limit)..cacheableCursor=cacheableCursor);
-}
-
-ResponseFuture<StorageObjectList> listStorageObjects(String collection,String userId, limit,String cursor){ return client.listStorageObjects(
-ListStorageObjectsRequest()..collection=collection..userId=userId..limit=getInt32(limit)..cursor=cursor);
-}
-
-ResponseFuture<UserGroupList> listUserGroups(String userId, limit, state,String cursor){ return client.listUserGroups(
-ListUserGroupsRequest()..userId=userId..limit=getInt32(limit)..state=getInt32(state)..cursor=cursor);
-}
-
-ResponseFuture<void> healthcheck(){ return client.healthcheck(
-HealthcheckRequest());
-}
-
-ResponseFuture<Session> authenticateDevice(String id,bool create,String username){ return client.authenticateDevice(
-AuthenticateDeviceRequest()(AccountDevice()..id=id)..create=getBool(create)..username=username);
-}
-
-ResponseFuture<void> linkFacebook(String token,bool sync){ return client.linkFacebook(
-LinkFacebookRequest()(AccountFacebook()..token=token)..sync=getBool(sync));
-}
-
-ResponseFuture<void> unlinkGoogle(String token){ return client.unlinkGoogle(
-UnlinkGoogleRequest()(AccountGoogle()..token=token));
-}
-
-ResponseFuture<void> unlinkSteam(String token){ return client.unlinkSteam(
-UnlinkSteamRequest()(AccountSteam()..token=token));
-}
-
-ResponseFuture<void> deleteGroup(String groupId){ return client.deleteGroup(
-DeleteGroupRequest()..groupId=groupId);
-}
-
-ResponseFuture<void> updateGroup(String groupId,bool open,String groupId,String name,String description,String langTag,String avatarUrl){ return client.updateGroup(
-UpdateGroupRequest()..groupId=groupId(UpdateGroupRequest()..open=getBool(open)..groupId=groupId..name=name..description=description..langTag=langTag..avatarUrl=avatarUrl));
-}
-
-ResponseFuture<Rpc> rpcFunc2(String id,String payload,String httpKey){ return client.rpcFunc2(
-RpcFunc2Request()..id=id..payload=payload..httpKey=httpKey);
-}
-
-ResponseFuture<Rpc> rpcFunc(String id,unknown: body){ return client.rpcFunc(
-RpcFuncRequest()..id=id..body=body);
-}
-
-ResponseFuture<void> deleteStorageObjects(List<DeleteStorageObjectsRequest> objectIds){ return client.deleteStorageObjects(
-DeleteStorageObjectsRequest()(DeleteStorageObjectsRequest()..objectIds.addAll(objectIds)));
-}
-
-ResponseFuture<Users> getUsers(List<String> ids,List<String> usernames,List<String> facebookIds){ return client.getUsers(
-GetUsersRequest()..ids.addAll(ids)..usernames.addAll(usernames)..facebookIds.addAll(facebookIds));
-}
-
-ResponseFuture<Session> authenticateFacebook(String token,bool create,String username,bool sync){ return client.authenticateFacebook(
-AuthenticateFacebookRequest()(AccountFacebook()..token=token)..create=getBool(create)..username=username..sync=getBool(sync));
-}
-
-ResponseFuture<void> linkGameCenter(String timestampSeconds,String salt,String signature,String publicKeyUrl,String playerId,String bundleId){ return client.linkGameCenter(
-LinkGameCenterRequest()(AccountGameCenter()..timestampSeconds=timestampSeconds..salt=salt..signature=signature..publicKeyUrl=publicKeyUrl..playerId=playerId..bundleId=bundleId));
-}
-
-ResponseFuture<void> unlinkEmail(String password,String email){ return client.unlinkEmail(
-UnlinkEmailRequest()(AccountEmail()..password=password..email=email));
-}
-
-ResponseFuture<void> unlinkGameCenter(String timestampSeconds,String salt,String signature,String publicKeyUrl,String playerId,String bundleId){ return client.unlinkGameCenter(
-UnlinkGameCenterRequest()(AccountGameCenter()..timestampSeconds=timestampSeconds..salt=salt..signature=signature..publicKeyUrl=publicKeyUrl..playerId=playerId..bundleId=bundleId));
-}
-
-ResponseFuture<void> deleteFriends(List<String> ids,List<String> usernames){ return client.deleteFriends(
-DeleteFriendsRequest()..ids.addAll(ids)..usernames.addAll(usernames));
-}
-
-ResponseFuture<void> addFriends(List<String> ids,List<String> usernames){ return client.addFriends(
-AddFriendsRequest()..ids.addAll(ids)..usernames.addAll(usernames));
-}
-
-ResponseFuture<FriendList> listFriends( limit, state,String cursor){ return client.listFriends(
-ListFriendsRequest()..limit=getInt32(limit)..state=getInt32(state)..cursor=cursor);
-}
-
-ResponseFuture<void> joinGroup(String groupId){ return client.joinGroup(
-JoinGroupRequest()..groupId=groupId);
-}
-
-ResponseFuture<void> leaveGroup(String groupId){ return client.leaveGroup(
-LeaveGroupRequest()..groupId=groupId);
-}
-
-ResponseFuture<StorageObjects> readStorageObjects(List<ReadStorageObjectsRequest> objectIds){ return client.readStorageObjects(
-ReadStorageObjectsRequest()(ReadStorageObjectsRequest()..objectIds.addAll(objectIds)));
-}
-
-ResponseFuture<StorageObjectAcks> writeStorageObjects(List<WriteStorageObjectsRequest> objects){ return client.writeStorageObjects(
-WriteStorageObjectsRequest()(WriteStorageObjectsRequest()..objects.addAll(objects)));
-}
-
-ResponseFuture<TournamentList> listTournaments( categoryStart, categoryEnd, startTime, endTime, limit,String cursor){ return client.listTournaments(
-ListTournamentsRequest()..categoryStart=getInt64(categoryStart)..categoryEnd=getInt64(categoryEnd)..startTime=getInt64(startTime)..endTime=getInt64(endTime)..limit=getInt32(limit)..cursor=cursor);
-}
-
-ResponseFuture<Session> authenticateEmail(String email,String password,bool create,String username){ return client.authenticateEmail(
-AuthenticateEmailRequest()(AccountEmail()..email=email..password=password)..create=getBool(create)..username=username);
-}
-
-ResponseFuture<Session> authenticateGoogle(String token,bool create,String username){ return client.authenticateGoogle(
-AuthenticateGoogleRequest()(AccountGoogle()..token=token)..create=getBool(create)..username=username);
-}
-
-ResponseFuture<GroupList> listGroups(String name,String cursor, limit){ return client.listGroups(
-ListGroupsRequest()..name=name..cursor=cursor..limit=getInt32(limit));
-}
-
-ResponseFuture<Group> createGroup(String avatarUrl,bool open, maxCount,String name,String description,String langTag){ return client.createGroup(
-CreateGroupRequest()(CreateGroupRequest()..avatarUrl=avatarUrl..open=getBool(open)..maxCount=getInt32(maxCount)..name=name..description=description..langTag=langTag));
-}
-
-ResponseFuture<GroupUserList> listGroupUsers(String groupId, limit, state,String cursor){ return client.listGroupUsers(
-ListGroupUsersRequest()..groupId=groupId..limit=getInt32(limit)..state=getInt32(state)..cursor=cursor);
-}
-
-ResponseFuture<void> linkCustom(String id){ return client.linkCustom(
-LinkCustomRequest()(AccountCustom()..id=id));
-}
-
-ResponseFuture<void> linkDevice(String id){ return client.linkDevice(
-LinkDeviceRequest()(AccountDevice()..id=id));
-}
-
-ResponseFuture<TournamentRecordList> listTournamentRecords(String tournamentId,List<String> ownerIds, limit,String cursor,String expiry){ return client.listTournamentRecords(
-ListTournamentRecordsRequest()..tournamentId=tournamentId..ownerIds.addAll(ownerIds)..limit=getInt32(limit)..cursor=cursor..expiry=expiry);
-}
-
-ResponseFuture<LeaderboardRecord> writeTournamentRecord(String tournamentId,String score,String subscore,String metadata){ return client.writeTournamentRecord(
-WriteTournamentRecordRequest()..tournamentId=tournamentId(teTournamentRecordRequestTournamentRecordWrite()..score=score..subscore=subscore..metadata=metadata));
-}
-
-ResponseFuture<TournamentRecordList> listTournamentRecordsAroundOwner(String tournamentId,String ownerId, limit,String expiry){ return client.listTournamentRecordsAroundOwner(
-ListTournamentRecordsAroundOwnerRequest()..tournamentId=tournamentId..ownerId=ownerId..limit=getInt64(limit)..expiry=expiry);
-}
-
-ResponseFuture<void> linkGoogle(String token){ return client.linkGoogle(
-LinkGoogleRequest()(AccountGoogle()..token=token));
-}
-
-ResponseFuture<void> linkSteam(String token){ return client.linkSteam(
-LinkSteamRequest()(AccountSteam()..token=token));
-}
-
-ResponseFuture<void> unlinkFacebook(String token){ return client.unlinkFacebook(
-UnlinkFacebookRequest()(AccountFacebook()..token=token));
-}
-
-ResponseFuture<void> kickGroupUsers(String groupId,List<String> userIds){ return client.kickGroupUsers(
-KickGroupUsersRequest()..groupId=groupId..userIds.addAll(userIds));
-}
-
-ResponseFuture<LeaderboardRecordList> listLeaderboardRecordsAroundOwner(String leaderboardId,String ownerId, limit,String expiry){ return client.listLeaderboardRecordsAroundOwner(
-ListLeaderboardRecordsAroundOwnerRequest()..leaderboardId=leaderboardId..ownerId=ownerId..limit=getInt64(limit)..expiry=expiry);
-}
-
-ResponseFuture<MatchList> listMatches( limit,bool authoritative,String label, minSize, maxSize,String query){ return client.listMatches(
-ListMatchesRequest()..limit=getInt32(limit)..authoritative=getBool(authoritative)..label=label..minSize=getInt32(minSize)..maxSize=getInt32(maxSize)..query=query);
-}
-
-ResponseFuture<StorageObjectList> listStorageObjects2(String collection,String userId, limit,String cursor){ return client.listStorageObjects2(
-ListStorageObjects2Request()..collection=collection..userId=userId..limit=getInt32(limit)..cursor=cursor);
-}
-
-ResponseFuture<Session> authenticateSteam(String token,bool create,String username){ return client.authenticateSteam(
-AuthenticateSteamRequest()..account=(AccountSteam()..token=token)..username=username);
-}
-
-ResponseFuture<void> linkEmail(String email,String password){ return client.linkEmail(
-(AccountEmail()..email=email..password=password));
-}
-
-ResponseFuture<void> unlinkCustom(String id){ return client.unlinkCustom(
-(AccountCustom()..id=id));
-}
-
-ResponseFuture<ChannelMessageList> listChannelMessages(String channelId, limit,bool forward,String cursor){ return client.listChannelMessages(
-ListChannelMessagesRequest()..channelId=channelId..limit=getInt32(limit)..forward=getBool(forward)..cursor=cursor);
-}
-
-ResponseFuture<void> addGroupUsers(String groupId,List<String> userIds){ return client.addGroupUsers(
-AddGroupUsersRequest()..groupId=groupId..userIds.addAll(userIds));
-}
-
-ResponseFuture<void> promoteGroupUsers(String groupId,List<String> userIds){ return client.promoteGroupUsers(
-PromoteGroupUsersRequest()..groupId=groupId..userIds.addAll(userIds));
-}
-
-
-	
-	}

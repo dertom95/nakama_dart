@@ -19,7 +19,7 @@ services:
         reservations:
           memory: 200M
   nakama:
-    image: heroiclabs/nakama:2.7.0
+    image: heroiclabs/nakama:2.14.0
     entrypoint:
       - "/bin/sh"
       - "-ecx"

@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: api.proto
+//  source: github.com/heroiclabs/nakama-common/api/api.proto
 //
 // @dart = 2.3
 // ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
@@ -10,8 +10,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'google/protobuf/timestamp.pb.dart' as $2;
-import 'google/protobuf/wrappers.pb.dart' as $3;
+import '../../../../google/protobuf/timestamp.pb.dart' as $0;
+import '../../../../google/protobuf/wrappers.pb.dart' as $1;
 
 export 'api.pbenum.dart';
 
@@ -22,7 +22,8 @@ class Account extends $pb.GeneratedMessage {
     ..aOS(3, 'email')
     ..pc<AccountDevice>(4, 'devices', $pb.PbFieldType.PM, subBuilder: AccountDevice.create)
     ..aOS(5, 'customId')
-    ..aOM<$2.Timestamp>(6, 'verifyTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$0.Timestamp>(6, 'verifyTime', subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(7, 'disableTime', subBuilder: $0.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -83,15 +84,61 @@ class Account extends $pb.GeneratedMessage {
   void clearCustomId() => clearField(5);
 
   @$pb.TagNumber(6)
-  $2.Timestamp get verifyTime => $_getN(5);
+  $0.Timestamp get verifyTime => $_getN(5);
   @$pb.TagNumber(6)
-  set verifyTime($2.Timestamp v) { setField(6, v); }
+  set verifyTime($0.Timestamp v) { setField(6, v); }
   @$pb.TagNumber(6)
   $core.bool hasVerifyTime() => $_has(5);
   @$pb.TagNumber(6)
   void clearVerifyTime() => clearField(6);
   @$pb.TagNumber(6)
-  $2.Timestamp ensureVerifyTime() => $_ensure(5);
+  $0.Timestamp ensureVerifyTime() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  $0.Timestamp get disableTime => $_getN(6);
+  @$pb.TagNumber(7)
+  set disableTime($0.Timestamp v) { setField(7, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasDisableTime() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearDisableTime() => clearField(7);
+  @$pb.TagNumber(7)
+  $0.Timestamp ensureDisableTime() => $_ensure(6);
+}
+
+class AccountApple extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('AccountApple', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
+    ..aOS(1, 'token')
+    ..m<$core.String, $core.String>(2, 'vars', entryClassName: 'AccountApple.VarsEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS, packageName: const $pb.PackageName('nakama.api'))
+    ..hasRequiredFields = false
+  ;
+
+  AccountApple._() : super();
+  factory AccountApple() => create();
+  factory AccountApple.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AccountApple.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  AccountApple clone() => AccountApple()..mergeFromMessage(this);
+  AccountApple copyWith(void Function(AccountApple) updates) => super.copyWith((message) => updates(message as AccountApple));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static AccountApple create() => AccountApple._();
+  AccountApple createEmptyInstance() => create();
+  static $pb.PbList<AccountApple> createRepeated() => $pb.PbList<AccountApple>();
+  @$core.pragma('dart2js:noInline')
+  static AccountApple getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AccountApple>(create);
+  static AccountApple _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get token => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set token($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasToken() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearToken() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.Map<$core.String, $core.String> get vars => $_getMap(1);
 }
 
 class AccountCustom extends $pb.GeneratedMessage {
@@ -239,6 +286,41 @@ class AccountFacebook extends $pb.GeneratedMessage {
   $core.bool hasToken() => $_has(0);
   @$pb.TagNumber(1)
   void clearToken() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.Map<$core.String, $core.String> get vars => $_getMap(1);
+}
+
+class AccountFacebookInstantGame extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('AccountFacebookInstantGame', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
+    ..aOS(1, 'signedPlayerInfo')
+    ..m<$core.String, $core.String>(2, 'vars', entryClassName: 'AccountFacebookInstantGame.VarsEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS, packageName: const $pb.PackageName('nakama.api'))
+    ..hasRequiredFields = false
+  ;
+
+  AccountFacebookInstantGame._() : super();
+  factory AccountFacebookInstantGame() => create();
+  factory AccountFacebookInstantGame.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AccountFacebookInstantGame.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  AccountFacebookInstantGame clone() => AccountFacebookInstantGame()..mergeFromMessage(this);
+  AccountFacebookInstantGame copyWith(void Function(AccountFacebookInstantGame) updates) => super.copyWith((message) => updates(message as AccountFacebookInstantGame));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static AccountFacebookInstantGame create() => AccountFacebookInstantGame._();
+  AccountFacebookInstantGame createEmptyInstance() => create();
+  static $pb.PbList<AccountFacebookInstantGame> createRepeated() => $pb.PbList<AccountFacebookInstantGame>();
+  @$core.pragma('dart2js:noInline')
+  static AccountFacebookInstantGame getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AccountFacebookInstantGame>(create);
+  static AccountFacebookInstantGame _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get signedPlayerInfo => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set signedPlayerInfo($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasSignedPlayerInfo() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSignedPlayerInfo() => clearField(1);
 
   @$pb.TagNumber(2)
   $core.Map<$core.String, $core.String> get vars => $_getMap(1);
@@ -463,10 +545,65 @@ class AddGroupUsersRequest extends $pb.GeneratedMessage {
   $core.List<$core.String> get userIds => $_getList(1);
 }
 
+class AuthenticateAppleRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateAppleRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
+    ..aOM<AccountApple>(1, 'account', subBuilder: AccountApple.create)
+    ..aOM<$1.BoolValue>(2, 'create', subBuilder: $1.BoolValue.create)
+    ..aOS(3, 'username')
+    ..hasRequiredFields = false
+  ;
+
+  AuthenticateAppleRequest._() : super();
+  factory AuthenticateAppleRequest() => create();
+  factory AuthenticateAppleRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AuthenticateAppleRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  AuthenticateAppleRequest clone() => AuthenticateAppleRequest()..mergeFromMessage(this);
+  AuthenticateAppleRequest copyWith(void Function(AuthenticateAppleRequest) updates) => super.copyWith((message) => updates(message as AuthenticateAppleRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateAppleRequest create() => AuthenticateAppleRequest._();
+  AuthenticateAppleRequest createEmptyInstance() => create();
+  static $pb.PbList<AuthenticateAppleRequest> createRepeated() => $pb.PbList<AuthenticateAppleRequest>();
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateAppleRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthenticateAppleRequest>(create);
+  static AuthenticateAppleRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  AccountApple get account => $_getN(0);
+  @$pb.TagNumber(1)
+  set account(AccountApple v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountApple ensureAccount() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $1.BoolValue get create_2 => $_getN(1);
+  @$pb.TagNumber(2)
+  set create_2($1.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCreate_2() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCreate_2() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.BoolValue ensureCreate_2() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.String get username => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set username($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearUsername() => clearField(3);
+}
+
 class AuthenticateCustomRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateCustomRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<AccountCustom>(1, 'account', subBuilder: AccountCustom.create)
-    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(2, 'create', subBuilder: $1.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -498,15 +635,15 @@ class AuthenticateCustomRequest extends $pb.GeneratedMessage {
   AccountCustom ensureAccount() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.BoolValue get create_2 => $_getN(1);
+  $1.BoolValue get create_2 => $_getN(1);
   @$pb.TagNumber(2)
-  set create_2($3.BoolValue v) { setField(2, v); }
+  set create_2($1.BoolValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
   @$pb.TagNumber(2)
-  $3.BoolValue ensureCreate_2() => $_ensure(1);
+  $1.BoolValue ensureCreate_2() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get username => $_getSZ(2);
@@ -521,7 +658,7 @@ class AuthenticateCustomRequest extends $pb.GeneratedMessage {
 class AuthenticateDeviceRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateDeviceRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<AccountDevice>(1, 'account', subBuilder: AccountDevice.create)
-    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(2, 'create', subBuilder: $1.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -553,15 +690,15 @@ class AuthenticateDeviceRequest extends $pb.GeneratedMessage {
   AccountDevice ensureAccount() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.BoolValue get create_2 => $_getN(1);
+  $1.BoolValue get create_2 => $_getN(1);
   @$pb.TagNumber(2)
-  set create_2($3.BoolValue v) { setField(2, v); }
+  set create_2($1.BoolValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
   @$pb.TagNumber(2)
-  $3.BoolValue ensureCreate_2() => $_ensure(1);
+  $1.BoolValue ensureCreate_2() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get username => $_getSZ(2);
@@ -576,7 +713,7 @@ class AuthenticateDeviceRequest extends $pb.GeneratedMessage {
 class AuthenticateEmailRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateEmailRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<AccountEmail>(1, 'account', subBuilder: AccountEmail.create)
-    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(2, 'create', subBuilder: $1.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -608,15 +745,15 @@ class AuthenticateEmailRequest extends $pb.GeneratedMessage {
   AccountEmail ensureAccount() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.BoolValue get create_2 => $_getN(1);
+  $1.BoolValue get create_2 => $_getN(1);
   @$pb.TagNumber(2)
-  set create_2($3.BoolValue v) { setField(2, v); }
+  set create_2($1.BoolValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
   @$pb.TagNumber(2)
-  $3.BoolValue ensureCreate_2() => $_ensure(1);
+  $1.BoolValue ensureCreate_2() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get username => $_getSZ(2);
@@ -631,9 +768,9 @@ class AuthenticateEmailRequest extends $pb.GeneratedMessage {
 class AuthenticateFacebookRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateFacebookRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<AccountFacebook>(1, 'account', subBuilder: AccountFacebook.create)
-    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(2, 'create', subBuilder: $1.BoolValue.create)
     ..aOS(3, 'username')
-    ..aOM<$3.BoolValue>(4, 'sync', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(4, 'sync', subBuilder: $1.BoolValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -664,15 +801,15 @@ class AuthenticateFacebookRequest extends $pb.GeneratedMessage {
   AccountFacebook ensureAccount() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.BoolValue get create_2 => $_getN(1);
+  $1.BoolValue get create_2 => $_getN(1);
   @$pb.TagNumber(2)
-  set create_2($3.BoolValue v) { setField(2, v); }
+  set create_2($1.BoolValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
   @$pb.TagNumber(2)
-  $3.BoolValue ensureCreate_2() => $_ensure(1);
+  $1.BoolValue ensureCreate_2() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get username => $_getSZ(2);
@@ -684,21 +821,76 @@ class AuthenticateFacebookRequest extends $pb.GeneratedMessage {
   void clearUsername() => clearField(3);
 
   @$pb.TagNumber(4)
-  $3.BoolValue get sync => $_getN(3);
+  $1.BoolValue get sync => $_getN(3);
   @$pb.TagNumber(4)
-  set sync($3.BoolValue v) { setField(4, v); }
+  set sync($1.BoolValue v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasSync() => $_has(3);
   @$pb.TagNumber(4)
   void clearSync() => clearField(4);
   @$pb.TagNumber(4)
-  $3.BoolValue ensureSync() => $_ensure(3);
+  $1.BoolValue ensureSync() => $_ensure(3);
+}
+
+class AuthenticateFacebookInstantGameRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateFacebookInstantGameRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
+    ..aOM<AccountFacebookInstantGame>(1, 'account', subBuilder: AccountFacebookInstantGame.create)
+    ..aOM<$1.BoolValue>(2, 'create', subBuilder: $1.BoolValue.create)
+    ..aOS(3, 'username')
+    ..hasRequiredFields = false
+  ;
+
+  AuthenticateFacebookInstantGameRequest._() : super();
+  factory AuthenticateFacebookInstantGameRequest() => create();
+  factory AuthenticateFacebookInstantGameRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AuthenticateFacebookInstantGameRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  AuthenticateFacebookInstantGameRequest clone() => AuthenticateFacebookInstantGameRequest()..mergeFromMessage(this);
+  AuthenticateFacebookInstantGameRequest copyWith(void Function(AuthenticateFacebookInstantGameRequest) updates) => super.copyWith((message) => updates(message as AuthenticateFacebookInstantGameRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateFacebookInstantGameRequest create() => AuthenticateFacebookInstantGameRequest._();
+  AuthenticateFacebookInstantGameRequest createEmptyInstance() => create();
+  static $pb.PbList<AuthenticateFacebookInstantGameRequest> createRepeated() => $pb.PbList<AuthenticateFacebookInstantGameRequest>();
+  @$core.pragma('dart2js:noInline')
+  static AuthenticateFacebookInstantGameRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthenticateFacebookInstantGameRequest>(create);
+  static AuthenticateFacebookInstantGameRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  AccountFacebookInstantGame get account => $_getN(0);
+  @$pb.TagNumber(1)
+  set account(AccountFacebookInstantGame v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasAccount() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAccount() => clearField(1);
+  @$pb.TagNumber(1)
+  AccountFacebookInstantGame ensureAccount() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $1.BoolValue get create_2 => $_getN(1);
+  @$pb.TagNumber(2)
+  set create_2($1.BoolValue v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCreate_2() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCreate_2() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.BoolValue ensureCreate_2() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.String get username => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set username($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasUsername() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearUsername() => clearField(3);
 }
 
 class AuthenticateGameCenterRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateGameCenterRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<AccountGameCenter>(1, 'account', subBuilder: AccountGameCenter.create)
-    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(2, 'create', subBuilder: $1.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -730,15 +922,15 @@ class AuthenticateGameCenterRequest extends $pb.GeneratedMessage {
   AccountGameCenter ensureAccount() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.BoolValue get create_2 => $_getN(1);
+  $1.BoolValue get create_2 => $_getN(1);
   @$pb.TagNumber(2)
-  set create_2($3.BoolValue v) { setField(2, v); }
+  set create_2($1.BoolValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
   @$pb.TagNumber(2)
-  $3.BoolValue ensureCreate_2() => $_ensure(1);
+  $1.BoolValue ensureCreate_2() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get username => $_getSZ(2);
@@ -753,7 +945,7 @@ class AuthenticateGameCenterRequest extends $pb.GeneratedMessage {
 class AuthenticateGoogleRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateGoogleRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<AccountGoogle>(1, 'account', subBuilder: AccountGoogle.create)
-    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(2, 'create', subBuilder: $1.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -785,15 +977,15 @@ class AuthenticateGoogleRequest extends $pb.GeneratedMessage {
   AccountGoogle ensureAccount() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.BoolValue get create_2 => $_getN(1);
+  $1.BoolValue get create_2 => $_getN(1);
   @$pb.TagNumber(2)
-  set create_2($3.BoolValue v) { setField(2, v); }
+  set create_2($1.BoolValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
   @$pb.TagNumber(2)
-  $3.BoolValue ensureCreate_2() => $_ensure(1);
+  $1.BoolValue ensureCreate_2() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get username => $_getSZ(2);
@@ -808,7 +1000,7 @@ class AuthenticateGoogleRequest extends $pb.GeneratedMessage {
 class AuthenticateSteamRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('AuthenticateSteamRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<AccountSteam>(1, 'account', subBuilder: AccountSteam.create)
-    ..aOM<$3.BoolValue>(2, 'create', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(2, 'create', subBuilder: $1.BoolValue.create)
     ..aOS(3, 'username')
     ..hasRequiredFields = false
   ;
@@ -840,15 +1032,15 @@ class AuthenticateSteamRequest extends $pb.GeneratedMessage {
   AccountSteam ensureAccount() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.BoolValue get create_2 => $_getN(1);
+  $1.BoolValue get create_2 => $_getN(1);
   @$pb.TagNumber(2)
-  set create_2($3.BoolValue v) { setField(2, v); }
+  set create_2($1.BoolValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreate_2() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreate_2() => clearField(2);
   @$pb.TagNumber(2)
-  $3.BoolValue ensureCreate_2() => $_ensure(1);
+  $1.BoolValue ensureCreate_2() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get username => $_getSZ(2);
@@ -858,6 +1050,41 @@ class AuthenticateSteamRequest extends $pb.GeneratedMessage {
   $core.bool hasUsername() => $_has(2);
   @$pb.TagNumber(3)
   void clearUsername() => clearField(3);
+}
+
+class BanGroupUsersRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('BanGroupUsersRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
+    ..aOS(1, 'groupId')
+    ..pPS(2, 'userIds')
+    ..hasRequiredFields = false
+  ;
+
+  BanGroupUsersRequest._() : super();
+  factory BanGroupUsersRequest() => create();
+  factory BanGroupUsersRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory BanGroupUsersRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  BanGroupUsersRequest clone() => BanGroupUsersRequest()..mergeFromMessage(this);
+  BanGroupUsersRequest copyWith(void Function(BanGroupUsersRequest) updates) => super.copyWith((message) => updates(message as BanGroupUsersRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static BanGroupUsersRequest create() => BanGroupUsersRequest._();
+  BanGroupUsersRequest createEmptyInstance() => create();
+  static $pb.PbList<BanGroupUsersRequest> createRepeated() => $pb.PbList<BanGroupUsersRequest>();
+  @$core.pragma('dart2js:noInline')
+  static BanGroupUsersRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BanGroupUsersRequest>(create);
+  static BanGroupUsersRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set groupId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.String> get userIds => $_getList(1);
 }
 
 class BlockFriendsRequest extends $pb.GeneratedMessage {
@@ -893,13 +1120,13 @@ class ChannelMessage extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ChannelMessage', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'channelId')
     ..aOS(2, 'messageId')
-    ..aOM<$3.Int32Value>(3, 'code', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(3, 'code', subBuilder: $1.Int32Value.create)
     ..aOS(4, 'senderId')
     ..aOS(5, 'username')
     ..aOS(6, 'content')
-    ..aOM<$2.Timestamp>(7, 'createTime', subBuilder: $2.Timestamp.create)
-    ..aOM<$2.Timestamp>(8, 'updateTime', subBuilder: $2.Timestamp.create)
-    ..aOM<$3.BoolValue>(9, 'persistent', subBuilder: $3.BoolValue.create)
+    ..aOM<$0.Timestamp>(7, 'createTime', subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(8, 'updateTime', subBuilder: $0.Timestamp.create)
+    ..aOM<$1.BoolValue>(9, 'persistent', subBuilder: $1.BoolValue.create)
     ..aOS(10, 'roomName')
     ..aOS(11, 'groupId')
     ..aOS(12, 'userIdOne')
@@ -941,15 +1168,15 @@ class ChannelMessage extends $pb.GeneratedMessage {
   void clearMessageId() => clearField(2);
 
   @$pb.TagNumber(3)
-  $3.Int32Value get code => $_getN(2);
+  $1.Int32Value get code => $_getN(2);
   @$pb.TagNumber(3)
-  set code($3.Int32Value v) { setField(3, v); }
+  set code($1.Int32Value v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasCode() => $_has(2);
   @$pb.TagNumber(3)
   void clearCode() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Int32Value ensureCode() => $_ensure(2);
+  $1.Int32Value ensureCode() => $_ensure(2);
 
   @$pb.TagNumber(4)
   $core.String get senderId => $_getSZ(3);
@@ -979,37 +1206,37 @@ class ChannelMessage extends $pb.GeneratedMessage {
   void clearContent() => clearField(6);
 
   @$pb.TagNumber(7)
-  $2.Timestamp get createTime => $_getN(6);
+  $0.Timestamp get createTime => $_getN(6);
   @$pb.TagNumber(7)
-  set createTime($2.Timestamp v) { setField(7, v); }
+  set createTime($0.Timestamp v) { setField(7, v); }
   @$pb.TagNumber(7)
   $core.bool hasCreateTime() => $_has(6);
   @$pb.TagNumber(7)
   void clearCreateTime() => clearField(7);
   @$pb.TagNumber(7)
-  $2.Timestamp ensureCreateTime() => $_ensure(6);
+  $0.Timestamp ensureCreateTime() => $_ensure(6);
 
   @$pb.TagNumber(8)
-  $2.Timestamp get updateTime => $_getN(7);
+  $0.Timestamp get updateTime => $_getN(7);
   @$pb.TagNumber(8)
-  set updateTime($2.Timestamp v) { setField(8, v); }
+  set updateTime($0.Timestamp v) { setField(8, v); }
   @$pb.TagNumber(8)
   $core.bool hasUpdateTime() => $_has(7);
   @$pb.TagNumber(8)
   void clearUpdateTime() => clearField(8);
   @$pb.TagNumber(8)
-  $2.Timestamp ensureUpdateTime() => $_ensure(7);
+  $0.Timestamp ensureUpdateTime() => $_ensure(7);
 
   @$pb.TagNumber(9)
-  $3.BoolValue get persistent => $_getN(8);
+  $1.BoolValue get persistent => $_getN(8);
   @$pb.TagNumber(9)
-  set persistent($3.BoolValue v) { setField(9, v); }
+  set persistent($1.BoolValue v) { setField(9, v); }
   @$pb.TagNumber(9)
   $core.bool hasPersistent() => $_has(8);
   @$pb.TagNumber(9)
   void clearPersistent() => clearField(9);
   @$pb.TagNumber(9)
-  $3.BoolValue ensurePersistent() => $_ensure(8);
+  $1.BoolValue ensurePersistent() => $_ensure(8);
 
   @$pb.TagNumber(10)
   $core.String get roomName => $_getSZ(9);
@@ -1370,7 +1597,8 @@ class Event extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Event', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'name')
     ..m<$core.String, $core.String>(2, 'properties', entryClassName: 'Event.PropertiesEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS, packageName: const $pb.PackageName('nakama.api'))
-    ..aOM<$2.Timestamp>(3, 'timestamp', subBuilder: $2.Timestamp.create)
+    ..aOM<$0.Timestamp>(3, 'timestamp', subBuilder: $0.Timestamp.create)
+    ..aOB(4, 'external')
     ..hasRequiredFields = false
   ;
 
@@ -1402,21 +1630,31 @@ class Event extends $pb.GeneratedMessage {
   $core.Map<$core.String, $core.String> get properties => $_getMap(1);
 
   @$pb.TagNumber(3)
-  $2.Timestamp get timestamp => $_getN(2);
+  $0.Timestamp get timestamp => $_getN(2);
   @$pb.TagNumber(3)
-  set timestamp($2.Timestamp v) { setField(3, v); }
+  set timestamp($0.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasTimestamp() => $_has(2);
   @$pb.TagNumber(3)
   void clearTimestamp() => clearField(3);
   @$pb.TagNumber(3)
-  $2.Timestamp ensureTimestamp() => $_ensure(2);
+  $0.Timestamp ensureTimestamp() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  $core.bool get external => $_getBF(3);
+  @$pb.TagNumber(4)
+  set external($core.bool v) { $_setBool(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasExternal() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearExternal() => clearField(4);
 }
 
 class Friend extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Friend', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<User>(1, 'user', subBuilder: User.create)
-    ..aOM<$3.Int32Value>(2, 'state', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(2, 'state', subBuilder: $1.Int32Value.create)
+    ..aOM<$0.Timestamp>(3, 'updateTime', subBuilder: $0.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -1447,15 +1685,26 @@ class Friend extends $pb.GeneratedMessage {
   User ensureUser() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.Int32Value get state => $_getN(1);
+  $1.Int32Value get state => $_getN(1);
   @$pb.TagNumber(2)
-  set state($3.Int32Value v) { setField(2, v); }
+  set state($1.Int32Value v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasState() => $_has(1);
   @$pb.TagNumber(2)
   void clearState() => clearField(2);
   @$pb.TagNumber(2)
-  $3.Int32Value ensureState() => $_ensure(1);
+  $1.Int32Value ensureState() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $0.Timestamp get updateTime => $_getN(2);
+  @$pb.TagNumber(3)
+  set updateTime($0.Timestamp v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasUpdateTime() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearUpdateTime() => clearField(3);
+  @$pb.TagNumber(3)
+  $0.Timestamp ensureUpdateTime() => $_ensure(2);
 }
 
 class FriendList extends $pb.GeneratedMessage {
@@ -1535,11 +1784,11 @@ class Group extends $pb.GeneratedMessage {
     ..aOS(5, 'langTag')
     ..aOS(6, 'metadata')
     ..aOS(7, 'avatarUrl')
-    ..aOM<$3.BoolValue>(8, 'open', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(8, 'open', subBuilder: $1.BoolValue.create)
     ..a<$core.int>(9, 'edgeCount', $pb.PbFieldType.O3)
     ..a<$core.int>(10, 'maxCount', $pb.PbFieldType.O3)
-    ..aOM<$2.Timestamp>(11, 'createTime', subBuilder: $2.Timestamp.create)
-    ..aOM<$2.Timestamp>(12, 'updateTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$0.Timestamp>(11, 'createTime', subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(12, 'updateTime', subBuilder: $0.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -1622,15 +1871,15 @@ class Group extends $pb.GeneratedMessage {
   void clearAvatarUrl() => clearField(7);
 
   @$pb.TagNumber(8)
-  $3.BoolValue get open => $_getN(7);
+  $1.BoolValue get open => $_getN(7);
   @$pb.TagNumber(8)
-  set open($3.BoolValue v) { setField(8, v); }
+  set open($1.BoolValue v) { setField(8, v); }
   @$pb.TagNumber(8)
   $core.bool hasOpen() => $_has(7);
   @$pb.TagNumber(8)
   void clearOpen() => clearField(8);
   @$pb.TagNumber(8)
-  $3.BoolValue ensureOpen() => $_ensure(7);
+  $1.BoolValue ensureOpen() => $_ensure(7);
 
   @$pb.TagNumber(9)
   $core.int get edgeCount => $_getIZ(8);
@@ -1651,26 +1900,26 @@ class Group extends $pb.GeneratedMessage {
   void clearMaxCount() => clearField(10);
 
   @$pb.TagNumber(11)
-  $2.Timestamp get createTime => $_getN(10);
+  $0.Timestamp get createTime => $_getN(10);
   @$pb.TagNumber(11)
-  set createTime($2.Timestamp v) { setField(11, v); }
+  set createTime($0.Timestamp v) { setField(11, v); }
   @$pb.TagNumber(11)
   $core.bool hasCreateTime() => $_has(10);
   @$pb.TagNumber(11)
   void clearCreateTime() => clearField(11);
   @$pb.TagNumber(11)
-  $2.Timestamp ensureCreateTime() => $_ensure(10);
+  $0.Timestamp ensureCreateTime() => $_ensure(10);
 
   @$pb.TagNumber(12)
-  $2.Timestamp get updateTime => $_getN(11);
+  $0.Timestamp get updateTime => $_getN(11);
   @$pb.TagNumber(12)
-  set updateTime($2.Timestamp v) { setField(12, v); }
+  set updateTime($0.Timestamp v) { setField(12, v); }
   @$pb.TagNumber(12)
   $core.bool hasUpdateTime() => $_has(11);
   @$pb.TagNumber(12)
   void clearUpdateTime() => clearField(12);
   @$pb.TagNumber(12)
-  $2.Timestamp ensureUpdateTime() => $_ensure(11);
+  $0.Timestamp ensureUpdateTime() => $_ensure(11);
 }
 
 class GroupList extends $pb.GeneratedMessage {
@@ -1711,7 +1960,7 @@ class GroupList extends $pb.GeneratedMessage {
 class GroupUserList_GroupUser extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GroupUserList.GroupUser', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<User>(1, 'user', subBuilder: User.create)
-    ..aOM<$3.Int32Value>(2, 'state', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(2, 'state', subBuilder: $1.Int32Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -1742,15 +1991,15 @@ class GroupUserList_GroupUser extends $pb.GeneratedMessage {
   User ensureUser() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.Int32Value get state => $_getN(1);
+  $1.Int32Value get state => $_getN(1);
   @$pb.TagNumber(2)
-  set state($3.Int32Value v) { setField(2, v); }
+  set state($1.Int32Value v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasState() => $_has(1);
   @$pb.TagNumber(2)
   void clearState() => clearField(2);
   @$pb.TagNumber(2)
-  $3.Int32Value ensureState() => $_ensure(1);
+  $1.Int32Value ensureState() => $_ensure(1);
 }
 
 class GroupUserList extends $pb.GeneratedMessage {
@@ -1791,7 +2040,7 @@ class GroupUserList extends $pb.GeneratedMessage {
 class ImportFacebookFriendsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ImportFacebookFriendsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<AccountFacebook>(1, 'account', subBuilder: AccountFacebook.create)
-    ..aOM<$3.BoolValue>(2, 'reset', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(2, 'reset', subBuilder: $1.BoolValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -1822,15 +2071,15 @@ class ImportFacebookFriendsRequest extends $pb.GeneratedMessage {
   AccountFacebook ensureAccount() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.BoolValue get reset => $_getN(1);
+  $1.BoolValue get reset => $_getN(1);
   @$pb.TagNumber(2)
-  set reset($3.BoolValue v) { setField(2, v); }
+  set reset($1.BoolValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasReset() => $_has(1);
   @$pb.TagNumber(2)
   void clearReset() => clearField(2);
   @$pb.TagNumber(2)
-  $3.BoolValue ensureReset() => $_ensure(1);
+  $1.BoolValue ensureReset() => $_ensure(1);
 }
 
 class JoinGroupRequest extends $pb.GeneratedMessage {
@@ -1934,14 +2183,14 @@ class LeaderboardRecord extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('LeaderboardRecord', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'leaderboardId')
     ..aOS(2, 'ownerId')
-    ..aOM<$3.StringValue>(3, 'username', subBuilder: $3.StringValue.create)
+    ..aOM<$1.StringValue>(3, 'username', subBuilder: $1.StringValue.create)
     ..aInt64(4, 'score')
     ..aInt64(5, 'subscore')
     ..a<$core.int>(6, 'numScore', $pb.PbFieldType.O3)
     ..aOS(7, 'metadata')
-    ..aOM<$2.Timestamp>(8, 'createTime', subBuilder: $2.Timestamp.create)
-    ..aOM<$2.Timestamp>(9, 'updateTime', subBuilder: $2.Timestamp.create)
-    ..aOM<$2.Timestamp>(10, 'expiryTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$0.Timestamp>(8, 'createTime', subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(9, 'updateTime', subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(10, 'expiryTime', subBuilder: $0.Timestamp.create)
     ..aInt64(11, 'rank')
     ..a<$core.int>(12, 'maxNumScore', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
@@ -1981,15 +2230,15 @@ class LeaderboardRecord extends $pb.GeneratedMessage {
   void clearOwnerId() => clearField(2);
 
   @$pb.TagNumber(3)
-  $3.StringValue get username => $_getN(2);
+  $1.StringValue get username => $_getN(2);
   @$pb.TagNumber(3)
-  set username($3.StringValue v) { setField(3, v); }
+  set username($1.StringValue v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasUsername() => $_has(2);
   @$pb.TagNumber(3)
   void clearUsername() => clearField(3);
   @$pb.TagNumber(3)
-  $3.StringValue ensureUsername() => $_ensure(2);
+  $1.StringValue ensureUsername() => $_ensure(2);
 
   @$pb.TagNumber(4)
   $fixnum.Int64 get score => $_getI64(3);
@@ -2028,37 +2277,37 @@ class LeaderboardRecord extends $pb.GeneratedMessage {
   void clearMetadata() => clearField(7);
 
   @$pb.TagNumber(8)
-  $2.Timestamp get createTime => $_getN(7);
+  $0.Timestamp get createTime => $_getN(7);
   @$pb.TagNumber(8)
-  set createTime($2.Timestamp v) { setField(8, v); }
+  set createTime($0.Timestamp v) { setField(8, v); }
   @$pb.TagNumber(8)
   $core.bool hasCreateTime() => $_has(7);
   @$pb.TagNumber(8)
   void clearCreateTime() => clearField(8);
   @$pb.TagNumber(8)
-  $2.Timestamp ensureCreateTime() => $_ensure(7);
+  $0.Timestamp ensureCreateTime() => $_ensure(7);
 
   @$pb.TagNumber(9)
-  $2.Timestamp get updateTime => $_getN(8);
+  $0.Timestamp get updateTime => $_getN(8);
   @$pb.TagNumber(9)
-  set updateTime($2.Timestamp v) { setField(9, v); }
+  set updateTime($0.Timestamp v) { setField(9, v); }
   @$pb.TagNumber(9)
   $core.bool hasUpdateTime() => $_has(8);
   @$pb.TagNumber(9)
   void clearUpdateTime() => clearField(9);
   @$pb.TagNumber(9)
-  $2.Timestamp ensureUpdateTime() => $_ensure(8);
+  $0.Timestamp ensureUpdateTime() => $_ensure(8);
 
   @$pb.TagNumber(10)
-  $2.Timestamp get expiryTime => $_getN(9);
+  $0.Timestamp get expiryTime => $_getN(9);
   @$pb.TagNumber(10)
-  set expiryTime($2.Timestamp v) { setField(10, v); }
+  set expiryTime($0.Timestamp v) { setField(10, v); }
   @$pb.TagNumber(10)
   $core.bool hasExpiryTime() => $_has(9);
   @$pb.TagNumber(10)
   void clearExpiryTime() => clearField(10);
   @$pb.TagNumber(10)
-  $2.Timestamp ensureExpiryTime() => $_ensure(9);
+  $0.Timestamp ensureExpiryTime() => $_ensure(9);
 
   @$pb.TagNumber(11)
   $fixnum.Int64 get rank => $_getI64(10);
@@ -2162,7 +2411,7 @@ class LeaveGroupRequest extends $pb.GeneratedMessage {
 class LinkFacebookRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('LinkFacebookRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<AccountFacebook>(1, 'account', subBuilder: AccountFacebook.create)
-    ..aOM<$3.BoolValue>(4, 'sync', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.BoolValue>(4, 'sync', subBuilder: $1.BoolValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -2193,22 +2442,22 @@ class LinkFacebookRequest extends $pb.GeneratedMessage {
   AccountFacebook ensureAccount() => $_ensure(0);
 
   @$pb.TagNumber(4)
-  $3.BoolValue get sync => $_getN(1);
+  $1.BoolValue get sync => $_getN(1);
   @$pb.TagNumber(4)
-  set sync($3.BoolValue v) { setField(4, v); }
+  set sync($1.BoolValue v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasSync() => $_has(1);
   @$pb.TagNumber(4)
   void clearSync() => clearField(4);
   @$pb.TagNumber(4)
-  $3.BoolValue ensureSync() => $_ensure(1);
+  $1.BoolValue ensureSync() => $_ensure(1);
 }
 
 class ListChannelMessagesRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListChannelMessagesRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'channelId')
-    ..aOM<$3.Int32Value>(2, 'limit', subBuilder: $3.Int32Value.create)
-    ..aOM<$3.BoolValue>(3, 'forward', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.Int32Value>(2, 'limit', subBuilder: $1.Int32Value.create)
+    ..aOM<$1.BoolValue>(3, 'forward', subBuilder: $1.BoolValue.create)
     ..aOS(4, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -2238,26 +2487,26 @@ class ListChannelMessagesRequest extends $pb.GeneratedMessage {
   void clearChannelId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $3.Int32Value get limit => $_getN(1);
+  $1.Int32Value get limit => $_getN(1);
   @$pb.TagNumber(2)
-  set limit($3.Int32Value v) { setField(2, v); }
+  set limit($1.Int32Value v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasLimit() => $_has(1);
   @$pb.TagNumber(2)
   void clearLimit() => clearField(2);
   @$pb.TagNumber(2)
-  $3.Int32Value ensureLimit() => $_ensure(1);
+  $1.Int32Value ensureLimit() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $3.BoolValue get forward => $_getN(2);
+  $1.BoolValue get forward => $_getN(2);
   @$pb.TagNumber(3)
-  set forward($3.BoolValue v) { setField(3, v); }
+  set forward($1.BoolValue v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasForward() => $_has(2);
   @$pb.TagNumber(3)
   void clearForward() => clearField(3);
   @$pb.TagNumber(3)
-  $3.BoolValue ensureForward() => $_ensure(2);
+  $1.BoolValue ensureForward() => $_ensure(2);
 
   @$pb.TagNumber(4)
   $core.String get cursor => $_getSZ(3);
@@ -2271,8 +2520,8 @@ class ListChannelMessagesRequest extends $pb.GeneratedMessage {
 
 class ListFriendsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListFriendsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..aOM<$3.Int32Value>(1, 'limit', subBuilder: $3.Int32Value.create)
-    ..aOM<$3.Int32Value>(2, 'state', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(1, 'limit', subBuilder: $1.Int32Value.create)
+    ..aOM<$1.Int32Value>(2, 'state', subBuilder: $1.Int32Value.create)
     ..aOS(3, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -2293,26 +2542,26 @@ class ListFriendsRequest extends $pb.GeneratedMessage {
   static ListFriendsRequest _defaultInstance;
 
   @$pb.TagNumber(1)
-  $3.Int32Value get limit => $_getN(0);
+  $1.Int32Value get limit => $_getN(0);
   @$pb.TagNumber(1)
-  set limit($3.Int32Value v) { setField(1, v); }
+  set limit($1.Int32Value v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasLimit() => $_has(0);
   @$pb.TagNumber(1)
   void clearLimit() => clearField(1);
   @$pb.TagNumber(1)
-  $3.Int32Value ensureLimit() => $_ensure(0);
+  $1.Int32Value ensureLimit() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.Int32Value get state => $_getN(1);
+  $1.Int32Value get state => $_getN(1);
   @$pb.TagNumber(2)
-  set state($3.Int32Value v) { setField(2, v); }
+  set state($1.Int32Value v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasState() => $_has(1);
   @$pb.TagNumber(2)
   void clearState() => clearField(2);
   @$pb.TagNumber(2)
-  $3.Int32Value ensureState() => $_ensure(1);
+  $1.Int32Value ensureState() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get cursor => $_getSZ(2);
@@ -2328,7 +2577,7 @@ class ListGroupsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListGroupsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'name')
     ..aOS(2, 'cursor')
-    ..aOM<$3.Int32Value>(3, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(3, 'limit', subBuilder: $1.Int32Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -2366,22 +2615,22 @@ class ListGroupsRequest extends $pb.GeneratedMessage {
   void clearCursor() => clearField(2);
 
   @$pb.TagNumber(3)
-  $3.Int32Value get limit => $_getN(2);
+  $1.Int32Value get limit => $_getN(2);
   @$pb.TagNumber(3)
-  set limit($3.Int32Value v) { setField(3, v); }
+  set limit($1.Int32Value v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasLimit() => $_has(2);
   @$pb.TagNumber(3)
   void clearLimit() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Int32Value ensureLimit() => $_ensure(2);
+  $1.Int32Value ensureLimit() => $_ensure(2);
 }
 
 class ListGroupUsersRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListGroupUsersRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'groupId')
-    ..aOM<$3.Int32Value>(2, 'limit', subBuilder: $3.Int32Value.create)
-    ..aOM<$3.Int32Value>(3, 'state', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(2, 'limit', subBuilder: $1.Int32Value.create)
+    ..aOM<$1.Int32Value>(3, 'state', subBuilder: $1.Int32Value.create)
     ..aOS(4, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -2411,26 +2660,26 @@ class ListGroupUsersRequest extends $pb.GeneratedMessage {
   void clearGroupId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $3.Int32Value get limit => $_getN(1);
+  $1.Int32Value get limit => $_getN(1);
   @$pb.TagNumber(2)
-  set limit($3.Int32Value v) { setField(2, v); }
+  set limit($1.Int32Value v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasLimit() => $_has(1);
   @$pb.TagNumber(2)
   void clearLimit() => clearField(2);
   @$pb.TagNumber(2)
-  $3.Int32Value ensureLimit() => $_ensure(1);
+  $1.Int32Value ensureLimit() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $3.Int32Value get state => $_getN(2);
+  $1.Int32Value get state => $_getN(2);
   @$pb.TagNumber(3)
-  set state($3.Int32Value v) { setField(3, v); }
+  set state($1.Int32Value v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasState() => $_has(2);
   @$pb.TagNumber(3)
   void clearState() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Int32Value ensureState() => $_ensure(2);
+  $1.Int32Value ensureState() => $_ensure(2);
 
   @$pb.TagNumber(4)
   $core.String get cursor => $_getSZ(3);
@@ -2445,9 +2694,9 @@ class ListGroupUsersRequest extends $pb.GeneratedMessage {
 class ListLeaderboardRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListLeaderboardRecordsAroundOwnerRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'leaderboardId')
-    ..aOM<$3.UInt32Value>(2, 'limit', subBuilder: $3.UInt32Value.create)
+    ..aOM<$1.UInt32Value>(2, 'limit', subBuilder: $1.UInt32Value.create)
     ..aOS(3, 'ownerId')
-    ..aOM<$3.Int64Value>(4, 'expiry', subBuilder: $3.Int64Value.create)
+    ..aOM<$1.Int64Value>(4, 'expiry', subBuilder: $1.Int64Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -2476,15 +2725,15 @@ class ListLeaderboardRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   void clearLeaderboardId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $3.UInt32Value get limit => $_getN(1);
+  $1.UInt32Value get limit => $_getN(1);
   @$pb.TagNumber(2)
-  set limit($3.UInt32Value v) { setField(2, v); }
+  set limit($1.UInt32Value v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasLimit() => $_has(1);
   @$pb.TagNumber(2)
   void clearLimit() => clearField(2);
   @$pb.TagNumber(2)
-  $3.UInt32Value ensureLimit() => $_ensure(1);
+  $1.UInt32Value ensureLimit() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get ownerId => $_getSZ(2);
@@ -2496,24 +2745,24 @@ class ListLeaderboardRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   void clearOwnerId() => clearField(3);
 
   @$pb.TagNumber(4)
-  $3.Int64Value get expiry => $_getN(3);
+  $1.Int64Value get expiry => $_getN(3);
   @$pb.TagNumber(4)
-  set expiry($3.Int64Value v) { setField(4, v); }
+  set expiry($1.Int64Value v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasExpiry() => $_has(3);
   @$pb.TagNumber(4)
   void clearExpiry() => clearField(4);
   @$pb.TagNumber(4)
-  $3.Int64Value ensureExpiry() => $_ensure(3);
+  $1.Int64Value ensureExpiry() => $_ensure(3);
 }
 
 class ListLeaderboardRecordsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListLeaderboardRecordsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'leaderboardId')
     ..pPS(2, 'ownerIds')
-    ..aOM<$3.Int32Value>(3, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(3, 'limit', subBuilder: $1.Int32Value.create)
     ..aOS(4, 'cursor')
-    ..aOM<$3.Int64Value>(5, 'expiry', subBuilder: $3.Int64Value.create)
+    ..aOM<$1.Int64Value>(5, 'expiry', subBuilder: $1.Int64Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -2545,15 +2794,15 @@ class ListLeaderboardRecordsRequest extends $pb.GeneratedMessage {
   $core.List<$core.String> get ownerIds => $_getList(1);
 
   @$pb.TagNumber(3)
-  $3.Int32Value get limit => $_getN(2);
+  $1.Int32Value get limit => $_getN(2);
   @$pb.TagNumber(3)
-  set limit($3.Int32Value v) { setField(3, v); }
+  set limit($1.Int32Value v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasLimit() => $_has(2);
   @$pb.TagNumber(3)
   void clearLimit() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Int32Value ensureLimit() => $_ensure(2);
+  $1.Int32Value ensureLimit() => $_ensure(2);
 
   @$pb.TagNumber(4)
   $core.String get cursor => $_getSZ(3);
@@ -2565,25 +2814,25 @@ class ListLeaderboardRecordsRequest extends $pb.GeneratedMessage {
   void clearCursor() => clearField(4);
 
   @$pb.TagNumber(5)
-  $3.Int64Value get expiry => $_getN(4);
+  $1.Int64Value get expiry => $_getN(4);
   @$pb.TagNumber(5)
-  set expiry($3.Int64Value v) { setField(5, v); }
+  set expiry($1.Int64Value v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasExpiry() => $_has(4);
   @$pb.TagNumber(5)
   void clearExpiry() => clearField(5);
   @$pb.TagNumber(5)
-  $3.Int64Value ensureExpiry() => $_ensure(4);
+  $1.Int64Value ensureExpiry() => $_ensure(4);
 }
 
 class ListMatchesRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListMatchesRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..aOM<$3.Int32Value>(1, 'limit', subBuilder: $3.Int32Value.create)
-    ..aOM<$3.BoolValue>(2, 'authoritative', subBuilder: $3.BoolValue.create)
-    ..aOM<$3.StringValue>(3, 'label', subBuilder: $3.StringValue.create)
-    ..aOM<$3.Int32Value>(4, 'minSize', subBuilder: $3.Int32Value.create)
-    ..aOM<$3.Int32Value>(5, 'maxSize', subBuilder: $3.Int32Value.create)
-    ..aOM<$3.StringValue>(6, 'query', subBuilder: $3.StringValue.create)
+    ..aOM<$1.Int32Value>(1, 'limit', subBuilder: $1.Int32Value.create)
+    ..aOM<$1.BoolValue>(2, 'authoritative', subBuilder: $1.BoolValue.create)
+    ..aOM<$1.StringValue>(3, 'label', subBuilder: $1.StringValue.create)
+    ..aOM<$1.Int32Value>(4, 'minSize', subBuilder: $1.Int32Value.create)
+    ..aOM<$1.Int32Value>(5, 'maxSize', subBuilder: $1.Int32Value.create)
+    ..aOM<$1.StringValue>(6, 'query', subBuilder: $1.StringValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -2603,75 +2852,75 @@ class ListMatchesRequest extends $pb.GeneratedMessage {
   static ListMatchesRequest _defaultInstance;
 
   @$pb.TagNumber(1)
-  $3.Int32Value get limit => $_getN(0);
+  $1.Int32Value get limit => $_getN(0);
   @$pb.TagNumber(1)
-  set limit($3.Int32Value v) { setField(1, v); }
+  set limit($1.Int32Value v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasLimit() => $_has(0);
   @$pb.TagNumber(1)
   void clearLimit() => clearField(1);
   @$pb.TagNumber(1)
-  $3.Int32Value ensureLimit() => $_ensure(0);
+  $1.Int32Value ensureLimit() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.BoolValue get authoritative => $_getN(1);
+  $1.BoolValue get authoritative => $_getN(1);
   @$pb.TagNumber(2)
-  set authoritative($3.BoolValue v) { setField(2, v); }
+  set authoritative($1.BoolValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasAuthoritative() => $_has(1);
   @$pb.TagNumber(2)
   void clearAuthoritative() => clearField(2);
   @$pb.TagNumber(2)
-  $3.BoolValue ensureAuthoritative() => $_ensure(1);
+  $1.BoolValue ensureAuthoritative() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $3.StringValue get label => $_getN(2);
+  $1.StringValue get label => $_getN(2);
   @$pb.TagNumber(3)
-  set label($3.StringValue v) { setField(3, v); }
+  set label($1.StringValue v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasLabel() => $_has(2);
   @$pb.TagNumber(3)
   void clearLabel() => clearField(3);
   @$pb.TagNumber(3)
-  $3.StringValue ensureLabel() => $_ensure(2);
+  $1.StringValue ensureLabel() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $3.Int32Value get minSize => $_getN(3);
+  $1.Int32Value get minSize => $_getN(3);
   @$pb.TagNumber(4)
-  set minSize($3.Int32Value v) { setField(4, v); }
+  set minSize($1.Int32Value v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasMinSize() => $_has(3);
   @$pb.TagNumber(4)
   void clearMinSize() => clearField(4);
   @$pb.TagNumber(4)
-  $3.Int32Value ensureMinSize() => $_ensure(3);
+  $1.Int32Value ensureMinSize() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $3.Int32Value get maxSize => $_getN(4);
+  $1.Int32Value get maxSize => $_getN(4);
   @$pb.TagNumber(5)
-  set maxSize($3.Int32Value v) { setField(5, v); }
+  set maxSize($1.Int32Value v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasMaxSize() => $_has(4);
   @$pb.TagNumber(5)
   void clearMaxSize() => clearField(5);
   @$pb.TagNumber(5)
-  $3.Int32Value ensureMaxSize() => $_ensure(4);
+  $1.Int32Value ensureMaxSize() => $_ensure(4);
 
   @$pb.TagNumber(6)
-  $3.StringValue get query => $_getN(5);
+  $1.StringValue get query => $_getN(5);
   @$pb.TagNumber(6)
-  set query($3.StringValue v) { setField(6, v); }
+  set query($1.StringValue v) { setField(6, v); }
   @$pb.TagNumber(6)
   $core.bool hasQuery() => $_has(5);
   @$pb.TagNumber(6)
   void clearQuery() => clearField(6);
   @$pb.TagNumber(6)
-  $3.StringValue ensureQuery() => $_ensure(5);
+  $1.StringValue ensureQuery() => $_ensure(5);
 }
 
 class ListNotificationsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListNotificationsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..aOM<$3.Int32Value>(1, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(1, 'limit', subBuilder: $1.Int32Value.create)
     ..aOS(2, 'cacheableCursor')
     ..hasRequiredFields = false
   ;
@@ -2692,15 +2941,15 @@ class ListNotificationsRequest extends $pb.GeneratedMessage {
   static ListNotificationsRequest _defaultInstance;
 
   @$pb.TagNumber(1)
-  $3.Int32Value get limit => $_getN(0);
+  $1.Int32Value get limit => $_getN(0);
   @$pb.TagNumber(1)
-  set limit($3.Int32Value v) { setField(1, v); }
+  set limit($1.Int32Value v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasLimit() => $_has(0);
   @$pb.TagNumber(1)
   void clearLimit() => clearField(1);
   @$pb.TagNumber(1)
-  $3.Int32Value ensureLimit() => $_ensure(0);
+  $1.Int32Value ensureLimit() => $_ensure(0);
 
   @$pb.TagNumber(2)
   $core.String get cacheableCursor => $_getSZ(1);
@@ -2716,7 +2965,7 @@ class ListStorageObjectsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListStorageObjectsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'userId')
     ..aOS(2, 'collection')
-    ..aOM<$3.Int32Value>(3, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(3, 'limit', subBuilder: $1.Int32Value.create)
     ..aOS(4, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -2755,15 +3004,15 @@ class ListStorageObjectsRequest extends $pb.GeneratedMessage {
   void clearCollection() => clearField(2);
 
   @$pb.TagNumber(3)
-  $3.Int32Value get limit => $_getN(2);
+  $1.Int32Value get limit => $_getN(2);
   @$pb.TagNumber(3)
-  set limit($3.Int32Value v) { setField(3, v); }
+  set limit($1.Int32Value v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasLimit() => $_has(2);
   @$pb.TagNumber(3)
   void clearLimit() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Int32Value ensureLimit() => $_ensure(2);
+  $1.Int32Value ensureLimit() => $_ensure(2);
 
   @$pb.TagNumber(4)
   $core.String get cursor => $_getSZ(3);
@@ -2778,9 +3027,9 @@ class ListStorageObjectsRequest extends $pb.GeneratedMessage {
 class ListTournamentRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListTournamentRecordsAroundOwnerRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'tournamentId')
-    ..aOM<$3.UInt32Value>(2, 'limit', subBuilder: $3.UInt32Value.create)
+    ..aOM<$1.UInt32Value>(2, 'limit', subBuilder: $1.UInt32Value.create)
     ..aOS(3, 'ownerId')
-    ..aOM<$3.Int64Value>(4, 'expiry', subBuilder: $3.Int64Value.create)
+    ..aOM<$1.Int64Value>(4, 'expiry', subBuilder: $1.Int64Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -2809,15 +3058,15 @@ class ListTournamentRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   void clearTournamentId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $3.UInt32Value get limit => $_getN(1);
+  $1.UInt32Value get limit => $_getN(1);
   @$pb.TagNumber(2)
-  set limit($3.UInt32Value v) { setField(2, v); }
+  set limit($1.UInt32Value v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasLimit() => $_has(1);
   @$pb.TagNumber(2)
   void clearLimit() => clearField(2);
   @$pb.TagNumber(2)
-  $3.UInt32Value ensureLimit() => $_ensure(1);
+  $1.UInt32Value ensureLimit() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.String get ownerId => $_getSZ(2);
@@ -2829,24 +3078,24 @@ class ListTournamentRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   void clearOwnerId() => clearField(3);
 
   @$pb.TagNumber(4)
-  $3.Int64Value get expiry => $_getN(3);
+  $1.Int64Value get expiry => $_getN(3);
   @$pb.TagNumber(4)
-  set expiry($3.Int64Value v) { setField(4, v); }
+  set expiry($1.Int64Value v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasExpiry() => $_has(3);
   @$pb.TagNumber(4)
   void clearExpiry() => clearField(4);
   @$pb.TagNumber(4)
-  $3.Int64Value ensureExpiry() => $_ensure(3);
+  $1.Int64Value ensureExpiry() => $_ensure(3);
 }
 
 class ListTournamentRecordsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListTournamentRecordsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'tournamentId')
     ..pPS(2, 'ownerIds')
-    ..aOM<$3.Int32Value>(3, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(3, 'limit', subBuilder: $1.Int32Value.create)
     ..aOS(4, 'cursor')
-    ..aOM<$3.Int64Value>(5, 'expiry', subBuilder: $3.Int64Value.create)
+    ..aOM<$1.Int64Value>(5, 'expiry', subBuilder: $1.Int64Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -2878,15 +3127,15 @@ class ListTournamentRecordsRequest extends $pb.GeneratedMessage {
   $core.List<$core.String> get ownerIds => $_getList(1);
 
   @$pb.TagNumber(3)
-  $3.Int32Value get limit => $_getN(2);
+  $1.Int32Value get limit => $_getN(2);
   @$pb.TagNumber(3)
-  set limit($3.Int32Value v) { setField(3, v); }
+  set limit($1.Int32Value v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasLimit() => $_has(2);
   @$pb.TagNumber(3)
   void clearLimit() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Int32Value ensureLimit() => $_ensure(2);
+  $1.Int32Value ensureLimit() => $_ensure(2);
 
   @$pb.TagNumber(4)
   $core.String get cursor => $_getSZ(3);
@@ -2898,24 +3147,24 @@ class ListTournamentRecordsRequest extends $pb.GeneratedMessage {
   void clearCursor() => clearField(4);
 
   @$pb.TagNumber(5)
-  $3.Int64Value get expiry => $_getN(4);
+  $1.Int64Value get expiry => $_getN(4);
   @$pb.TagNumber(5)
-  set expiry($3.Int64Value v) { setField(5, v); }
+  set expiry($1.Int64Value v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasExpiry() => $_has(4);
   @$pb.TagNumber(5)
   void clearExpiry() => clearField(5);
   @$pb.TagNumber(5)
-  $3.Int64Value ensureExpiry() => $_ensure(4);
+  $1.Int64Value ensureExpiry() => $_ensure(4);
 }
 
 class ListTournamentsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListTournamentsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..aOM<$3.UInt32Value>(1, 'categoryStart', subBuilder: $3.UInt32Value.create)
-    ..aOM<$3.UInt32Value>(2, 'categoryEnd', subBuilder: $3.UInt32Value.create)
-    ..aOM<$3.UInt32Value>(3, 'startTime', subBuilder: $3.UInt32Value.create)
-    ..aOM<$3.UInt32Value>(4, 'endTime', subBuilder: $3.UInt32Value.create)
-    ..aOM<$3.Int32Value>(6, 'limit', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.UInt32Value>(1, 'categoryStart', subBuilder: $1.UInt32Value.create)
+    ..aOM<$1.UInt32Value>(2, 'categoryEnd', subBuilder: $1.UInt32Value.create)
+    ..aOM<$1.UInt32Value>(3, 'startTime', subBuilder: $1.UInt32Value.create)
+    ..aOM<$1.UInt32Value>(4, 'endTime', subBuilder: $1.UInt32Value.create)
+    ..aOM<$1.Int32Value>(6, 'limit', subBuilder: $1.Int32Value.create)
     ..aOS(8, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -2936,59 +3185,59 @@ class ListTournamentsRequest extends $pb.GeneratedMessage {
   static ListTournamentsRequest _defaultInstance;
 
   @$pb.TagNumber(1)
-  $3.UInt32Value get categoryStart => $_getN(0);
+  $1.UInt32Value get categoryStart => $_getN(0);
   @$pb.TagNumber(1)
-  set categoryStart($3.UInt32Value v) { setField(1, v); }
+  set categoryStart($1.UInt32Value v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasCategoryStart() => $_has(0);
   @$pb.TagNumber(1)
   void clearCategoryStart() => clearField(1);
   @$pb.TagNumber(1)
-  $3.UInt32Value ensureCategoryStart() => $_ensure(0);
+  $1.UInt32Value ensureCategoryStart() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.UInt32Value get categoryEnd => $_getN(1);
+  $1.UInt32Value get categoryEnd => $_getN(1);
   @$pb.TagNumber(2)
-  set categoryEnd($3.UInt32Value v) { setField(2, v); }
+  set categoryEnd($1.UInt32Value v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCategoryEnd() => $_has(1);
   @$pb.TagNumber(2)
   void clearCategoryEnd() => clearField(2);
   @$pb.TagNumber(2)
-  $3.UInt32Value ensureCategoryEnd() => $_ensure(1);
+  $1.UInt32Value ensureCategoryEnd() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $3.UInt32Value get startTime => $_getN(2);
+  $1.UInt32Value get startTime => $_getN(2);
   @$pb.TagNumber(3)
-  set startTime($3.UInt32Value v) { setField(3, v); }
+  set startTime($1.UInt32Value v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasStartTime() => $_has(2);
   @$pb.TagNumber(3)
   void clearStartTime() => clearField(3);
   @$pb.TagNumber(3)
-  $3.UInt32Value ensureStartTime() => $_ensure(2);
+  $1.UInt32Value ensureStartTime() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $3.UInt32Value get endTime => $_getN(3);
+  $1.UInt32Value get endTime => $_getN(3);
   @$pb.TagNumber(4)
-  set endTime($3.UInt32Value v) { setField(4, v); }
+  set endTime($1.UInt32Value v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasEndTime() => $_has(3);
   @$pb.TagNumber(4)
   void clearEndTime() => clearField(4);
   @$pb.TagNumber(4)
-  $3.UInt32Value ensureEndTime() => $_ensure(3);
+  $1.UInt32Value ensureEndTime() => $_ensure(3);
 
   @$pb.TagNumber(6)
-  $3.Int32Value get limit => $_getN(4);
+  $1.Int32Value get limit => $_getN(4);
   @$pb.TagNumber(6)
-  set limit($3.Int32Value v) { setField(6, v); }
+  set limit($1.Int32Value v) { setField(6, v); }
   @$pb.TagNumber(6)
   $core.bool hasLimit() => $_has(4);
   @$pb.TagNumber(6)
   void clearLimit() => clearField(6);
   @$pb.TagNumber(6)
-  $3.Int32Value ensureLimit() => $_ensure(4);
+  $1.Int32Value ensureLimit() => $_ensure(4);
 
   @$pb.TagNumber(8)
   $core.String get cursor => $_getSZ(5);
@@ -3003,8 +3252,8 @@ class ListTournamentsRequest extends $pb.GeneratedMessage {
 class ListUserGroupsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListUserGroupsRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'userId')
-    ..aOM<$3.Int32Value>(2, 'limit', subBuilder: $3.Int32Value.create)
-    ..aOM<$3.Int32Value>(3, 'state', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(2, 'limit', subBuilder: $1.Int32Value.create)
+    ..aOM<$1.Int32Value>(3, 'state', subBuilder: $1.Int32Value.create)
     ..aOS(4, 'cursor')
     ..hasRequiredFields = false
   ;
@@ -3034,26 +3283,26 @@ class ListUserGroupsRequest extends $pb.GeneratedMessage {
   void clearUserId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $3.Int32Value get limit => $_getN(1);
+  $1.Int32Value get limit => $_getN(1);
   @$pb.TagNumber(2)
-  set limit($3.Int32Value v) { setField(2, v); }
+  set limit($1.Int32Value v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasLimit() => $_has(1);
   @$pb.TagNumber(2)
   void clearLimit() => clearField(2);
   @$pb.TagNumber(2)
-  $3.Int32Value ensureLimit() => $_ensure(1);
+  $1.Int32Value ensureLimit() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $3.Int32Value get state => $_getN(2);
+  $1.Int32Value get state => $_getN(2);
   @$pb.TagNumber(3)
-  set state($3.Int32Value v) { setField(3, v); }
+  set state($1.Int32Value v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasState() => $_has(2);
   @$pb.TagNumber(3)
   void clearState() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Int32Value ensureState() => $_ensure(2);
+  $1.Int32Value ensureState() => $_ensure(2);
 
   @$pb.TagNumber(4)
   $core.String get cursor => $_getSZ(3);
@@ -3069,7 +3318,7 @@ class Match extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Match', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'matchId')
     ..aOB(2, 'authoritative')
-    ..aOM<$3.StringValue>(3, 'label', subBuilder: $3.StringValue.create)
+    ..aOM<$1.StringValue>(3, 'label', subBuilder: $1.StringValue.create)
     ..a<$core.int>(4, 'size', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
@@ -3108,15 +3357,15 @@ class Match extends $pb.GeneratedMessage {
   void clearAuthoritative() => clearField(2);
 
   @$pb.TagNumber(3)
-  $3.StringValue get label => $_getN(2);
+  $1.StringValue get label => $_getN(2);
   @$pb.TagNumber(3)
-  set label($3.StringValue v) { setField(3, v); }
+  set label($1.StringValue v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasLabel() => $_has(2);
   @$pb.TagNumber(3)
   void clearLabel() => clearField(3);
   @$pb.TagNumber(3)
-  $3.StringValue ensureLabel() => $_ensure(2);
+  $1.StringValue ensureLabel() => $_ensure(2);
 
   @$pb.TagNumber(4)
   $core.int get size => $_getIZ(3);
@@ -3160,7 +3409,7 @@ class Notification extends $pb.GeneratedMessage {
     ..aOS(3, 'content')
     ..a<$core.int>(4, 'code', $pb.PbFieldType.O3)
     ..aOS(5, 'senderId')
-    ..aOM<$2.Timestamp>(6, 'createTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$0.Timestamp>(6, 'createTime', subBuilder: $0.Timestamp.create)
     ..aOB(7, 'persistent')
     ..hasRequiredFields = false
   ;
@@ -3226,15 +3475,15 @@ class Notification extends $pb.GeneratedMessage {
   void clearSenderId() => clearField(5);
 
   @$pb.TagNumber(6)
-  $2.Timestamp get createTime => $_getN(5);
+  $0.Timestamp get createTime => $_getN(5);
   @$pb.TagNumber(6)
-  set createTime($2.Timestamp v) { setField(6, v); }
+  set createTime($0.Timestamp v) { setField(6, v); }
   @$pb.TagNumber(6)
   $core.bool hasCreateTime() => $_has(5);
   @$pb.TagNumber(6)
   void clearCreateTime() => clearField(6);
   @$pb.TagNumber(6)
-  $2.Timestamp ensureCreateTime() => $_ensure(5);
+  $0.Timestamp ensureCreateTime() => $_ensure(5);
 
   @$pb.TagNumber(7)
   $core.bool get persistent => $_getBF(6);
@@ -3493,8 +3742,8 @@ class StorageObject extends $pb.GeneratedMessage {
     ..aOS(5, 'version')
     ..a<$core.int>(6, 'permissionRead', $pb.PbFieldType.O3)
     ..a<$core.int>(7, 'permissionWrite', $pb.PbFieldType.O3)
-    ..aOM<$2.Timestamp>(8, 'createTime', subBuilder: $2.Timestamp.create)
-    ..aOM<$2.Timestamp>(9, 'updateTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$0.Timestamp>(8, 'createTime', subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(9, 'updateTime', subBuilder: $0.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -3577,26 +3826,26 @@ class StorageObject extends $pb.GeneratedMessage {
   void clearPermissionWrite() => clearField(7);
 
   @$pb.TagNumber(8)
-  $2.Timestamp get createTime => $_getN(7);
+  $0.Timestamp get createTime => $_getN(7);
   @$pb.TagNumber(8)
-  set createTime($2.Timestamp v) { setField(8, v); }
+  set createTime($0.Timestamp v) { setField(8, v); }
   @$pb.TagNumber(8)
   $core.bool hasCreateTime() => $_has(7);
   @$pb.TagNumber(8)
   void clearCreateTime() => clearField(8);
   @$pb.TagNumber(8)
-  $2.Timestamp ensureCreateTime() => $_ensure(7);
+  $0.Timestamp ensureCreateTime() => $_ensure(7);
 
   @$pb.TagNumber(9)
-  $2.Timestamp get updateTime => $_getN(8);
+  $0.Timestamp get updateTime => $_getN(8);
   @$pb.TagNumber(9)
-  set updateTime($2.Timestamp v) { setField(9, v); }
+  set updateTime($0.Timestamp v) { setField(9, v); }
   @$pb.TagNumber(9)
   $core.bool hasUpdateTime() => $_has(8);
   @$pb.TagNumber(9)
   void clearUpdateTime() => clearField(9);
   @$pb.TagNumber(9)
-  $2.Timestamp ensureUpdateTime() => $_ensure(8);
+  $0.Timestamp ensureUpdateTime() => $_ensure(8);
 }
 
 class StorageObjectAck extends $pb.GeneratedMessage {
@@ -3759,9 +4008,9 @@ class Tournament extends $pb.GeneratedMessage {
     ..a<$core.int>(10, 'endActive', $pb.PbFieldType.OU3)
     ..a<$core.int>(11, 'nextReset', $pb.PbFieldType.OU3)
     ..aOS(12, 'metadata')
-    ..aOM<$2.Timestamp>(13, 'createTime', subBuilder: $2.Timestamp.create)
-    ..aOM<$2.Timestamp>(14, 'startTime', subBuilder: $2.Timestamp.create)
-    ..aOM<$2.Timestamp>(15, 'endTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$0.Timestamp>(13, 'createTime', subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(14, 'startTime', subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(15, 'endTime', subBuilder: $0.Timestamp.create)
     ..a<$core.int>(16, 'duration', $pb.PbFieldType.OU3)
     ..a<$core.int>(17, 'startActive', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
@@ -3891,37 +4140,37 @@ class Tournament extends $pb.GeneratedMessage {
   void clearMetadata() => clearField(12);
 
   @$pb.TagNumber(13)
-  $2.Timestamp get createTime => $_getN(12);
+  $0.Timestamp get createTime => $_getN(12);
   @$pb.TagNumber(13)
-  set createTime($2.Timestamp v) { setField(13, v); }
+  set createTime($0.Timestamp v) { setField(13, v); }
   @$pb.TagNumber(13)
   $core.bool hasCreateTime() => $_has(12);
   @$pb.TagNumber(13)
   void clearCreateTime() => clearField(13);
   @$pb.TagNumber(13)
-  $2.Timestamp ensureCreateTime() => $_ensure(12);
+  $0.Timestamp ensureCreateTime() => $_ensure(12);
 
   @$pb.TagNumber(14)
-  $2.Timestamp get startTime => $_getN(13);
+  $0.Timestamp get startTime => $_getN(13);
   @$pb.TagNumber(14)
-  set startTime($2.Timestamp v) { setField(14, v); }
+  set startTime($0.Timestamp v) { setField(14, v); }
   @$pb.TagNumber(14)
   $core.bool hasStartTime() => $_has(13);
   @$pb.TagNumber(14)
   void clearStartTime() => clearField(14);
   @$pb.TagNumber(14)
-  $2.Timestamp ensureStartTime() => $_ensure(13);
+  $0.Timestamp ensureStartTime() => $_ensure(13);
 
   @$pb.TagNumber(15)
-  $2.Timestamp get endTime => $_getN(14);
+  $0.Timestamp get endTime => $_getN(14);
   @$pb.TagNumber(15)
-  set endTime($2.Timestamp v) { setField(15, v); }
+  set endTime($0.Timestamp v) { setField(15, v); }
   @$pb.TagNumber(15)
   $core.bool hasEndTime() => $_has(14);
   @$pb.TagNumber(15)
   void clearEndTime() => clearField(15);
   @$pb.TagNumber(15)
-  $2.Timestamp ensureEndTime() => $_ensure(14);
+  $0.Timestamp ensureEndTime() => $_ensure(14);
 
   @$pb.TagNumber(16)
   $core.int get duration => $_getIZ(15);
@@ -4028,12 +4277,12 @@ class TournamentRecordList extends $pb.GeneratedMessage {
 
 class UpdateAccountRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('UpdateAccountRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
-    ..aOM<$3.StringValue>(1, 'username', subBuilder: $3.StringValue.create)
-    ..aOM<$3.StringValue>(2, 'displayName', subBuilder: $3.StringValue.create)
-    ..aOM<$3.StringValue>(3, 'avatarUrl', subBuilder: $3.StringValue.create)
-    ..aOM<$3.StringValue>(4, 'langTag', subBuilder: $3.StringValue.create)
-    ..aOM<$3.StringValue>(5, 'location', subBuilder: $3.StringValue.create)
-    ..aOM<$3.StringValue>(6, 'timezone', subBuilder: $3.StringValue.create)
+    ..aOM<$1.StringValue>(1, 'username', subBuilder: $1.StringValue.create)
+    ..aOM<$1.StringValue>(2, 'displayName', subBuilder: $1.StringValue.create)
+    ..aOM<$1.StringValue>(3, 'avatarUrl', subBuilder: $1.StringValue.create)
+    ..aOM<$1.StringValue>(4, 'langTag', subBuilder: $1.StringValue.create)
+    ..aOM<$1.StringValue>(5, 'location', subBuilder: $1.StringValue.create)
+    ..aOM<$1.StringValue>(6, 'timezone', subBuilder: $1.StringValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -4053,80 +4302,80 @@ class UpdateAccountRequest extends $pb.GeneratedMessage {
   static UpdateAccountRequest _defaultInstance;
 
   @$pb.TagNumber(1)
-  $3.StringValue get username => $_getN(0);
+  $1.StringValue get username => $_getN(0);
   @$pb.TagNumber(1)
-  set username($3.StringValue v) { setField(1, v); }
+  set username($1.StringValue v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasUsername() => $_has(0);
   @$pb.TagNumber(1)
   void clearUsername() => clearField(1);
   @$pb.TagNumber(1)
-  $3.StringValue ensureUsername() => $_ensure(0);
+  $1.StringValue ensureUsername() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.StringValue get displayName => $_getN(1);
+  $1.StringValue get displayName => $_getN(1);
   @$pb.TagNumber(2)
-  set displayName($3.StringValue v) { setField(2, v); }
+  set displayName($1.StringValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasDisplayName() => $_has(1);
   @$pb.TagNumber(2)
   void clearDisplayName() => clearField(2);
   @$pb.TagNumber(2)
-  $3.StringValue ensureDisplayName() => $_ensure(1);
+  $1.StringValue ensureDisplayName() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $3.StringValue get avatarUrl => $_getN(2);
+  $1.StringValue get avatarUrl => $_getN(2);
   @$pb.TagNumber(3)
-  set avatarUrl($3.StringValue v) { setField(3, v); }
+  set avatarUrl($1.StringValue v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasAvatarUrl() => $_has(2);
   @$pb.TagNumber(3)
   void clearAvatarUrl() => clearField(3);
   @$pb.TagNumber(3)
-  $3.StringValue ensureAvatarUrl() => $_ensure(2);
+  $1.StringValue ensureAvatarUrl() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $3.StringValue get langTag => $_getN(3);
+  $1.StringValue get langTag => $_getN(3);
   @$pb.TagNumber(4)
-  set langTag($3.StringValue v) { setField(4, v); }
+  set langTag($1.StringValue v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasLangTag() => $_has(3);
   @$pb.TagNumber(4)
   void clearLangTag() => clearField(4);
   @$pb.TagNumber(4)
-  $3.StringValue ensureLangTag() => $_ensure(3);
+  $1.StringValue ensureLangTag() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $3.StringValue get location => $_getN(4);
+  $1.StringValue get location => $_getN(4);
   @$pb.TagNumber(5)
-  set location($3.StringValue v) { setField(5, v); }
+  set location($1.StringValue v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasLocation() => $_has(4);
   @$pb.TagNumber(5)
   void clearLocation() => clearField(5);
   @$pb.TagNumber(5)
-  $3.StringValue ensureLocation() => $_ensure(4);
+  $1.StringValue ensureLocation() => $_ensure(4);
 
   @$pb.TagNumber(6)
-  $3.StringValue get timezone => $_getN(5);
+  $1.StringValue get timezone => $_getN(5);
   @$pb.TagNumber(6)
-  set timezone($3.StringValue v) { setField(6, v); }
+  set timezone($1.StringValue v) { setField(6, v); }
   @$pb.TagNumber(6)
   $core.bool hasTimezone() => $_has(5);
   @$pb.TagNumber(6)
   void clearTimezone() => clearField(6);
   @$pb.TagNumber(6)
-  $3.StringValue ensureTimezone() => $_ensure(5);
+  $1.StringValue ensureTimezone() => $_ensure(5);
 }
 
 class UpdateGroupRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('UpdateGroupRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'groupId')
-    ..aOM<$3.StringValue>(2, 'name', subBuilder: $3.StringValue.create)
-    ..aOM<$3.StringValue>(3, 'description', subBuilder: $3.StringValue.create)
-    ..aOM<$3.StringValue>(4, 'langTag', subBuilder: $3.StringValue.create)
-    ..aOM<$3.StringValue>(5, 'avatarUrl', subBuilder: $3.StringValue.create)
-    ..aOM<$3.BoolValue>(6, 'open', subBuilder: $3.BoolValue.create)
+    ..aOM<$1.StringValue>(2, 'name', subBuilder: $1.StringValue.create)
+    ..aOM<$1.StringValue>(3, 'description', subBuilder: $1.StringValue.create)
+    ..aOM<$1.StringValue>(4, 'langTag', subBuilder: $1.StringValue.create)
+    ..aOM<$1.StringValue>(5, 'avatarUrl', subBuilder: $1.StringValue.create)
+    ..aOM<$1.BoolValue>(6, 'open', subBuilder: $1.BoolValue.create)
     ..hasRequiredFields = false
   ;
 
@@ -4155,59 +4404,59 @@ class UpdateGroupRequest extends $pb.GeneratedMessage {
   void clearGroupId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $3.StringValue get name => $_getN(1);
+  $1.StringValue get name => $_getN(1);
   @$pb.TagNumber(2)
-  set name($3.StringValue v) { setField(2, v); }
+  set name($1.StringValue v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasName() => $_has(1);
   @$pb.TagNumber(2)
   void clearName() => clearField(2);
   @$pb.TagNumber(2)
-  $3.StringValue ensureName() => $_ensure(1);
+  $1.StringValue ensureName() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $3.StringValue get description => $_getN(2);
+  $1.StringValue get description => $_getN(2);
   @$pb.TagNumber(3)
-  set description($3.StringValue v) { setField(3, v); }
+  set description($1.StringValue v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasDescription() => $_has(2);
   @$pb.TagNumber(3)
   void clearDescription() => clearField(3);
   @$pb.TagNumber(3)
-  $3.StringValue ensureDescription() => $_ensure(2);
+  $1.StringValue ensureDescription() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $3.StringValue get langTag => $_getN(3);
+  $1.StringValue get langTag => $_getN(3);
   @$pb.TagNumber(4)
-  set langTag($3.StringValue v) { setField(4, v); }
+  set langTag($1.StringValue v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasLangTag() => $_has(3);
   @$pb.TagNumber(4)
   void clearLangTag() => clearField(4);
   @$pb.TagNumber(4)
-  $3.StringValue ensureLangTag() => $_ensure(3);
+  $1.StringValue ensureLangTag() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $3.StringValue get avatarUrl => $_getN(4);
+  $1.StringValue get avatarUrl => $_getN(4);
   @$pb.TagNumber(5)
-  set avatarUrl($3.StringValue v) { setField(5, v); }
+  set avatarUrl($1.StringValue v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasAvatarUrl() => $_has(4);
   @$pb.TagNumber(5)
   void clearAvatarUrl() => clearField(5);
   @$pb.TagNumber(5)
-  $3.StringValue ensureAvatarUrl() => $_ensure(4);
+  $1.StringValue ensureAvatarUrl() => $_ensure(4);
 
   @$pb.TagNumber(6)
-  $3.BoolValue get open => $_getN(5);
+  $1.BoolValue get open => $_getN(5);
   @$pb.TagNumber(6)
-  set open($3.BoolValue v) { setField(6, v); }
+  set open($1.BoolValue v) { setField(6, v); }
   @$pb.TagNumber(6)
   $core.bool hasOpen() => $_has(5);
   @$pb.TagNumber(6)
   void clearOpen() => clearField(6);
   @$pb.TagNumber(6)
-  $3.BoolValue ensureOpen() => $_ensure(5);
+  $1.BoolValue ensureOpen() => $_ensure(5);
 }
 
 class User extends $pb.GeneratedMessage {
@@ -4226,8 +4475,10 @@ class User extends $pb.GeneratedMessage {
     ..aOS(12, 'steamId')
     ..aOB(13, 'online')
     ..a<$core.int>(14, 'edgeCount', $pb.PbFieldType.O3)
-    ..aOM<$2.Timestamp>(15, 'createTime', subBuilder: $2.Timestamp.create)
-    ..aOM<$2.Timestamp>(16, 'updateTime', subBuilder: $2.Timestamp.create)
+    ..aOM<$0.Timestamp>(15, 'createTime', subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(16, 'updateTime', subBuilder: $0.Timestamp.create)
+    ..aOS(17, 'facebookInstantGameId')
+    ..aOS(18, 'appleId')
     ..hasRequiredFields = false
   ;
 
@@ -4373,32 +4624,50 @@ class User extends $pb.GeneratedMessage {
   void clearEdgeCount() => clearField(14);
 
   @$pb.TagNumber(15)
-  $2.Timestamp get createTime => $_getN(14);
+  $0.Timestamp get createTime => $_getN(14);
   @$pb.TagNumber(15)
-  set createTime($2.Timestamp v) { setField(15, v); }
+  set createTime($0.Timestamp v) { setField(15, v); }
   @$pb.TagNumber(15)
   $core.bool hasCreateTime() => $_has(14);
   @$pb.TagNumber(15)
   void clearCreateTime() => clearField(15);
   @$pb.TagNumber(15)
-  $2.Timestamp ensureCreateTime() => $_ensure(14);
+  $0.Timestamp ensureCreateTime() => $_ensure(14);
 
   @$pb.TagNumber(16)
-  $2.Timestamp get updateTime => $_getN(15);
+  $0.Timestamp get updateTime => $_getN(15);
   @$pb.TagNumber(16)
-  set updateTime($2.Timestamp v) { setField(16, v); }
+  set updateTime($0.Timestamp v) { setField(16, v); }
   @$pb.TagNumber(16)
   $core.bool hasUpdateTime() => $_has(15);
   @$pb.TagNumber(16)
   void clearUpdateTime() => clearField(16);
   @$pb.TagNumber(16)
-  $2.Timestamp ensureUpdateTime() => $_ensure(15);
+  $0.Timestamp ensureUpdateTime() => $_ensure(15);
+
+  @$pb.TagNumber(17)
+  $core.String get facebookInstantGameId => $_getSZ(16);
+  @$pb.TagNumber(17)
+  set facebookInstantGameId($core.String v) { $_setString(16, v); }
+  @$pb.TagNumber(17)
+  $core.bool hasFacebookInstantGameId() => $_has(16);
+  @$pb.TagNumber(17)
+  void clearFacebookInstantGameId() => clearField(17);
+
+  @$pb.TagNumber(18)
+  $core.String get appleId => $_getSZ(17);
+  @$pb.TagNumber(18)
+  set appleId($core.String v) { $_setString(17, v); }
+  @$pb.TagNumber(18)
+  $core.bool hasAppleId() => $_has(17);
+  @$pb.TagNumber(18)
+  void clearAppleId() => clearField(18);
 }
 
 class UserGroupList_UserGroup extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('UserGroupList.UserGroup', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOM<Group>(1, 'group', subBuilder: Group.create)
-    ..aOM<$3.Int32Value>(2, 'state', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(2, 'state', subBuilder: $1.Int32Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -4429,15 +4698,15 @@ class UserGroupList_UserGroup extends $pb.GeneratedMessage {
   Group ensureGroup() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.Int32Value get state => $_getN(1);
+  $1.Int32Value get state => $_getN(1);
   @$pb.TagNumber(2)
-  set state($3.Int32Value v) { setField(2, v); }
+  set state($1.Int32Value v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasState() => $_has(1);
   @$pb.TagNumber(2)
   void clearState() => clearField(2);
   @$pb.TagNumber(2)
-  $3.Int32Value ensureState() => $_ensure(1);
+  $1.Int32Value ensureState() => $_ensure(1);
 }
 
 class UserGroupList extends $pb.GeneratedMessage {
@@ -4600,8 +4869,8 @@ class WriteStorageObject extends $pb.GeneratedMessage {
     ..aOS(2, 'key')
     ..aOS(3, 'value')
     ..aOS(4, 'version')
-    ..aOM<$3.Int32Value>(5, 'permissionRead', subBuilder: $3.Int32Value.create)
-    ..aOM<$3.Int32Value>(6, 'permissionWrite', subBuilder: $3.Int32Value.create)
+    ..aOM<$1.Int32Value>(5, 'permissionRead', subBuilder: $1.Int32Value.create)
+    ..aOM<$1.Int32Value>(6, 'permissionWrite', subBuilder: $1.Int32Value.create)
     ..hasRequiredFields = false
   ;
 
@@ -4657,26 +4926,26 @@ class WriteStorageObject extends $pb.GeneratedMessage {
   void clearVersion() => clearField(4);
 
   @$pb.TagNumber(5)
-  $3.Int32Value get permissionRead => $_getN(4);
+  $1.Int32Value get permissionRead => $_getN(4);
   @$pb.TagNumber(5)
-  set permissionRead($3.Int32Value v) { setField(5, v); }
+  set permissionRead($1.Int32Value v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasPermissionRead() => $_has(4);
   @$pb.TagNumber(5)
   void clearPermissionRead() => clearField(5);
   @$pb.TagNumber(5)
-  $3.Int32Value ensurePermissionRead() => $_ensure(4);
+  $1.Int32Value ensurePermissionRead() => $_ensure(4);
 
   @$pb.TagNumber(6)
-  $3.Int32Value get permissionWrite => $_getN(5);
+  $1.Int32Value get permissionWrite => $_getN(5);
   @$pb.TagNumber(6)
-  set permissionWrite($3.Int32Value v) { setField(6, v); }
+  set permissionWrite($1.Int32Value v) { setField(6, v); }
   @$pb.TagNumber(6)
   $core.bool hasPermissionWrite() => $_has(5);
   @$pb.TagNumber(6)
   void clearPermissionWrite() => clearField(6);
   @$pb.TagNumber(6)
-  $3.Int32Value ensurePermissionWrite() => $_ensure(5);
+  $1.Int32Value ensurePermissionWrite() => $_ensure(5);
 }
 
 class WriteStorageObjectsRequest extends $pb.GeneratedMessage {

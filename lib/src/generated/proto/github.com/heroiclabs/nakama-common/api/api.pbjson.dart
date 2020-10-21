@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: api.proto
+//  source: github.com/heroiclabs/nakama-common/api/api.proto
 //
 // @dart = 2.3
 // ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
@@ -14,7 +14,26 @@ const Account$json = const {
     const {'1': 'devices', '3': 4, '4': 3, '5': 11, '6': '.nakama.api.AccountDevice', '10': 'devices'},
     const {'1': 'custom_id', '3': 5, '4': 1, '5': 9, '10': 'customId'},
     const {'1': 'verify_time', '3': 6, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'verifyTime'},
+    const {'1': 'disable_time', '3': 7, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'disableTime'},
   ],
+};
+
+const AccountApple$json = const {
+  '1': 'AccountApple',
+  '2': const [
+    const {'1': 'token', '3': 1, '4': 1, '5': 9, '10': 'token'},
+    const {'1': 'vars', '3': 2, '4': 3, '5': 11, '6': '.nakama.api.AccountApple.VarsEntry', '10': 'vars'},
+  ],
+  '3': const [AccountApple_VarsEntry$json],
+};
+
+const AccountApple_VarsEntry$json = const {
+  '1': 'VarsEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
 };
 
 const AccountCustom$json = const {
@@ -82,6 +101,24 @@ const AccountFacebook$json = const {
 };
 
 const AccountFacebook_VarsEntry$json = const {
+  '1': 'VarsEntry',
+  '2': const [
+    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
+    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
+  ],
+  '7': const {'7': true},
+};
+
+const AccountFacebookInstantGame$json = const {
+  '1': 'AccountFacebookInstantGame',
+  '2': const [
+    const {'1': 'signed_player_info', '3': 1, '4': 1, '5': 9, '10': 'signedPlayerInfo'},
+    const {'1': 'vars', '3': 2, '4': 3, '5': 11, '6': '.nakama.api.AccountFacebookInstantGame.VarsEntry', '10': 'vars'},
+  ],
+  '3': const [AccountFacebookInstantGame_VarsEntry$json],
+};
+
+const AccountFacebookInstantGame_VarsEntry$json = const {
   '1': 'VarsEntry',
   '2': const [
     const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
@@ -165,6 +202,15 @@ const AddGroupUsersRequest$json = const {
   ],
 };
 
+const AuthenticateAppleRequest$json = const {
+  '1': 'AuthenticateAppleRequest',
+  '2': const [
+    const {'1': 'account', '3': 1, '4': 1, '5': 11, '6': '.nakama.api.AccountApple', '10': 'account'},
+    const {'1': 'create', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.BoolValue', '10': 'create'},
+    const {'1': 'username', '3': 3, '4': 1, '5': 9, '10': 'username'},
+  ],
+};
+
 const AuthenticateCustomRequest$json = const {
   '1': 'AuthenticateCustomRequest',
   '2': const [
@@ -202,6 +248,15 @@ const AuthenticateFacebookRequest$json = const {
   ],
 };
 
+const AuthenticateFacebookInstantGameRequest$json = const {
+  '1': 'AuthenticateFacebookInstantGameRequest',
+  '2': const [
+    const {'1': 'account', '3': 1, '4': 1, '5': 11, '6': '.nakama.api.AccountFacebookInstantGame', '10': 'account'},
+    const {'1': 'create', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.BoolValue', '10': 'create'},
+    const {'1': 'username', '3': 3, '4': 1, '5': 9, '10': 'username'},
+  ],
+};
+
 const AuthenticateGameCenterRequest$json = const {
   '1': 'AuthenticateGameCenterRequest',
   '2': const [
@@ -226,6 +281,14 @@ const AuthenticateSteamRequest$json = const {
     const {'1': 'account', '3': 1, '4': 1, '5': 11, '6': '.nakama.api.AccountSteam', '10': 'account'},
     const {'1': 'create', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.BoolValue', '10': 'create'},
     const {'1': 'username', '3': 3, '4': 1, '5': 9, '10': 'username'},
+  ],
+};
+
+const BanGroupUsersRequest$json = const {
+  '1': 'BanGroupUsersRequest',
+  '2': const [
+    const {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+    const {'1': 'user_ids', '3': 2, '4': 3, '5': 9, '10': 'userIds'},
   ],
 };
 
@@ -328,6 +391,7 @@ const Event$json = const {
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     const {'1': 'properties', '3': 2, '4': 3, '5': 11, '6': '.nakama.api.Event.PropertiesEntry', '10': 'properties'},
     const {'1': 'timestamp', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'timestamp'},
+    const {'1': 'external', '3': 4, '4': 1, '5': 8, '10': 'external'},
   ],
   '3': const [Event_PropertiesEntry$json],
 };
@@ -346,6 +410,7 @@ const Friend$json = const {
   '2': const [
     const {'1': 'user', '3': 1, '4': 1, '5': 11, '6': '.nakama.api.User', '10': 'user'},
     const {'1': 'state', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Int32Value', '10': 'state'},
+    const {'1': 'update_time', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updateTime'},
   ],
   '4': const [Friend_State$json],
 };
@@ -846,6 +911,8 @@ const User$json = const {
     const {'1': 'edge_count', '3': 14, '4': 1, '5': 5, '10': 'edgeCount'},
     const {'1': 'create_time', '3': 15, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createTime'},
     const {'1': 'update_time', '3': 16, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updateTime'},
+    const {'1': 'facebook_instant_game_id', '3': 17, '4': 1, '5': 9, '10': 'facebookInstantGameId'},
+    const {'1': 'apple_id', '3': 18, '4': 1, '5': 9, '10': 'appleId'},
   ],
 };
 

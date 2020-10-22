@@ -21,9 +21,7 @@ void main() {
         Account account = await client.getAccount(session);
         print(
             "account-name: ${account.user.username} displayname:${account.user.displayName}");
-        await client.updateAccount(session, "aassddssaa",
-            displayName: "FlipsVanChips");
-        account = await client.getAccount(session);
+        await client.listChannelMessages(session, "aa");
         print(
             "account-name: ${account.user.username} displayname:${account.user.displayName}");
       } catch (e) {

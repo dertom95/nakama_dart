@@ -769,8 +769,9 @@ abstract class BaseClient {
    * @return A ResponseFuture.
    */
   ResponseFuture<Empty> updateGroup(
-      final NakamaSession session, final String groupId, final String name,
-      {final String description,
+      final NakamaSession session, final String groupId,
+      {final String name,
+      final String description,
       final String avatarUrl,
       final String langTag,
       final bool open});

@@ -1,10 +1,12 @@
 ## Shipping package
 ## Assumes user is on MacOS, if other OS, please change PROTO_ROOT_DIR to the path of protobuf installation
 
+NAKAMA_VERSION = 2.14
+
 PROJECT_NAME = nakama-client
 #MACOS: PROTO_ROOT_DIR = $(shell brew --prefix)/Cellar/protobuf/3.9.1_1/include
 PROTO_ROOT_DIR = /usr/include
-PROJECT_PROTO_DIR = res/proto/2.14
+PROJECT_PROTO_DIR = res/proto/${NAKAMA_VERSION}
 PROJECT_PROTO_GEN_DIR = lib/src/generated/proto
 
 ## Dart requires you to manually ship all google provided proto files too.
@@ -19,10 +21,10 @@ generate_proto:
 #	@protoc --dart_out=$(PROJECT_PROTO_GEN_DIR) $(PROTO_ROOT_DIR)/google/protobuf/*.proto
 
 swagger-gen: 
-	go run codegen/main.go res/apigrpc.swagger.json lib/src/generated/BaseClientInterface.gen.dart
+	go run codegen/main.go res/proto/${NAKAMA_VERSION}/apigrpc.swagger.json lib/src/generated/BaseClientInterface.gen.dart
 
 
-gen: generate_proto
+gen: generate_proto swagger-gen
 
 test-gen:
 	@mkdir -p temp/dart temp/java

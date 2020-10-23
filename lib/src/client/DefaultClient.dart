@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fixnum/fixnum.dart';
 import 'package:grpc/grpc.dart';
 import 'package:nakama_client/src/client/NakamaSession.dart';
@@ -40,8 +42,9 @@ class DefaultClient extends BaseClient {
             serverKey: serverKey);
 
   @override
-  ResponseFuture<Empty> addFriends(NakamaSession session, List<String> ids,
-      {List<String> usernames}) {
+  @override
+  ResponseFuture<void> addFriends(NakamaSession session,
+      {List<String> ids, List<String> usernames}) {
     var req = AddFriendsRequest()..ids.addAll(ids);
     if (usernames != null) {
       req..usernames.addAll(usernames);
@@ -50,17 +53,17 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<Empty> addGroupUsers(
-      NakamaSession session, String groupId, List<String> ids) {
+  ResponseFuture<void> addGroupUsers(NakamaSession session,
+      {String groupId, List<String> userIds}) {
     var req = AddGroupUsersRequest()
       ..groupId = groupId
-      ..userIds.addAll(ids);
+      ..userIds.addAll(userIds);
     return client.addGroupUsers(req, options: session.calloptJWT);
   }
 
   @override
-  Future<NakamaSession> authenticateCustom(String id,
-      {String username, bool create = false}) async {
+  Future<NakamaSession> authenticateCustom(
+      {String id, bool create, String username}) async {
     var req = AuthenticateCustomRequest()
       ..create_2 = getBool(create)
       ..account = (AccountCustom()..id = id);
@@ -73,8 +76,8 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  Future<NakamaSession> authenticateDevice(String id,
-      {String username, bool create = false}) async {
+  Future<NakamaSession> authenticateDevice(
+      {String id, bool create, String username}) async {
     var req = AuthenticateDeviceRequest()
       ..account = (AccountDevice()..id = id)
       ..create_2 = getBool(create);
@@ -86,8 +89,8 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  Future<NakamaSession> authenticateEmail(String email, String password,
-      {String username, bool create = false}) async {
+  Future<NakamaSession> authenticateEmail(
+      {String email, String password, bool create, String username}) async {
     var req = AuthenticateEmailRequest()
       ..account = (AccountEmail()
         ..email = email
@@ -101,12 +104,10 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  Future<NakamaSession> authenticateFacebook(String accessToken,
-      {String username,
-      bool create = false,
-      bool importFriends = false}) async {
+  Future<NakamaSession> authenticateFacebook(
+      {String token, bool create, String username, bool sync_}) async {
     var req = AuthenticateFacebookRequest()
-      ..account = (AccountFacebook()..token = accessToken)
+      ..account = (AccountFacebook()..token = token)
       ..create_2 = getBool(create);
 
     if (username != null) req..username = username;
@@ -116,9 +117,29 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  Future<NakamaSession> authenticateGameCenter(String playerId, String bundleId,
-      int timestampSeconds, String salt, String signature, String publicKeyUrl,
-      {String username, bool create = false}) async {
+  Future<NakamaSession> authenticateFacebookInstantGame(
+      {String signedPlayerInfo, bool create, String username}) async {
+    var req = AuthenticateFacebookInstantGameRequest()
+      ..create_2 = getBool(create)
+      ..account =
+          (AccountFacebookInstantGame()..signedPlayerInfo = signedPlayerInfo);
+
+    if (username != null) req..username = username;
+    var session = await client.authenticateFacebookInstantGame(req,
+        options: calloptBasicAuth);
+    return NakamaSession(session, this);
+  }
+
+  @override
+  Future<NakamaSession> authenticateGameCenter(
+      {String playerId,
+      String bundleId,
+      int timestampSeconds,
+      String salt,
+      String signature,
+      String publicKeyUrl,
+      bool create,
+      String username}) async {
     var req = AuthenticateGameCenterRequest()
       ..account = (AccountGameCenter()
         ..playerId = playerId
@@ -135,10 +156,10 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  Future<NakamaSession> authenticateGoogle(String accessToken,
-      {String username, bool create = false}) async {
+  Future<NakamaSession> authenticateGoogle(
+      {String token, bool create, String username}) async {
     var req = AuthenticateGoogleRequest()
-      ..account = (AccountGoogle()..token = accessToken)
+      ..account = (AccountGoogle()..token = token)
       ..create_2 = getBool(create);
 
     if (username != null) req..username = username;
@@ -148,8 +169,8 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  Future<NakamaSession> authenticateSteam(String token,
-      {String username, bool create = false}) async {
+  Future<NakamaSession> authenticateSteam(
+      {String token, bool create, String username}) async {
     var req = AuthenticateSteamRequest()
       ..account = (AccountSteam()..token = token)
       ..create_2 = getBool(create);
@@ -161,16 +182,29 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<Empty> blockFriends(NakamaSession session, List<String> ids,
-      {List<String> usernames}) {
+  ResponseFuture<void> banGroupUsers(NakamaSession session,
+      {String groupId, List<String> userIds}) {
+    var req = BanGroupUsersRequest()..groupId = groupId;
+    if (userIds != null) req.userIds.addAll(userIds);
+    return client.banGroupUsers(req, options: session.calloptJWT);
+  }
+
+  @override
+  ResponseFuture<void> blockFriends(NakamaSession session,
+      {List<String> ids, List<String> usernames}) {
     var req = BlockFriendsRequest()..ids.addAll(ids);
     if (usernames != null) req..usernames.addAll(usernames);
     return client.blockFriends(req, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Group> createGroup(NakamaSession session, String name,
-      {String description, String avatarUrl, String langTag, bool open}) {
+  ResponseFuture<Group> createGroup(NakamaSession session,
+      {int maxCount,
+      String name,
+      String description,
+      String langTag,
+      String avatarUrl,
+      bool open}) {
     var req = CreateGroupRequest()..name = name;
     if (description != null) req..description = description;
     if (avatarUrl != null) req..avatarUrl = avatarUrl;
@@ -180,31 +214,45 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<Empty> deleteFriends(NakamaSession session, List<String> ids,
-      {List<String> usernames}) {
+  ResponseFuture<void> deleteFriends(NakamaSession session,
+      {List<String> ids, List<String> usernames}) {
     var req = DeleteFriendsRequest()..ids.addAll(ids);
     if (usernames != null) req.usernames.addAll(usernames);
     return client.deleteFriends(req, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> deleteGroup(NakamaSession session, String groupId) {
+  ResponseFuture<void> deleteGroup(NakamaSession session, {String groupId}) {
     var req = DeleteGroupRequest()..groupId = groupId;
     return client.deleteGroup(req, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> deleteLeaderboardRecord(
-      NakamaSession session, String leaderboardId) {
+  ResponseFuture<void> deleteLeaderboardRecord(NakamaSession session,
+      {String leaderboardId}) {
     var req = DeleteLeaderboardRecordRequest()..leaderboardId = leaderboardId;
     return client.deleteLeaderboardRecord(req, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> deleteNotifications(
-      NakamaSession session, List<String> notificationIds) {
-    var req = DeleteNotificationsRequest()..ids.addAll(notificationIds);
+  ResponseFuture<void> deleteNotifications(NakamaSession session,
+      {List<String> ids}) {
+    var req = DeleteNotificationsRequest()..ids.addAll(ids);
     return client.deleteNotifications(req, options: session.calloptJWT);
+  }
+
+  @override
+  ResponseFuture<void> deleteStorageObjects(NakamaSession session,
+      {List<DeleteStorageObjectId> objectIds}) {
+    var req = DeleteStorageObjectsRequest();
+    if (objectIds != null) req..objectIds.addAll(objectIds);
+    return client.deleteStorageObjects(req, options: session.calloptJWT);
+  }
+
+  @override
+  ResponseFuture<void> demoteGroupUsers(NakamaSession session,
+      {String groupId, List<String> userIds}) {
+    throw UnimplementedError();
   }
 
   @override
@@ -214,22 +262,38 @@ class DefaultClient extends BaseClient {
   }
 
   @override
+  ResponseFuture<void> event(NakamaSession session,
+      {bool external_,
+      String name,
+      Map<String, String> properties,
+      String timestamp}) {
+    var req = Event()..name = name;
+    if (external_ != null) req..external = external_;
+    if (properties != null) req..properties.addAll(properties);
+    return client.event(req);
+  }
+
+  @override
   ResponseFuture<Account> getAccount(NakamaSession session) {
     return client.getAccount(Empty(), options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Users> getUsers(NakamaSession session, List<String> ids,
-      {List<String> usernames, List<String> facebookIds}) {
+  ResponseFuture<Users> getUsers(NakamaSession session,
+      {List<String> ids, List<String> usernames, List<String> facebookIds}) {
     var req = GetUsersRequest()..ids.addAll(ids);
     if (facebookIds != null) req..facebookIds.addAll(facebookIds);
     if (usernames != null) req..usernames.addAll(usernames);
   }
 
   @override
-  ResponseFuture<Empty> importFacebookFriends(
-      NakamaSession session, String token,
-      {bool reset = false}) {
+  ResponseFuture<void> healthcheck(NakamaSession session) {
+    return client.healthcheck(Empty());
+  }
+
+  @override
+  ResponseFuture<void> importFacebookFriends(NakamaSession session,
+      {String token, bool reset}) {
     var req = ImportFacebookFriendsRequest()
       ..account = (AccountFacebook()..token = token)
       ..reset = getBool(reset);
@@ -237,47 +301,53 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<Empty> joinGroup(NakamaSession session, String groupId) {
+  ResponseFuture<void> joinGroup(NakamaSession session, {String groupId}) {
     var req = JoinGroupRequest()..groupId = groupId;
     return client.joinGroup(req, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> joinTournament(
-      NakamaSession session, String tournamentId) {
+  ResponseFuture<void> joinTournament(NakamaSession session,
+      {String tournamentId}) {
     var req = JoinTournamentRequest()..tournamentId = tournamentId;
     return client.joinTournament(req, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> kickGroupUsers(
-      NakamaSession session, String groupId, List<String> ids) {
+  ResponseFuture<void> kickGroupUsers(NakamaSession session,
+      {String groupId, List<String> userIds}) {
     var req = KickGroupUsersRequest()
       ..groupId = groupId
-      ..userIds.addAll(ids);
+      ..userIds.addAll(userIds);
     return client.kickGroupUsers(req, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> leaveGroup(NakamaSession session, String groupId) {
+  ResponseFuture<void> leaveGroup(NakamaSession session, {String groupId}) {
     var req = LeaveGroupRequest()..groupId = groupId;
     return client.leaveGroup(req, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> linkCustom(NakamaSession session, String id) {
+  ResponseFuture<void> linkApple(NakamaSession session, {String token}) {
+    // TODO: implement linkApple
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<void> linkCustom(NakamaSession session, {String id}) {
     return client.linkCustom(AccountCustom()..id, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> linkDevice(NakamaSession session, String id) {
+  ResponseFuture<void> linkDevice(NakamaSession session, {String id}) {
     return client.linkDevice(AccountDevice()..id = id,
         options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> linkEmail(
-      NakamaSession session, String email, String password) {
+  ResponseFuture<void> linkEmail(NakamaSession session,
+      {String email, String password}) {
     return client.linkEmail(
         AccountEmail()
           ..email = email
@@ -286,23 +356,28 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<Empty> linkFacebook(NakamaSession session, String accessToken,
-      {bool importFriends = false}) {
+  ResponseFuture<void> linkFacebook(NakamaSession session,
+      {String token, bool sync_}) {
     return client.linkFacebook(
-        LinkFacebookRequest()
-          ..account = (AccountFacebook()..token = accessToken),
+        LinkFacebookRequest()..account = (AccountFacebook()..token = token),
         options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> linkGameCenter(
-      NakamaSession session,
-      String playerId,
+  ResponseFuture<void> linkFacebookInstantGame(NakamaSession session,
+      {String signedPlayerInfo}) {
+    return client.linkFacebookInstantGame(
+        AccountFacebookInstantGame()..signedPlayerInfo = signedPlayerInfo);
+  }
+
+  @override
+  ResponseFuture<void> linkGameCenter(NakamaSession session,
+      {String playerId,
       String bundleId,
       int timestampSeconds,
       String salt,
       String signature,
-      String publicKeyUrl) {
+      String publicKeyUrl}) {
     return client.linkGameCenter(
         AccountGameCenter()
           ..playerId = playerId
@@ -314,25 +389,31 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<Empty> linkGoogle(NakamaSession session, String accessToken) {
-    return client.linkGoogle(AccountGoogle()..token = accessToken,
+  ResponseFuture<void> linkGoogle(NakamaSession session, {String token}) {
+    return client.linkGoogle(AccountGoogle()..token = token,
         options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> linkSteam(NakamaSession session, String token) {
+  ResponseFuture<void> linkSteam(NakamaSession session, {String token}) {
     return client.linkSteam(AccountSteam()..token = token);
   }
 
   @override
-  ResponseFuture<ChannelMessageList> listChannelMessages(
-      NakamaSession session, String channelId,
-      {int limit, String cursor, bool forward = false}) {
+  ResponseFuture<ChannelMessageList> listChannelMessages(NakamaSession session,
+      {String channelId, int limit, bool forward, String cursor}) {
     var req = ListChannelMessagesRequest()..channelId = channelId;
     if (limit != null) req..limit = getInt32(limit);
     if (cursor != null) req..cursor = cursor;
     if (forward != null) req..forward = getBool(forward);
     return client.listChannelMessages(req, options: session.calloptJWT);
+  }
+
+  @override
+  Future<NakamaSession> authenticateApple(
+      {String token, bool create, String username}) {
+    // TODO: implement authenticateApple
+    throw UnimplementedError();
   }
 
   @override
@@ -346,9 +427,8 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<GroupUserList> listGroupUsers(
-      NakamaSession session, String groupId,
-      {int limit, int state, String cursor}) {
+  ResponseFuture<GroupUserList> listGroupUsers(NakamaSession session,
+      {String groupId, int limit, int state, String cursor}) {
     var req = ListGroupUsersRequest()..groupId = groupId;
     if (limit != null) req..limit = getInt32(limit);
     if (state != null) req..state = getInt32(state);
@@ -357,8 +437,8 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<GroupList> listGroups(NakamaSession session, String name,
-      {int limit, String cursor}) {
+  ResponseFuture<GroupList> listGroups(NakamaSession session,
+      {String name, String cursor, int limit}) {
     var req = ListGroupsRequest()..name = name;
     if (limit != null) req..limit = getInt32(limit);
     if (cursor != null) req..cursor = cursor;
@@ -367,11 +447,15 @@ class DefaultClient extends BaseClient {
 
   @override
   ResponseFuture<LeaderboardRecordList> listLeaderboardRecords(
-      NakamaSession session, String leaderboardId,
-      {List<String> ownerIds, int expiry, int limit, String cursor}) {
+      NakamaSession session,
+      {String leaderboardId,
+      List<String> ownerIds,
+      int limit,
+      String cursor,
+      int expiry}) {
     var req = ListLeaderboardRecordsRequest()..leaderboardId = leaderboardId;
     if (ownerIds != null) req..ownerIds.addAll(ownerIds);
-    if (expiry != null) req..expiry = getInt64(expiry);
+    if (expiry != null) req..expiry = getInt64(expiry.toInt());
     if (limit != null) req..limit = getInt32(limit);
     if (cursor != null) req..cursor = cursor;
     return client.listLeaderboardRecords(req, options: session.calloptJWT);
@@ -379,43 +463,43 @@ class DefaultClient extends BaseClient {
 
   @override
   ResponseFuture<LeaderboardRecordList> listLeaderboardRecordsAroundOwner(
-      NakamaSession session, String leaderboardId, String ownerId,
-      {int expiry, int limit}) {
+      NakamaSession session,
+      {String leaderboardId,
+      String ownerId,
+      int limit,
+      int expiry}) {
     var req = ListLeaderboardRecordsAroundOwnerRequest()
       ..leaderboardId = leaderboardId
       ..ownerId = ownerId;
 
-    if (expiry != null) req.expiry = getInt64(expiry);
-    if (limit != null) req.limit = getUInt32(limit);
+    if (expiry != null) req.expiry = getInt64(expiry.toInt());
+    if (limit != null) req.limit = getUInt32(expiry);
     return client.listLeaderboardRecordsAroundOwner(req,
         options: session.calloptJWT);
   }
 
   @override
   ResponseFuture<MatchList> listMatches(NakamaSession session,
-      {int min, int max, int limit, String label, bool authoritative = false}) {
-    var req = ListMatchesRequest();
-    if (min != null) req..minSize = getInt32(min);
-    if (max != null) req..maxSize = getInt32(max);
-    if (limit != null) req..limit = getInt32(limit);
-    if (label != null) req..label = getString(label);
-    if (authoritative != null) req..authoritative = getBool(authoritative);
-    return client.listMatches(req, options: session.calloptJWT);
+      {int limit,
+      bool authoritative,
+      String label,
+      int minSize,
+      int maxSize,
+      String query}) {
+    // TODO: implement listMatches
+    throw UnimplementedError();
   }
 
   @override
   ResponseFuture<NotificationList> listNotifications(NakamaSession session,
       {int limit, String cacheableCursor}) {
-    var req = ListNotificationsRequest();
-    if (limit != null) req..limit = getInt32(limit);
-    if (cacheableCursor != null) req..cacheableCursor = cacheableCursor;
-    return client.listNotifications(req, options: session.calloptJWT);
+    // TODO: implement listNotifications
+    throw UnimplementedError();
   }
 
   @override
-  ResponseFuture<StorageObjectList> listStorageObjects(
-      NakamaSession session, String collection,
-      {int limit, String cursor}) {
+  ResponseFuture<StorageObjectList> listStorageObjects(NakamaSession session,
+      {String collection, String userId, int limit, String cursor}) {
     var req = ListStorageObjectsRequest()..collection = collection;
     if (limit != null) req..limit = getInt32(limit);
     if (cursor != null) req..cursor = cursor;
@@ -423,9 +507,20 @@ class DefaultClient extends BaseClient {
   }
 
   @override
+  ResponseFuture<StorageObjectList> listStorageObjects2(NakamaSession session,
+      {String collection, String userId, int limit, String cursor}) {
+    // TODO: implement listStorageObjects2
+    throw UnimplementedError();
+  }
+
+  @override
   ResponseFuture<TournamentRecordList> listTournamentRecords(
-      NakamaSession session, String tournamentId,
-      {int expiry, int limit, String cursor, List<String> ownerIds}) {
+      NakamaSession session,
+      {String tournamentId,
+      List<String> ownerIds,
+      int limit,
+      String cursor,
+      int expiry}) {
     var req = ListTournamentRecordsRequest()..tournamentId = tournamentId;
     if (expiry != null) req..expiry = getInt64(expiry);
     if (limit != null) req.limit = getInt32(limit);
@@ -435,8 +530,11 @@ class DefaultClient extends BaseClient {
 
   @override
   ResponseFuture<TournamentRecordList> listTournamentRecordsAroundOwner(
-      NakamaSession session, String tournamentId, String ownerId,
-      {int expiry, int limit}) {
+      NakamaSession session,
+      {String tournamentId,
+      String ownerId,
+      int limit,
+      int expiry}) {
     var req = ListTournamentRecordsAroundOwnerRequest()
       ..tournamentId = tournamentId
       ..ownerId = ownerId;
@@ -449,8 +547,8 @@ class DefaultClient extends BaseClient {
 
   @override
   ResponseFuture<TournamentList> listTournaments(NakamaSession session,
-      {int categoryStart = 0,
-      int categoryEnd = 128,
+      {int categoryStart,
+      int categoryEnd,
       int startTime,
       int endTime,
       int limit,
@@ -467,7 +565,7 @@ class DefaultClient extends BaseClient {
 
   @override
   ResponseFuture<UserGroupList> listUserGroups(NakamaSession session,
-      {String userId}) {
+      {String userId, int limit, int state, String cursor}) {
     var req = ListUserGroupsRequest();
     if (userId != null) req..userId = userId;
 
@@ -475,48 +573,58 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<StorageObjectList> listUsersStorageObjects(
-      NakamaSession session, String collection, String userId,
-      {int limit, String cursor}) {
-    var req = ListStorageObjectsRequest()
-      ..collection = collection
-      ..userId = userId;
-    if (limit != null) req..limit = getInt32(limit);
-    if (cursor != null) req..cursor = cursor;
-    return client.listStorageObjects(req, options: session.calloptJWT);
-  }
-
-  @override
-  ResponseFuture<Empty> promoteGroupUsers(
-      NakamaSession session, String groupId, List<String> ids) {
+  ResponseFuture<void> promoteGroupUsers(NakamaSession session,
+      {String groupId, List<String> userIds}) {
     var req = PromoteGroupUsersRequest()
       ..groupId = groupId
-      ..userIds.addAll(ids);
+      ..userIds.addAll(userIds);
     return client.promoteGroupUsers(req, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Rpc> rpc(NakamaSession session, String id, {String payload}) {
+  ResponseFuture<StorageObjects> readStorageObjects(NakamaSession session,
+      {List<ReadStorageObjectId> objectIds}) {
+    var req = ReadStorageObjectsRequest();
+    if (objectIds != null) req..objectIds.addAll(objectIds);
+    return client.readStorageObjects(req, options: session.calloptJWT);
+  }
+
+  @override
+  ResponseFuture<Rpc> rpcFunc(NakamaSession session,
+      {String id, String body, String httpKey}) {
     var req = Rpc()..id = id;
-    if (payload != null) req.payload = payload;
+    if (body != null) req.payload = body;
+    if (httpKey != null) req.httpKey = httpKey;
     return client.rpcFunc(req, options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> unlinkCustom(NakamaSession session, String id) {
+  ResponseFuture<Rpc> rpcFunc2(NakamaSession session,
+      {String id, String payload, String httpKey}) {
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<void> unlinkApple(NakamaSession session, {String token}) {
+    // TODO: implement unlinkApple
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<void> unlinkCustom(NakamaSession session, {String id}) {
     return client.unlinkCustom((AccountCustom()..id = id),
         options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> unlinkDevice(NakamaSession session, String id) {
+  ResponseFuture<void> unlinkDevice(NakamaSession session, {String id}) {
     return client.unlinkDevice((AccountDevice()..id = id),
         options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> unlinkEmail(
-      NakamaSession session, String email, String password) {
+  ResponseFuture<void> unlinkEmail(NakamaSession session,
+      {String email, String password}) {
     return client.unlinkEmail(
         (AccountEmail()
           ..email = email
@@ -525,21 +633,26 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<Empty> unlinkFacebook(
-      NakamaSession session, String accessToken) {
-    return client.unlinkFacebook((AccountFacebook()..token = accessToken),
+  ResponseFuture<void> unlinkFacebook(NakamaSession session, {String token}) {
+    return client.unlinkFacebook((AccountFacebook()..token = token),
         options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> unlinkGameCenter(
-      NakamaSession session,
-      String playerId,
+  ResponseFuture<void> unlinkFacebookInstantGame(NakamaSession session,
+      {String signedPlayerInfo}) {
+    // TODO: implement unlinkFacebookInstantGame
+    throw UnimplementedError();
+  }
+
+  @override
+  ResponseFuture<void> unlinkGameCenter(NakamaSession session,
+      {String playerId,
       String bundleId,
       int timestampSeconds,
       String salt,
       String signature,
-      String publicKeyUrl) {
+      String publicKeyUrl}) {
     return client.unlinkGameCenter(
         (AccountGameCenter()
           ..playerId = playerId
@@ -551,19 +664,18 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<Empty> unlinkGoogle(
-      NakamaSession session, String accessToken) {
-    return client.unlinkGoogle((AccountGoogle()..token = accessToken),
+  ResponseFuture<void> unlinkGoogle(NakamaSession session, {String token}) {
+    return client.unlinkGoogle((AccountGoogle()..token = token),
         options: session.calloptJWT);
   }
 
   @override
-  ResponseFuture<Empty> unlinkSteam(NakamaSession session, String token) {
+  ResponseFuture<void> unlinkSteam(NakamaSession session, {String token}) {
     return client.unlinkSteam((AccountSteam()..token = token));
   }
 
   @override
-  ResponseFuture<Empty> updateAccount(NakamaSession session,
+  ResponseFuture<void> updateAccount(NakamaSession session,
       {String username,
       String displayName,
       String avatarUrl,
@@ -583,11 +695,12 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<Empty> updateGroup(NakamaSession session, String groupId,
-      {String name,
+  ResponseFuture<void> updateGroup(NakamaSession session,
+      {String groupId,
+      String name,
       String description,
-      String avatarUrl,
       String langTag,
+      String avatarUrl,
       bool open}) {
     var req = UpdateGroupRequest()..groupId = groupId;
     if (name != null) req..name = getString(name);
@@ -601,8 +714,11 @@ class DefaultClient extends BaseClient {
 
   @override
   ResponseFuture<LeaderboardRecord> writeLeaderboardRecord(
-      NakamaSession session, String leaderboardId, int score,
-      {int subscore, String metadata}) {
+      NakamaSession session,
+      {String leaderboardId,
+      int score,
+      int subscore,
+      String metadata}) {
     var record = WriteLeaderboardRecordRequest_LeaderboardRecordWrite()
       ..score = Int64(score);
     if (subscore != null) record..subscore = Int64(subscore);
@@ -616,9 +732,16 @@ class DefaultClient extends BaseClient {
   }
 
   @override
-  ResponseFuture<LeaderboardRecord> writeTournamentRecord(
-      NakamaSession session, String tournamentId, int score,
-      {int subscore, String metadata}) {
+  ResponseFuture<StorageObjectAcks> writeStorageObjects(NakamaSession session,
+      {List<WriteStorageObject> objects}) {
+    var req = WriteStorageObjectsRequest();
+    if (objects != null) req..objects.addAll(objects);
+    return client.writeStorageObjects(req, options: session.calloptJWT);
+  }
+
+  @override
+  ResponseFuture<LeaderboardRecord> writeTournamentRecord(NakamaSession session,
+      {String tournamentId, int score, int subscore, String metadata}) {
     var record = WriteTournamentRecordRequest_TournamentRecordWrite()
       ..score = Int64(score);
 

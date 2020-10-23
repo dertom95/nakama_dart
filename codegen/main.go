@@ -24,12 +24,27 @@ import (
 	"text/template"
 )
 
+const nameDefaultSession string = "NakamaSession"
+const nameDefaultFuture string = "ResponseFuture"
+const nameSessionFuture string = "Future"
+const nameDefaultInt64 string = "int" // treat int64 as int
+
+var dartKeywords = map[string]bool{
+	"external": true,
+	"sync":     true,
+}
+
 const templateInterface string = `
+// 
+// THIS FILE IS GENERATED USING
+// make swagger-gen 
+// 
+
+import 'package:fixnum/fixnum.dart';
 import 'package:grpc/grpc.dart';
-import 'package:nakama_client/src/client/BaseClientMixing.dart';
-import 'package:nakama_client/src/generated/proto/api.pb.dart';
-import 'package:nakama_client/src/generated/proto/apigrpc.pbgrpc.dart';
-import 'package:nakama_client/src/generated/proto/google/protobuf/empty.pbserver.dart';
+import 'package:nakama_client/src/generated/proto/github.com/heroiclabs/nakama-common/api/api.pb.dart';
+import 'package:meta/meta.dart';
+import 'package:nakama_client/src/client/NakamaSession.dart';
 
 abstract class BaseClientInterface {
     {{.}}
@@ -79,7 +94,8 @@ type Parameter struct {
 		Type string
 		Ref  string `json:"$ref"`
 	}
-	Format string // used with type "boolean"
+	Format      string // used with type "boolean"
+	Description string
 }
 
 type Definition struct {
@@ -149,21 +165,33 @@ func snakeCaseToCamelCase(input string) (camelCase string) {
 }
 
 func toDartType(input string, additional string) (output string) {
+	output = "UNKNOWN"
 	switch input {
 	case "string":
+		if additional == "int64" {
+			return nameDefaultInt64
+		}
 		output = "String"
 		break
-	case "integer":
-	case "int32":
-	case "int64":
-	case "uint32":
 	case "uint64":
+	case "int64":
+		output = "Int64"
+	case "integer":
+		if additional == "int64" {
+			return nameDefaultInt64
+		}
+		fallthrough
+	case "int32":
+		fallthrough
+	case "uint32":
 		output = "int"
 		break
 	case "boolean":
 		output = "bool"
 	case "array":
 		output = "List<" + additional + ">"
+	case "object":
+		output = "Map<String," + additional + ">" // how determine if the key would be != string (in swagger)
 	default:
 		fmt.Println("UNKNOWN dartype " + input)
 		output = "unknown:" + input
@@ -180,6 +208,123 @@ func contains(s []string, e string) bool {
 	return false
 }
 
+func dartOperations(schema Schema) (implementationOutput string, interfaceOutput string) {
+	interfaceOutput = ""
+	implementationOutput = ""
+
+	for _, path := range schema.Paths {
+		for _, operation := range path {
+			methodName := firstLowerCase(snakeCaseToPascalCase(stripOperationPrefix(operation.OperationId)))
+			returnType := stripApiPrefix(convertRefToClassName(operation.Responses.Ok.Schema.Ref))
+
+			hasParameters := len(operation.Parameters) > 0
+			isAuthenticateMethod := strings.HasPrefix(methodName, "authenticate")
+
+			if isAuthenticateMethod {
+				returnType = nameDefaultSession
+			}
+
+			if returnType == "" {
+				returnType = "void"
+			}
+
+			opOutput := ""
+			opDoc := ""
+
+			if operation.Summary != "" {
+				opDoc += "/// " + operation.Summary + "\n"
+			}
+
+			// future
+			if isAuthenticateMethod {
+				opOutput += nameSessionFuture
+			} else {
+				opOutput += nameDefaultFuture
+			}
+
+			// generic
+			opOutput += "<" + returnType + "> " + methodName + "("
+
+			if !isAuthenticateMethod {
+				opOutput += "final " + nameDefaultSession + " session"
+				opDoc += "/// @param session The session you want to operate on\n"
+			}
+
+			if hasParameters {
+				if !isAuthenticateMethod {
+					opOutput += ","
+				}
+				opOutput += "{"
+			}
+
+			constSetters := firstUpperCase(methodName) + "Request()"
+			//constSetters := ""
+			ignoreParams := make([]string, 0)
+			for idx, param := range operation.Parameters {
+				if param.Name == "vars" {
+					continue
+				}
+
+				name := snakeCaseToCamelCase(param.Name)
+
+				if dartKeywords[name] {
+					name += "_"
+				}
+
+				ignoreParams = append(ignoreParams, name)
+				if idx > 0 {
+					opOutput += ","
+				}
+
+				if param.Description != "" {
+					opDoc += "/// @param " + param.Name + " " + param.Description + "\n"
+				}
+
+				if param.Schema.Ref != "" {
+					if name != "body" {
+						constSetters += name + "="
+					}
+					_params, _setters := processDefinition(param.Schema.Ref, false, ignoreParams)
+					opOutput += _params
+					constSetters += "(" + _setters + ")"
+				} else {
+					innerType := ""
+					if param.Items.Type != "" {
+						innerType = toDartType(param.Items.Type, "")
+					} else {
+						innerType = param.Format
+					}
+					if param.Required {
+						opOutput += "@required "
+					}
+
+					paramType := param.Type
+					if paramType == "" {
+						paramType = param.Schema.Type
+					}
+
+					opOutput += "final " + toDartType(paramType, innerType) + " " + name
+					constSetters += dartConcatParam(name, paramType, param.Format)
+				}
+			}
+
+			if hasParameters {
+				opOutput += "}"
+			}
+
+			opOutput += ")"
+
+			interfaceOutput += opDoc + opOutput + ";\n"
+
+			opOutput += "{ return client." + methodName + "(\n" + constSetters + ");\n}\n\n"
+			fmt.Println(opOutput)
+			implementationOutput += opDoc + opOutput
+		}
+
+	}
+	return implementationOutput, interfaceOutput
+}
+
 func processDefinition(definitionKey string, recursive bool, ignoreParam []string) (stParams string, stSetter string) {
 	cleanRef := strings.TrimPrefix(definitionKey, "#/definitions/")
 	stSetter = cleanRef[3:] + "()"
@@ -191,15 +336,26 @@ func processDefinition(definitionKey string, recursive bool, ignoreParam []strin
 			continue
 		}
 		name = snakeCaseToCamelCase(name)
+
+		if dartKeywords[name] {
+			name += "_"
+		}
+
 		if prop.Type != "" {
 			if len(stParams) > 0 {
 				stParams += ","
 			}
 			if prop.Items.Ref == "" {
-				stParams += toDartType(prop.Type, prop.Items.Type) + " " + name
+				innerType := prop.AdditionalProperties.Type
+				if innerType != "" {
+					innerType = toDartType(innerType, "")
+				} else {
+					innerType = prop.Format
+				}
+				stParams += "final " + toDartType(prop.Type, innerType) + " " + name
 			} else {
-				cleanRef = strings.TrimPrefix(definitionKey, "#/definitions/")[3:]
-				stParams += toDartType(prop.Type, cleanRef) + " " + name
+				cleanRef = strings.TrimPrefix(prop.Items.Ref, "#/definitions/")[3:]
+				stParams += "final " + toDartType(prop.Type, cleanRef) + " " + name
 			}
 			stSetter += dartConcatParam(name, prop.Type, prop.Format)
 		} else {
@@ -251,65 +407,6 @@ func dartConcatParam(paramName string, paramType string, paramExtra string) (out
 //   }
 // {{- end }}
 // {{- end }}
-
-func dartOperations(schema Schema) (implementationOutput string, interfaceOutput string) {
-	interfaceOutput = ""
-	implementationOutput = ""
-
-	for _, path := range schema.Paths {
-		for _, operation := range path {
-			methodName := firstLowerCase(snakeCaseToPascalCase(stripOperationPrefix(operation.OperationId)))
-			returnType := stripApiPrefix(convertRefToClassName(operation.Responses.Ok.Schema.Ref))
-			if returnType == "" {
-				returnType = "void"
-			}
-			opOutput := ""
-			opOutput += "ResponseFuture<" + returnType + "> " + methodName + "("
-
-			constSetters := firstUpperCase(methodName) + "Request()"
-			//constSetters := ""
-			ignoreParams := make([]string, 0)
-			for idx, param := range operation.Parameters {
-				if param.Name == "vars" {
-					continue
-				}
-
-				name := snakeCaseToCamelCase(param.Name)
-				ignoreParams = append(ignoreParams, name)
-				if idx > 0 {
-					opOutput += ","
-				}
-
-				if param.Schema.Ref != "" {
-					if name != "body" {
-						constSetters += name + "="
-					}
-					_params, _setters := processDefinition(param.Schema.Ref, false, ignoreParams)
-					opOutput += _params
-					constSetters += "(" + _setters + ")"
-				} else {
-					innerType := ""
-					if param.Items.Type != "" {
-						innerType = toDartType(param.Items.Type, "")
-					}
-
-					opOutput += toDartType(param.Type, innerType) + " " + name
-					constSetters += dartConcatParam(name, param.Type, param.Format)
-				}
-			}
-
-			opOutput += ")"
-
-			interfaceOutput += opOutput + ";\n"
-
-			opOutput += "{ return client." + methodName + "(\n" + constSetters + ");\n}\n\n"
-			fmt.Println(opOutput)
-			implementationOutput += opOutput
-		}
-
-	}
-	return implementationOutput, interfaceOutput
-}
 
 func snakeCaseToPascalCase(input string) (output string) {
 	isToUpper := false
@@ -396,9 +493,10 @@ func stripApiPrefix(input string) (output string) {
 }
 
 func main() {
-
 	// Argument flags
-	var output = flag.String("output", "", "The output for generated code.")
+	//output := flag.String("o", "BaseClientInterface.dart", "The output for generated code.")
+
+	output := "BaseClientInterface.dart"
 	flag.Parse()
 
 	inputs := flag.Args()
@@ -410,6 +508,9 @@ func main() {
 	}
 
 	inputFile := inputs[0]
+	if len(inputs) > 1 {
+		output = inputs[1]
+	}
 	content, err := ioutil.ReadFile(inputFile)
 	if err != nil {
 		fmt.Printf("Unable to read file: %s\n", err)
@@ -449,37 +550,43 @@ func main() {
 	// 	"dartOperations":       dartOperations,
 	// }
 
-	implOutput, interfaceOutput := dartOperations(schema)
+	_, interfaceOutput := dartOperations(schema)
 
+	//	implOutput, interfaceOutput := dartOperations(schema)
 	//	tmpl, err := template.New(inputFile).Funcs(fmap).Parse(codeTemplate)
+
 	tmpl, err := template.New(inputFile).Parse(templateInterface)
 	if err != nil {
 		fmt.Printf("Template parse error: %s\n", err)
 		return
 	}
 
-	if len(*output) < 1 {
+	{
 		var tpl bytes.Buffer
 		tmpl.Execute(&tpl, interfaceOutput)
-		err := ioutil.WriteFile("BaseClientInterface.dart", tpl.Bytes(), 0644)
+
+		err := ioutil.WriteFile(output, tpl.Bytes(), 0644)
+
 		if err != nil {
 			fmt.Printf("Interface write error:%s", err)
 		}
 	}
+	// generate implementation.... generation was not really possible due to the problem
+	// that you dont know the toplevel's class-name
 
-	implTemplate, err := template.New(inputFile).Parse(templateImplementation)
-	if err != nil {
-		fmt.Printf("Template parse error: %s\n", err)
-		return
-	}
+	// implTemplate, err := template.New(inputFile).Parse(templateImplementation)
+	// if err != nil {
+	// 	fmt.Printf("Template parse error: %s\n", err)
+	// 	return
+	// }
 
-	if len(*output) < 1 {
-		var tpl bytes.Buffer
-		implTemplate.Execute(&tpl, implOutput)
-		err := ioutil.WriteFile("BaseClientImplMixin.dart", tpl.Bytes(), 0644)
-		if err != nil {
-			fmt.Printf("Interface write error:%s", err)
-		}
-	}
+	// if len(*output) < 1 {
+	// 	var tpl bytes.Buffer
+	// 	implTemplate.Execute(&tpl, implOutput)
+	// 	err := ioutil.WriteFile("BaseClientImplMixin.dart", tpl.Bytes(), 0644)
+	// 	if err != nil {
+	// 		fmt.Printf("Interface write error:%s", err)
+	// 	}
+	// }
 
 }

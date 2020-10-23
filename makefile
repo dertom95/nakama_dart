@@ -8,7 +8,7 @@ PROJECT_PROTO_DIR = res/proto/2.14
 PROJECT_PROTO_GEN_DIR = lib/src/generated/proto
 
 ## Dart requires you to manually ship all google provided proto files too.
-_gendart:
+generate_proto:
 	@echo Generate protobuf definitions: $(PROJECT_PROTO)
 	@mkdir -p $(PROJECT_PROTO_GEN_DIR)
 	@protoc -I=$(PROJECT_PROTO_DIR) -I=/usr/include  --dart_out=grpc:$(PROJECT_PROTO_GEN_DIR) $(PROJECT_PROTO_DIR)/apigrpc.proto
@@ -18,10 +18,12 @@ _gendart:
 	
 #	@protoc --dart_out=$(PROJECT_PROTO_GEN_DIR) $(PROTO_ROOT_DIR)/google/protobuf/*.proto
 
-gen: _gendart
-
 swagger-gen: 
-	go run codegen/main.go res/apigrpc.swagger.json > lib/src/client/_swagger.dart
+	go run codegen/main.go res/apigrpc.swagger.json lib/src/generated/BaseClientInterface.gen.dart
+
+
+gen: generate_proto
+
 test-gen:
 	@mkdir -p temp/dart temp/java
 	@protoc --dart_out=temp/dart --java_out=temp/java temp/*.proto

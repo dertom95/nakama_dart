@@ -1,9 +1,6 @@
-import 'dart:convert';
-import 'dart:math';
-
 import 'package:fixnum/fixnum.dart';
 import 'package:grpc/grpc.dart';
-import 'package:nakama_client/src/generated/proto/google/protobuf/descriptor.pbserver.dart';
+import 'package:nakama_client/src/client/NakamaSession.dart';
 import 'package:nakama_client/src/generated/proto/google/protobuf/empty.pbserver.dart';
 import 'package:nakama_client/src/generated/proto/google/protobuf/wrappers.pbserver.dart';
 import 'package:nakama_client/src/client/BaseClient.dart';
@@ -49,7 +46,7 @@ class DefaultClient extends BaseClient {
     if (usernames != null) {
       req..usernames.addAll(usernames);
     }
-    return client.addFriends(req);
+    return client.addFriends(req, options: session.calloptJWT);
   }
 
   @override
@@ -58,7 +55,7 @@ class DefaultClient extends BaseClient {
     var req = AddGroupUsersRequest()
       ..groupId = groupId
       ..userIds.addAll(ids);
-    return client.addGroupUsers(req);
+    return client.addGroupUsers(req, options: session.calloptJWT);
   }
 
   @override
@@ -70,8 +67,9 @@ class DefaultClient extends BaseClient {
 
     if (username != null) req..username = username;
 
-    var session = await client.authenticateCustom(req);
-    return NakamaSession(session);
+    var session =
+        await client.authenticateCustom(req, options: calloptBasicAuth);
+    return NakamaSession(session, this);
   }
 
   @override
@@ -82,8 +80,9 @@ class DefaultClient extends BaseClient {
       ..create_2 = getBool(create);
 
     if (username != null) req..username = username;
-    var session = await client.authenticateDevice(req);
-    return NakamaSession(session);
+    var session =
+        await client.authenticateDevice(req, options: calloptBasicAuth);
+    return NakamaSession(session, this);
   }
 
   @override
@@ -96,8 +95,9 @@ class DefaultClient extends BaseClient {
       ..create_2 = getBool(create);
 
     if (username != null) req..username = username;
-    var session = await client.authenticateEmail(req);
-    return NakamaSession(session);
+    var session =
+        await client.authenticateEmail(req, options: calloptBasicAuth);
+    return NakamaSession(session, this);
   }
 
   @override
@@ -110,8 +110,9 @@ class DefaultClient extends BaseClient {
       ..create_2 = getBool(create);
 
     if (username != null) req..username = username;
-    var session = await client.authenticateFacebook(req);
-    return NakamaSession(session);
+    var session =
+        await client.authenticateFacebook(req, options: calloptBasicAuth);
+    return NakamaSession(session, this);
   }
 
   @override
@@ -128,8 +129,9 @@ class DefaultClient extends BaseClient {
       ..create_2 = getBool(create);
 
     if (username != null) req..username = username;
-    var session = await client.authenticateGameCenter(req);
-    return NakamaSession(session);
+    var session =
+        await client.authenticateGameCenter(req, options: calloptBasicAuth);
+    return NakamaSession(session, this);
   }
 
   @override
@@ -140,8 +142,9 @@ class DefaultClient extends BaseClient {
       ..create_2 = getBool(create);
 
     if (username != null) req..username = username;
-    var session = await client.authenticateGoogle(req);
-    return NakamaSession(session);
+    var session =
+        await client.authenticateGoogle(req, options: calloptBasicAuth);
+    return NakamaSession(session, this);
   }
 
   @override
@@ -152,8 +155,9 @@ class DefaultClient extends BaseClient {
       ..create_2 = getBool(create);
 
     if (username != null) req..username = username;
-    var session = await client.authenticateSteam(req);
-    return NakamaSession(session);
+    var session =
+        await client.authenticateSteam(req, options: calloptBasicAuth);
+    return NakamaSession(session, this);
   }
 
   @override

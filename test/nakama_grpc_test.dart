@@ -1,6 +1,6 @@
 import 'dart:mirrors';
 
-import 'package:nakama_client/src/client/BaseClient.dart';
+import 'package:nakama_client/src/client/NakamaSession.dart';
 import 'package:nakama_client/src/generated/proto/github.com/heroiclabs/nakama-common/api/api.pb.dart';
 import "package:test/test.dart";
 import '../lib/src/client/DefaultClient.dart';
@@ -17,13 +17,21 @@ void main() {
         await client.connect();
         NakamaSession session =
             await client.authenticateCustom("moxi123456", create: true);
-        print("ok:" + session.session.token);
+
+        print("ok:" + session.token);
+        print("ExpireData:" + session.GetExpireDate().toString());
+        print("ExpireData(utc):" + session.GetExpireDate().toUtc().toString());
         Account account = await client.getAccount(session);
+
+        var result = await client.listLeaderboardRecords(session, "level1");
+        for (var rec in result.records) {
+          print("Record: ${rec.username.value} : ${rec.score}");
+        }
         print(
             "account-name: ${account.user.username} displayname:${account.user.displayName}");
-        await client.listChannelMessages(session, "aa");
-        print(
-            "account-name: ${account.user.username} displayname:${account.user.displayName}");
+        var record =
+            await client.writeLeaderboardRecord(session, "level1", 1895);
+        print("record: ${record.score}");
       } catch (e) {
         print(e);
       }

@@ -1,29 +1,10 @@
 import 'dart:convert';
 
 import 'package:grpc/grpc.dart';
+import 'package:nakama_client/src/client/NakamaSession.dart';
 import 'package:nakama_client/src/generated/proto/apigrpc.pbgrpc.dart';
 import 'package:nakama_client/src/generated/proto/github.com/heroiclabs/nakama-common/api/api.pb.dart';
 import 'package:nakama_client/src/generated/proto/google/protobuf/empty.pb.dart';
-
-class NakamaSession {
-  NakamaSession(Session session) {
-    updateSession(session);
-  }
-
-  CallOptions calloptJWT;
-
-  Session _session = null; // todo: protected?
-  /// is a session registered?
-  bool hasSession() => _session != null;
-  Session get session => _session;
-
-  /// after authentication set the session
-  void updateSession(Session session) {
-    this._session = session;
-    calloptJWT =
-        CallOptions(metadata: {"authorization": "Bearer ${session.token}"});
-  }
-}
 
 abstract class BaseClient {
   String nakama_host = "127.0.0.1";

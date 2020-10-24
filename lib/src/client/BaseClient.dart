@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:grpc/grpc.dart';
-import 'package:nakama_client/src/client/NakamaSession.dart';
+import 'package:meta/meta.dart';
 import 'package:nakama_client/src/generated/BaseClientInterface.gen.dart';
 import 'package:nakama_client/src/generated/proto/apigrpc.pbgrpc.dart';
-import 'package:nakama_client/src/generated/proto/github.com/heroiclabs/nakama-common/api/api.pb.dart';
 import 'package:nakama_client/src/generated/proto/google/protobuf/empty.pb.dart';
 
 abstract class BaseClient with BaseClientInterface {
@@ -13,31 +13,56 @@ abstract class BaseClient with BaseClientInterface {
   String serverKey = "defaultkey";
   CallOptions calloptBasicAuth;
 
+  String caCert = null;
+
   NakamaClient _client;
   NakamaClient get client => _client;
 
   ClientChannel _channel;
+  BadCertificateHandler badCertHandler;
 
-  BaseClient({this.nakama_host, this.nakama_port, this.serverKey}) {
+  BaseClient(
+      {this.nakama_host,
+      this.nakama_port,
+      this.serverKey,
+      String caCertFile,
+      this.badCertHandler}) {
     calloptBasicAuth = CallOptions(metadata: {
       "authorization":
           "Basic ${base64Encode(Utf8Encoder().convert("$serverKey:"))}"
     });
+    if (caCertFile != null) {
+      caCert = File(caCertFile).readAsStringSync();
+    }
   }
 
   void connect() async {
-    _channel = new ClientChannel(
-      nakama_host,
-      port: nakama_port,
-      options: ChannelOptions(
-        credentials: ChannelCredentials.insecure(),
-      ),
-    );
+    if (caCert == null) {
+      _channel = new ClientChannel(
+        nakama_host,
+        port: nakama_port,
+        options: ChannelOptions(
+          credentials: ChannelCredentials.insecure(),
+        ),
+      );
+    } else {
+      _channel = new ClientChannel(
+        nakama_host,
+        port: nakama_port,
+        options: ChannelOptions(
+          credentials: ChannelCredentials.secure(
+              certificates: utf8.encode(caCert),
+              onBadCertificate: (certificate, host) {
+                if (badCertHandler != null) {
+                  return badCertHandler(certificate, host);
+                }
+                return false;
+              }),
+        ),
+      );
+    }
 
-    _client = new NakamaClient(
-      _channel,
-      options: calloptBasicAuth,
-    );
+    _client = new NakamaClient(_channel, options: calloptBasicAuth);
     try {
       await client.healthcheck(Empty());
     } catch (e) {

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:fixnum/fixnum.dart';
 import 'package:grpc/grpc.dart';
 import 'package:nakama_client/src/client/NakamaSession.dart';
@@ -35,11 +33,18 @@ UInt64Value getUInt64(int i) {
 }
 
 class DefaultClient extends BaseClient {
-  DefaultClient({String nakama_host, int nakama_port, String serverKey})
+  DefaultClient(
+      {String nakama_host,
+      int nakama_port,
+      String serverKey,
+      String caCertFile,
+      BadCertificateHandler badCertificateHandler})
       : super(
             nakama_host: nakama_host,
             nakama_port: nakama_port,
-            serverKey: serverKey);
+            serverKey: serverKey,
+            caCertFile: caCertFile,
+            badCertHandler: badCertificateHandler);
 
   @override
   @override

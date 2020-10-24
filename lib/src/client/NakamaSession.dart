@@ -30,10 +30,10 @@ class NakamaSession {
   void updateSession() {
     calloptJWT = CallOptions(metadata: {"authorization": "Bearer ${token}"});
 
-    ParseJWTPayload(token);
+    parseJWTPayload(token);
   }
 
-  void ParseJWTPayload(String token) {
+  void parseJWTPayload(String token) {
     var payload = token.split('.')[1];
     var padLength = (payload.length / 4.0).ceil() * 4;
     payload = payload
@@ -42,22 +42,30 @@ class NakamaSession {
         .replaceAll('_', '/');
 
     var data = json.decode(String.fromCharCodes(base64Decode(payload)));
-    expireTime = data["exp"];
+    expireTime = data["exp"] * 1000;
     userId = data["uid"];
     userName = data["usn"];
   }
 
-  bool HasExpired(DateTime offset) {
-    var expireDateTime = DateTime.fromMillisecondsSinceEpoch(expireTime * 1000);
-
-    return offset.isBefore(expireDateTime);
-  }
-
-  DateTime GetExpireDate() {
-    return DateTime.fromMillisecondsSinceEpoch(expireTime * 1000);
+  DateTime getExpireDate() {
+    return DateTime.fromMillisecondsSinceEpoch(expireTime, isUtc: true);
   }
 
   bool isExpired() {
-    return HasExpired(DateTime.now());
+    return timeLeftMs() < 0;
+  }
+
+  int timeLeftMs() {
+    int now = DateTime.now().toUtc().millisecondsSinceEpoch;
+    return expireTime - now;
+  }
+
+  int timeLeftSecs() {
+    return timeLeftMs() ~/ 1000;
+  }
+
+  String toString() {
+    var secsLeft = timeLeftSecs();
+    return "NakamaSession: uid:${userId} usn:${userName} expiration:${secsLeft}secs\ntoken:${token}";
   }
 }

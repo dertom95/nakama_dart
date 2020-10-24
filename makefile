@@ -3,6 +3,8 @@
 
 NAKAMA_VERSION = 2.14
 
+SERVER_HOST = 127.0.0.1
+
 PROJECT_NAME = nakama-client
 #MACOS: PROTO_ROOT_DIR = $(shell brew --prefix)/Cellar/protobuf/3.9.1_1/include
 PROTO_ROOT_DIR = /usr/include
@@ -26,6 +28,17 @@ swagger-gen:
 
 gen: generate_proto swagger-gen
 
-test-gen:
-	@mkdir -p temp/dart temp/java
-	@protoc --dart_out=temp/dart --java_out=temp/java temp/*.proto
+cert-clean:
+	@rm -f certs/nakamassl_key.pem
+	@rm -f certs/nakamassl_cert.pem
+	@rm -f certs/nakamassl.fingerprint
+
+cert: cert-only ssl-fingerprint
+
+cert-only:
+	@mkdir -p certs
+	@openssl req -x509 -newkey rsa:2048 -keyout certs/nakamassl_key.pem -out certs/nakamassl_cert.pem -days 3650 -nodes -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=${SERVER_HOST}"
+
+ssl-fingerprint:
+	@openssl x509 -fingerprint -noout -inform pem -in certs/nakamassl_cert.pem > certs/nakamassl.fingerprint
+

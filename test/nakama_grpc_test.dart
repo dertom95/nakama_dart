@@ -14,8 +14,8 @@ void main() {
       // create client
       var client = DefaultClient(
           nakama_host:
-//            "127.0.0.1", // if using ssl, make sure this host matches the one in your CN-Field when creating the Certifictate (see makefile)
-              "192.168.178.90", // if using ssl, make sure this host matches the one in your CN-Field when creating the Certifictate (see makefile)
+              "127.0.0.1", // if using ssl, make sure this host matches the one in your CN-Field when creating the Certifictate (see makefile)
+//             "192.168.178.90", // if using ssl, make sure this host matches the one in your CN-Field when creating the Certifictate (see makefile)
           nakama_port: 7349,
           serverKey: "defaultkey",
           caCertFile: use_ssl ? "certs/nakamassl_cert.pem" : null,

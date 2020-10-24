@@ -18,10 +18,12 @@
 # for making full source builds.
 
 GRPC_GATEWAY_COMMIT=3c7c499cefb3fb46d0c662bcf296408a66fc5acc
-NAKAMA_COMMON_COMMIT=5254da5c83ced136a4c8014a2cf2eaa85875811d
-NAKAMA_COMMIT=8e8e74280915e77b02871955931f60bcea5b91a1
+NAKAMA_COMMON_COMMIT=ad78ab8588ae5f9c69776d0d92acc86b2cd55148
+NAKAMA_COMMIT=2a04263250fee6c22ab5cb544677de57d75bd9bd
 DOMAIN=https://raw.githubusercontent.com
 
+#OPENAPI_URL=${DOMAIN}/grpc-ecosystem/grpc-gateway/${GRPC_GATEWAY_COMMIT}/protoc-gen-openapiv2/options/openapiv2.proto
+#ANNOTATION_URL=${DOMAIN}/grpc-ecosystem/grpc-gateway/${GRPC_GATEWAY_COMMIT}/protoc-gen-openapiv2/options/annotations.proto
 OPENAPI_URL=${DOMAIN}/grpc-ecosystem/grpc-gateway/${GRPC_GATEWAY_COMMIT}/protoc-gen-swagger/options/openapiv2.proto
 ANNOTATION_URL=${DOMAIN}/grpc-ecosystem/grpc-gateway/${GRPC_GATEWAY_COMMIT}/protoc-gen-swagger/options/annotations.proto
 API_URL=${DOMAIN}/heroiclabs/nakama-common/${NAKAMA_COMMON_COMMIT}/api/api.proto
@@ -33,6 +35,7 @@ GOOGLE_API_HTTP=${DOMAIN}/googleapis/googleapis/master/google/api/http.proto
 
 ROOT_DIR=res/proto/2.14
 NAKAMA_COMMON_DIR=github.com/heroiclabs/nakama-common/api
+#SWAGGER_GEN_DIR=protoc-gen-openapiv2/options
 SWAGGER_GEN_DIR=protoc-gen-swagger/options
 GOOGLE_API=google/api
 

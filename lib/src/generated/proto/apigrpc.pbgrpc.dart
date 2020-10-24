@@ -25,6 +25,11 @@ class NakamaClient extends $grpc.Client {
           '/nakama.api.Nakama/AddGroupUsers',
           ($0.AddGroupUsersRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$authenticateApple =
+      $grpc.ClientMethod<$0.AuthenticateAppleRequest, $0.Session>(
+          '/nakama.api.Nakama/AuthenticateApple',
+          ($0.AuthenticateAppleRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
   static final _$authenticateCustom =
       $grpc.ClientMethod<$0.AuthenticateCustomRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateCustom',
@@ -146,6 +151,10 @@ class NakamaClient extends $grpc.Client {
           '/nakama.api.Nakama/LeaveGroup',
           ($0.LeaveGroupRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$linkApple = $grpc.ClientMethod<$0.AccountApple, $1.Empty>(
+      '/nakama.api.Nakama/LinkApple',
+      ($0.AccountApple value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
   static final _$linkCustom = $grpc.ClientMethod<$0.AccountCustom, $1.Empty>(
       '/nakama.api.Nakama/LinkCustom',
       ($0.AccountCustom value) => value.writeToBuffer(),
@@ -261,6 +270,11 @@ class NakamaClient extends $grpc.Client {
           '/nakama.api.Nakama/PromoteGroupUsers',
           ($0.PromoteGroupUsersRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$demoteGroupUsers =
+      $grpc.ClientMethod<$0.DemoteGroupUsersRequest, $1.Empty>(
+          '/nakama.api.Nakama/DemoteGroupUsers',
+          ($0.DemoteGroupUsersRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
   static final _$readStorageObjects =
       $grpc.ClientMethod<$0.ReadStorageObjectsRequest, $0.StorageObjects>(
           '/nakama.api.Nakama/ReadStorageObjects',
@@ -270,6 +284,10 @@ class NakamaClient extends $grpc.Client {
       '/nakama.api.Nakama/RpcFunc',
       ($0.Rpc value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Rpc.fromBuffer(value));
+  static final _$unlinkApple = $grpc.ClientMethod<$0.AccountApple, $1.Empty>(
+      '/nakama.api.Nakama/UnlinkApple',
+      ($0.AccountApple value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
   static final _$unlinkCustom = $grpc.ClientMethod<$0.AccountCustom, $1.Empty>(
       '/nakama.api.Nakama/UnlinkCustom',
       ($0.AccountCustom value) => value.writeToBuffer(),
@@ -348,6 +366,15 @@ class NakamaClient extends $grpc.Client {
       {$grpc.CallOptions options}) {
     final call = $createCall(
         _$addGroupUsers, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<$0.Session> authenticateApple(
+      $0.AuthenticateAppleRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$authenticateApple, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
@@ -563,6 +590,13 @@ class NakamaClient extends $grpc.Client {
     return $grpc.ResponseFuture(call);
   }
 
+  $grpc.ResponseFuture<$1.Empty> linkApple($0.AccountApple request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(_$linkApple, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
   $grpc.ResponseFuture<$1.Empty> linkCustom($0.AccountCustom request,
       {$grpc.CallOptions options}) {
     final call = $createCall(
@@ -751,6 +785,15 @@ class NakamaClient extends $grpc.Client {
     return $grpc.ResponseFuture(call);
   }
 
+  $grpc.ResponseFuture<$1.Empty> demoteGroupUsers(
+      $0.DemoteGroupUsersRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$demoteGroupUsers, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
   $grpc.ResponseFuture<$0.StorageObjects> readStorageObjects(
       $0.ReadStorageObjectsRequest request,
       {$grpc.CallOptions options}) {
@@ -763,6 +806,14 @@ class NakamaClient extends $grpc.Client {
   $grpc.ResponseFuture<$0.Rpc> rpcFunc($0.Rpc request,
       {$grpc.CallOptions options}) {
     final call = $createCall(_$rpcFunc, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<$1.Empty> unlinkApple($0.AccountApple request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(
+        _$unlinkApple, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
@@ -895,6 +946,14 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.AddGroupUsersRequest.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.AuthenticateAppleRequest, $0.Session>(
+        'AuthenticateApple',
+        authenticateApple_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.AuthenticateAppleRequest.fromBuffer(value),
+        ($0.Session value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.AuthenticateCustomRequest, $0.Session>(
         'AuthenticateCustom',
         authenticateCustom_Pre,
@@ -1091,6 +1150,13 @@ abstract class NakamaServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.LeaveGroupRequest.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.AccountApple, $1.Empty>(
+        'LinkApple',
+        linkApple_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.AccountApple.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.AccountCustom, $1.Empty>(
         'LinkCustom',
         linkCustom_Pre,
@@ -1268,6 +1334,14 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.PromoteGroupUsersRequest.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.DemoteGroupUsersRequest, $1.Empty>(
+        'DemoteGroupUsers',
+        demoteGroupUsers_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.DemoteGroupUsersRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
     $addMethod(
         $grpc.ServiceMethod<$0.ReadStorageObjectsRequest, $0.StorageObjects>(
             'ReadStorageObjects',
@@ -1284,6 +1358,13 @@ abstract class NakamaServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.Rpc.fromBuffer(value),
         ($0.Rpc value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.AccountApple, $1.Empty>(
+        'UnlinkApple',
+        unlinkApple_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.AccountApple.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.AccountCustom, $1.Empty>(
         'UnlinkCustom',
         unlinkCustom_Pre,
@@ -1394,6 +1475,11 @@ abstract class NakamaServiceBase extends $grpc.Service {
   $async.Future<$1.Empty> addGroupUsers_Pre($grpc.ServiceCall call,
       $async.Future<$0.AddGroupUsersRequest> request) async {
     return addGroupUsers(call, await request);
+  }
+
+  $async.Future<$0.Session> authenticateApple_Pre($grpc.ServiceCall call,
+      $async.Future<$0.AuthenticateAppleRequest> request) async {
+    return authenticateApple(call, await request);
   }
 
   $async.Future<$0.Session> authenticateCustom_Pre($grpc.ServiceCall call,
@@ -1522,6 +1608,11 @@ abstract class NakamaServiceBase extends $grpc.Service {
     return leaveGroup(call, await request);
   }
 
+  $async.Future<$1.Empty> linkApple_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.AccountApple> request) async {
+    return linkApple(call, await request);
+  }
+
   $async.Future<$1.Empty> linkCustom_Pre(
       $grpc.ServiceCall call, $async.Future<$0.AccountCustom> request) async {
     return linkCustom(call, await request);
@@ -1640,6 +1731,11 @@ abstract class NakamaServiceBase extends $grpc.Service {
     return promoteGroupUsers(call, await request);
   }
 
+  $async.Future<$1.Empty> demoteGroupUsers_Pre($grpc.ServiceCall call,
+      $async.Future<$0.DemoteGroupUsersRequest> request) async {
+    return demoteGroupUsers(call, await request);
+  }
+
   $async.Future<$0.StorageObjects> readStorageObjects_Pre(
       $grpc.ServiceCall call,
       $async.Future<$0.ReadStorageObjectsRequest> request) async {
@@ -1649,6 +1745,11 @@ abstract class NakamaServiceBase extends $grpc.Service {
   $async.Future<$0.Rpc> rpcFunc_Pre(
       $grpc.ServiceCall call, $async.Future<$0.Rpc> request) async {
     return rpcFunc(call, await request);
+  }
+
+  $async.Future<$1.Empty> unlinkApple_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.AccountApple> request) async {
+    return unlinkApple(call, await request);
   }
 
   $async.Future<$1.Empty> unlinkCustom_Pre(
@@ -1723,6 +1824,8 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.AddFriendsRequest request);
   $async.Future<$1.Empty> addGroupUsers(
       $grpc.ServiceCall call, $0.AddGroupUsersRequest request);
+  $async.Future<$0.Session> authenticateApple(
+      $grpc.ServiceCall call, $0.AuthenticateAppleRequest request);
   $async.Future<$0.Session> authenticateCustom(
       $grpc.ServiceCall call, $0.AuthenticateCustomRequest request);
   $async.Future<$0.Session> authenticateDevice(
@@ -1772,6 +1875,8 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.KickGroupUsersRequest request);
   $async.Future<$1.Empty> leaveGroup(
       $grpc.ServiceCall call, $0.LeaveGroupRequest request);
+  $async.Future<$1.Empty> linkApple(
+      $grpc.ServiceCall call, $0.AccountApple request);
   $async.Future<$1.Empty> linkCustom(
       $grpc.ServiceCall call, $0.AccountCustom request);
   $async.Future<$1.Empty> linkDevice(
@@ -1818,9 +1923,13 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.ListUserGroupsRequest request);
   $async.Future<$1.Empty> promoteGroupUsers(
       $grpc.ServiceCall call, $0.PromoteGroupUsersRequest request);
+  $async.Future<$1.Empty> demoteGroupUsers(
+      $grpc.ServiceCall call, $0.DemoteGroupUsersRequest request);
   $async.Future<$0.StorageObjects> readStorageObjects(
       $grpc.ServiceCall call, $0.ReadStorageObjectsRequest request);
   $async.Future<$0.Rpc> rpcFunc($grpc.ServiceCall call, $0.Rpc request);
+  $async.Future<$1.Empty> unlinkApple(
+      $grpc.ServiceCall call, $0.AccountApple request);
   $async.Future<$1.Empty> unlinkCustom(
       $grpc.ServiceCall call, $0.AccountCustom request);
   $async.Future<$1.Empty> unlinkDevice(

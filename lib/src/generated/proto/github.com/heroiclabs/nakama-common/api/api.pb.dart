@@ -3565,6 +3565,41 @@ class PromoteGroupUsersRequest extends $pb.GeneratedMessage {
   $core.List<$core.String> get userIds => $_getList(1);
 }
 
+class DemoteGroupUsersRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('DemoteGroupUsersRequest', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
+    ..aOS(1, 'groupId')
+    ..pPS(2, 'userIds')
+    ..hasRequiredFields = false
+  ;
+
+  DemoteGroupUsersRequest._() : super();
+  factory DemoteGroupUsersRequest() => create();
+  factory DemoteGroupUsersRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory DemoteGroupUsersRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  DemoteGroupUsersRequest clone() => DemoteGroupUsersRequest()..mergeFromMessage(this);
+  DemoteGroupUsersRequest copyWith(void Function(DemoteGroupUsersRequest) updates) => super.copyWith((message) => updates(message as DemoteGroupUsersRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static DemoteGroupUsersRequest create() => DemoteGroupUsersRequest._();
+  DemoteGroupUsersRequest createEmptyInstance() => create();
+  static $pb.PbList<DemoteGroupUsersRequest> createRepeated() => $pb.PbList<DemoteGroupUsersRequest>();
+  @$core.pragma('dart2js:noInline')
+  static DemoteGroupUsersRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DemoteGroupUsersRequest>(create);
+  static DemoteGroupUsersRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get groupId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set groupId($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasGroupId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.String> get userIds => $_getList(1);
+}
+
 class ReadStorageObjectId extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ReadStorageObjectId', package: const $pb.PackageName('nakama.api'), createEmptyInstance: create)
     ..aOS(1, 'collection')

@@ -747,6 +747,14 @@ const PromoteGroupUsersRequest$json = const {
   ],
 };
 
+const DemoteGroupUsersRequest$json = const {
+  '1': 'DemoteGroupUsersRequest',
+  '2': const [
+    const {'1': 'group_id', '3': 1, '4': 1, '5': 9, '10': 'groupId'},
+    const {'1': 'user_ids', '3': 2, '4': 3, '5': 9, '10': 'userIds'},
+  ],
+};
+
 const ReadStorageObjectId$json = const {
   '1': 'ReadStorageObjectId',
   '2': const [

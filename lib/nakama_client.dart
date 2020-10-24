@@ -5,5 +5,4 @@ library nakama_client;
 
 export 'src/client/default_client.dart';
 export 'src/client/nakama_session.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/generated/proto/apigrpc.pbgrpc.dart';

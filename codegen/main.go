@@ -44,7 +44,7 @@ import 'package:fixnum/fixnum.dart';
 import 'package:grpc/grpc.dart';
 import 'package:nakama_client/src/generated/proto/github.com/heroiclabs/nakama-common/api/api.pb.dart';
 import 'package:meta/meta.dart';
-import 'package:nakama_client/src/client/NakamaSession.dart';
+import 'package:nakama_client/src/client/nakama_session.dart';
 
 abstract class BaseClientInterface {
     {{.}}
@@ -52,6 +52,8 @@ abstract class BaseClientInterface {
 `
 
 const templateImplementation string = `
+// DONT USE THIS! This is not even experimental
+
 import 'package:nakama_client/src/generated/proto/api.pb.dart';
 import 'package:nakama_client/src/generated/proto/google/protobuf/wrappers.pbserver.dart';
 import 'package:grpc/grpc.dart';

@@ -17,7 +17,9 @@
 # This command is a utility for downloading all .proto files required
 # for making full source builds.
 
+
 GRPC_GATEWAY_COMMIT=3c7c499cefb3fb46d0c662bcf296408a66fc5acc
+#GRPC_GATEWAY_COMMIT=5c1639cccb7d6abc747643ed07321b0052b809d5 # v2.0.1
 NAKAMA_COMMON_COMMIT=ad78ab8588ae5f9c69776d0d92acc86b2cd55148
 NAKAMA_COMMIT=2a04263250fee6c22ab5cb544677de57d75bd9bd
 DOMAIN=https://raw.githubusercontent.com

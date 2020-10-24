@@ -33,7 +33,7 @@ services:
       - cockroachdb
     volumes:
       - ./data/nakama:/nakama/data
-      - ./certs:/nakama-ssl
+      - ./test-certs:/nakama-ssl
     expose:
       - "7349"
       - "7350"

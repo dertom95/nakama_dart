@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:grpc/grpc.dart';
-import 'package:meta/meta.dart';
-import 'package:nakama_client/src/generated/BaseClientInterface.gen.dart';
+import 'package:nakama_client/src/generated/baseclient_interface.gen.dart';
 import 'package:nakama_client/src/generated/proto/apigrpc.pbgrpc.dart';
 import 'package:nakama_client/src/generated/proto/google/protobuf/empty.pb.dart';
 

@@ -1,9 +1,10 @@
 import 'package:fixnum/fixnum.dart';
 import 'package:grpc/grpc.dart';
-import 'package:nakama_client/src/client/NakamaSession.dart';
+import 'package:grpc/grpc_connection_interface.dart';
+import 'package:nakama_client/src/client/nakama_session.dart';
 import 'package:nakama_client/src/generated/proto/google/protobuf/empty.pbserver.dart';
 import 'package:nakama_client/src/generated/proto/google/protobuf/wrappers.pbserver.dart';
-import 'package:nakama_client/src/client/BaseClient.dart';
+import 'package:nakama_client/src/client/baseclient.dart';
 import 'package:nakama_client/src/generated/proto/github.com/heroiclabs/nakama-common/api/api.pb.dart';
 
 BoolValue boolTrue = BoolValue()..value = true;
@@ -11,6 +12,8 @@ BoolValue boolFalse = BoolValue()..value = false;
 
 BoolValue getBool(bool b) => b ? boolTrue : boolFalse;
 StringValue getString(String s) => StringValue()..value = s;
+
+typedef void NakamaErrorHandler(GrpcError e);
 
 Int32Value getInt32(int i) {
   var val = Int32Value()..value = i;
@@ -47,7 +50,6 @@ class DefaultClient extends BaseClient {
             badCertHandler: badCertificateHandler);
 
   @override
-  @override
   ResponseFuture<void> addFriends(NakamaSession session,
       {List<String> ids, List<String> usernames}) {
     var req = AddFriendsRequest()..ids.addAll(ids);
@@ -68,71 +70,113 @@ class DefaultClient extends BaseClient {
 
   @override
   Future<NakamaSession> authenticateCustom(
-      {String id, bool create, String username}) async {
-    var req = AuthenticateCustomRequest()
-      ..create_2 = getBool(create)
-      ..account = (AccountCustom()..id = id);
+      {String id,
+      bool create = true,
+      String username,
+      NakamaErrorHandler onFail}) async {
+    try {
+      var req = AuthenticateCustomRequest()
+        ..create_2 = getBool(create)
+        ..account = (AccountCustom()..id = id);
 
-    if (username != null) req..username = username;
+      if (username != null) req..username = username;
 
-    var session =
-        await client.authenticateCustom(req, options: calloptBasicAuth);
-    return NakamaSession(session, this);
+      var session =
+          await client.authenticateCustom(req, options: calloptBasicAuth);
+      return NakamaSession(session, this);
+    } on GrpcError catch (e) {
+      if (onFail != null) onFail(e);
+      return null;
+    }
   }
 
   @override
   Future<NakamaSession> authenticateDevice(
-      {String id, bool create, String username}) async {
-    var req = AuthenticateDeviceRequest()
-      ..account = (AccountDevice()..id = id)
-      ..create_2 = getBool(create);
+      {String id,
+      bool create = true,
+      String username,
+      NakamaErrorHandler onFail}) async {
+    try {
+      var req = AuthenticateDeviceRequest()
+        ..account = (AccountDevice()..id = id)
+        ..create_2 = getBool(create);
 
-    if (username != null) req..username = username;
-    var session =
-        await client.authenticateDevice(req, options: calloptBasicAuth);
-    return NakamaSession(session, this);
+      if (username != null) req..username = username;
+      var session =
+          await client.authenticateDevice(req, options: calloptBasicAuth);
+      return NakamaSession(session, this);
+    } on GrpcError catch (e) {
+      if (onFail != null) onFail(e);
+      return null;
+    }
   }
 
   @override
   Future<NakamaSession> authenticateEmail(
-      {String email, String password, bool create, String username}) async {
-    var req = AuthenticateEmailRequest()
-      ..account = (AccountEmail()
-        ..email = email
-        ..password = password)
-      ..create_2 = getBool(create);
+      {String email,
+      String password,
+      bool create = true,
+      String username,
+      NakamaErrorHandler onFail}) async {
+    try {
+      var req = AuthenticateEmailRequest()
+        ..account = (AccountEmail()
+          ..email = email
+          ..password = password);
 
-    if (username != null) req..username = username;
-    var session =
-        await client.authenticateEmail(req, options: calloptBasicAuth);
-    return NakamaSession(session, this);
+      if (create != null) req..create_2 = getBool(create);
+      if (username != null) req..username = username;
+      var session =
+          await client.authenticateEmail(req, options: calloptBasicAuth);
+      return NakamaSession(session, this);
+    } on GrpcError catch (e) {
+      if (onFail != null) onFail(e);
+      return null;
+    }
   }
 
   @override
   Future<NakamaSession> authenticateFacebook(
-      {String token, bool create, String username, bool sync_}) async {
-    var req = AuthenticateFacebookRequest()
-      ..account = (AccountFacebook()..token = token)
-      ..create_2 = getBool(create);
+      {String token,
+      bool create = true,
+      String username,
+      bool sync_,
+      NakamaErrorHandler onFail}) async {
+    try {
+      var req = AuthenticateFacebookRequest()
+        ..account = (AccountFacebook()..token = token)
+        ..create_2 = getBool(create);
 
-    if (username != null) req..username = username;
-    var session =
-        await client.authenticateFacebook(req, options: calloptBasicAuth);
-    return NakamaSession(session, this);
+      if (username != null) req..username = username;
+      var session =
+          await client.authenticateFacebook(req, options: calloptBasicAuth);
+      return NakamaSession(session, this);
+    } on GrpcError catch (e) {
+      if (onFail != null) onFail(e);
+      return null;
+    }
   }
 
   @override
   Future<NakamaSession> authenticateFacebookInstantGame(
-      {String signedPlayerInfo, bool create, String username}) async {
-    var req = AuthenticateFacebookInstantGameRequest()
-      ..create_2 = getBool(create)
-      ..account =
-          (AccountFacebookInstantGame()..signedPlayerInfo = signedPlayerInfo);
+      {String signedPlayerInfo,
+      bool create = true,
+      String username,
+      NakamaErrorHandler onFail}) async {
+    try {
+      var req = AuthenticateFacebookInstantGameRequest()
+        ..create_2 = getBool(create)
+        ..account =
+            (AccountFacebookInstantGame()..signedPlayerInfo = signedPlayerInfo);
 
-    if (username != null) req..username = username;
-    var session = await client.authenticateFacebookInstantGame(req,
-        options: calloptBasicAuth);
-    return NakamaSession(session, this);
+      if (username != null) req..username = username;
+      var session = await client.authenticateFacebookInstantGame(req,
+          options: calloptBasicAuth);
+      return NakamaSession(session, this);
+    } on GrpcError catch (e) {
+      if (onFail != null) onFail(e);
+      return null;
+    }
   }
 
   @override
@@ -143,47 +187,69 @@ class DefaultClient extends BaseClient {
       String salt,
       String signature,
       String publicKeyUrl,
-      bool create,
-      String username}) async {
-    var req = AuthenticateGameCenterRequest()
-      ..account = (AccountGameCenter()
-        ..playerId = playerId
-        ..bundleId = bundleId
-        ..timestampSeconds = Int64(timestampSeconds)
-        ..signature = signature
-        ..publicKeyUrl = publicKeyUrl)
-      ..create_2 = getBool(create);
+      bool create = true,
+      String username,
+      NakamaErrorHandler onFail}) async {
+    try {
+      var req = AuthenticateGameCenterRequest()
+        ..account = (AccountGameCenter()
+          ..playerId = playerId
+          ..bundleId = bundleId
+          ..timestampSeconds = Int64(timestampSeconds)
+          ..signature = signature
+          ..publicKeyUrl = publicKeyUrl)
+        ..create_2 = getBool(create);
 
-    if (username != null) req..username = username;
-    var session =
-        await client.authenticateGameCenter(req, options: calloptBasicAuth);
-    return NakamaSession(session, this);
+      if (username != null) req..username = username;
+      var session =
+          await client.authenticateGameCenter(req, options: calloptBasicAuth);
+      return NakamaSession(session, this);
+    } on GrpcError catch (e) {
+      if (onFail != null) onFail(e);
+      return null;
+    }
   }
 
   @override
   Future<NakamaSession> authenticateGoogle(
-      {String token, bool create, String username}) async {
-    var req = AuthenticateGoogleRequest()
-      ..account = (AccountGoogle()..token = token)
-      ..create_2 = getBool(create);
+      {String token,
+      bool create = true,
+      String username,
+      NakamaErrorHandler onFail}) async {
+    try {
+      var req = AuthenticateGoogleRequest()
+        ..account = (AccountGoogle()..token = token)
+        ..create_2 = getBool(create);
 
-    if (username != null) req..username = username;
-    var session =
-        await client.authenticateGoogle(req, options: calloptBasicAuth);
-    return NakamaSession(session, this);
+      if (username != null) req..username = username;
+      var session =
+          await client.authenticateGoogle(req, options: calloptBasicAuth);
+      return NakamaSession(session, this);
+    } on GrpcError catch (e) {
+      if (onFail != null) onFail(e);
+      return null;
+    }
   }
 
   @override
   Future<NakamaSession> authenticateSteam(
-      {String token, bool create, String username}) async {
-    var req = AuthenticateSteamRequest()
-      ..account = (AccountSteam()..token = token)
-      ..create_2 = getBool(create);
+      {String token,
+      bool create = true,
+      String username,
+      NakamaErrorHandler onFail}) async {
+    try {
+      var req = AuthenticateSteamRequest()
+        ..account = (AccountSteam()..token = token)
+        ..create_2 = getBool(create);
 
-    if (username != null) req..username = username;
-    var session =
-        await client.authenticateSteam(req, options: calloptBasicAuth);
-    return NakamaSession(session, this);
+      if (username != null) req..username = username;
+      var session =
+          await client.authenticateSteam(req, options: calloptBasicAuth);
+      return NakamaSession(session, this);
+    } on GrpcError catch (e) {
+      if (onFail != null) onFail(e);
+      return null;
+    }
   }
 
   @override

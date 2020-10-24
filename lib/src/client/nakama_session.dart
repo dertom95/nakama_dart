@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:fixnum/fixnum.dart';
 import 'package:grpc/grpc.dart';
-import 'package:nakama_client/src/client/BaseClient.dart';
+import 'package:nakama_client/src/client/baseclient.dart';
 import 'package:nakama_client/src/generated/proto/github.com/heroiclabs/nakama-common/api/api.pb.dart';
 
 class NakamaSession {

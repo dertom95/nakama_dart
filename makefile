@@ -23,22 +23,19 @@ generate_proto:
 #	@protoc --dart_out=$(PROJECT_PROTO_GEN_DIR) $(PROTO_ROOT_DIR)/google/protobuf/*.proto
 
 swagger-gen: 
-	go run codegen/main.go res/proto/${NAKAMA_VERSION}/apigrpc.swagger.json lib/src/generated/BaseClientInterface.gen.dart
+	go run codegen/main.go res/proto/${NAKAMA_VERSION}/apigrpc.swagger.json lib/src/generated/baseclient_interface.gen.dart
 
 
 gen: generate_proto swagger-gen
 
 cert-clean:
-	@rm -f certs/nakamassl_key.pem
-	@rm -f certs/nakamassl_cert.pem
-	@rm -f certs/nakamassl.fingerprint
+	@rm -Rf test-certs
 
 cert: cert-only ssl-fingerprint
 
 cert-only:
 	@mkdir -p certs
-	@openssl req -x509 -newkey rsa:2048 -keyout certs/nakamassl_key.pem -out certs/nakamassl_cert.pem -days 3650 -nodes -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=${SERVER_HOST}"
+	@openssl req -x509 -newkey rsa:2048 -keyout test-certs/nakamassl_key.pem -out test-certs/nakamassl_cert.pem -days 3650 -nodes -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=${SERVER_HOST}"
 
 ssl-fingerprint:
-	@openssl x509 -fingerprint -noout -inform pem -in certs/nakamassl_cert.pem > certs/nakamassl.fingerprint
-
+	@openssl x509 -fingerprint -noout -inform pem -in test-certs/nakamassl_cert.pem > test-certs/nakamassl.fingerprint

@@ -11,7 +11,7 @@
             "mode": "auto",
             "program": "${workspaceFolder}/codegen",
             "env": {},
-            "args": ["${workspaceFolder}/res/proto/2.14/apigrpc.swagger.json","${workspaceFolder}/lib/src/generated/BaseClientInterface.gen.dart"]
+            "args": ["${workspaceFolder}/res/proto/2.14/apigrpc.swagger.json","${workspaceFolder}/lib/src/generated/baseclient_interface.gen.dart"]
         }
     ]
 }

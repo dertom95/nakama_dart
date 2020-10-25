@@ -85,8 +85,36 @@ class DefaultClient extends BaseClient {
           await client.authenticateCustom(req, options: calloptBasicAuth);
       return NakamaSession(session, this);
     } on GrpcError catch (e) {
-      if (onFail != null) onFail(e);
-      return null;
+      if (onFail != null) {
+        onFail(e);
+        return null;
+      } else
+        throw e;
+    }
+  }
+
+  @override
+  Future<NakamaSession> authenticateApple(
+      {String token,
+      bool create,
+      String username,
+      NakamaErrorHandler onFail}) async {
+    try {
+      var req = AuthenticateAppleRequest()
+        ..account = (AccountApple()..token = token);
+
+      if (create != null) req..create_2 = getBool(create);
+      if (username != null) req..username = username;
+      var session =
+          await client.authenticateApple(req, options: calloptBasicAuth);
+
+      return NakamaSession(session, this);
+    } on GrpcError catch (e) {
+      if (onFail != null) {
+        onFail(e);
+        return null;
+      } else
+        throw e;
     }
   }
 
@@ -106,8 +134,11 @@ class DefaultClient extends BaseClient {
           await client.authenticateDevice(req, options: calloptBasicAuth);
       return NakamaSession(session, this);
     } on GrpcError catch (e) {
-      if (onFail != null) onFail(e);
-      return null;
+      if (onFail != null) {
+        onFail(e);
+        return null;
+      } else
+        throw e;
     }
   }
 
@@ -130,8 +161,11 @@ class DefaultClient extends BaseClient {
           await client.authenticateEmail(req, options: calloptBasicAuth);
       return NakamaSession(session, this);
     } on GrpcError catch (e) {
-      if (onFail != null) onFail(e);
-      return null;
+      if (onFail != null) {
+        onFail(e);
+        return null;
+      } else
+        throw e;
     }
   }
 
@@ -152,8 +186,11 @@ class DefaultClient extends BaseClient {
           await client.authenticateFacebook(req, options: calloptBasicAuth);
       return NakamaSession(session, this);
     } on GrpcError catch (e) {
-      if (onFail != null) onFail(e);
-      return null;
+      if (onFail != null) {
+        onFail(e);
+        return null;
+      } else
+        throw e;
     }
   }
 
@@ -174,8 +211,11 @@ class DefaultClient extends BaseClient {
           options: calloptBasicAuth);
       return NakamaSession(session, this);
     } on GrpcError catch (e) {
-      if (onFail != null) onFail(e);
-      return null;
+      if (onFail != null) {
+        onFail(e);
+        return null;
+      } else
+        throw e;
     }
   }
 
@@ -205,8 +245,11 @@ class DefaultClient extends BaseClient {
           await client.authenticateGameCenter(req, options: calloptBasicAuth);
       return NakamaSession(session, this);
     } on GrpcError catch (e) {
-      if (onFail != null) onFail(e);
-      return null;
+      if (onFail != null) {
+        onFail(e);
+        return null;
+      } else
+        throw e;
     }
   }
 
@@ -226,8 +269,11 @@ class DefaultClient extends BaseClient {
           await client.authenticateGoogle(req, options: calloptBasicAuth);
       return NakamaSession(session, this);
     } on GrpcError catch (e) {
-      if (onFail != null) onFail(e);
-      return null;
+      if (onFail != null) {
+        onFail(e);
+        return null;
+      } else
+        throw e;
     }
   }
 
@@ -247,8 +293,11 @@ class DefaultClient extends BaseClient {
           await client.authenticateSteam(req, options: calloptBasicAuth);
       return NakamaSession(session, this);
     } on GrpcError catch (e) {
-      if (onFail != null) onFail(e);
-      return null;
+      if (onFail != null) {
+        onFail(e);
+        return null;
+      } else
+        throw e;
     }
   }
 
@@ -401,8 +450,8 @@ class DefaultClient extends BaseClient {
 
   @override
   ResponseFuture<void> linkApple(NakamaSession session, {String token}) {
-    // TODO: implement linkApple
-    throw UnimplementedError();
+    return client.linkApple(AccountApple()..token = token,
+        options: session.calloptJWT);
   }
 
   @override
@@ -478,13 +527,6 @@ class DefaultClient extends BaseClient {
     if (cursor != null) req..cursor = cursor;
     if (forward != null) req..forward = getBool(forward);
     return client.listChannelMessages(req, options: session.calloptJWT);
-  }
-
-  @override
-  Future<NakamaSession> authenticateApple(
-      {String token, bool create, String username}) {
-    // TODO: implement authenticateApple
-    throw UnimplementedError();
   }
 
   @override
@@ -677,8 +719,8 @@ class DefaultClient extends BaseClient {
 
   @override
   ResponseFuture<void> unlinkApple(NakamaSession session, {String token}) {
-    // TODO: implement unlinkApple
-    throw UnimplementedError();
+    return client.unlinkApple(AccountApple()..token = token,
+        options: session.calloptJWT);
   }
 
   @override

@@ -372,7 +372,9 @@ class DefaultClient extends BaseClient {
   @override
   ResponseFuture<void> demoteGroupUsers(NakamaSession session,
       {String groupId, List<String> userIds}) {
-    throw UnimplementedError();
+    var req = DemoteGroupUsersRequest()..groupId = groupId;
+    if (userIds != null) req..userIds.addAll(userIds);
+    return client.demoteGroupUsers(req, options: session.calloptJWT);
   }
 
   @override
@@ -599,15 +601,23 @@ class DefaultClient extends BaseClient {
       int minSize,
       int maxSize,
       String query}) {
-    // TODO: implement listMatches
-    throw UnimplementedError();
+    var req = ListMatchesRequest();
+    if (limit != null) req..limit = getInt32(limit);
+    if (authoritative != null) req..authoritative = getBool(authoritative);
+    if (label != null) req..label = getString(label);
+    if (minSize != null) req..minSize = getInt32(minSize);
+    if (maxSize != null) req..maxSize = getInt32(maxSize);
+    if (query != null) req..query = getString(query);
+    return client.listMatches(req, options: session.calloptJWT);
   }
 
   @override
   ResponseFuture<NotificationList> listNotifications(NakamaSession session,
       {int limit, String cacheableCursor}) {
-    // TODO: implement listNotifications
-    throw UnimplementedError();
+    var req = ListNotificationsRequest();
+    if (limit != null) req..limit = getInt32(limit);
+    if (cacheableCursor != null) req..cacheableCursor = cacheableCursor;
+    client.listNotifications(req, options: session.calloptJWT);
   }
 
   @override
@@ -754,8 +764,9 @@ class DefaultClient extends BaseClient {
   @override
   ResponseFuture<void> unlinkFacebookInstantGame(NakamaSession session,
       {String signedPlayerInfo}) {
-    // TODO: implement unlinkFacebookInstantGame
-    throw UnimplementedError();
+    return client.unlinkFacebookInstantGame(
+        AccountFacebookInstantGame()..signedPlayerInfo = signedPlayerInfo,
+        options: session.calloptJWT);
   }
 
   @override

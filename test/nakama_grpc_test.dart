@@ -4,7 +4,7 @@ import 'package:nakama_client/nakama_client.dart';
 import 'package:nakama_client/src/generated/proto/github.com/heroiclabs/nakama-common/api/api.pb.dart';
 import "package:test/test.dart";
 
-bool use_ssl = true;
+bool use_ssl = false;
 
 Future<DefaultClient> test_connect() async {
   var client = DefaultClient(

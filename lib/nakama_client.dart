@@ -6,3 +6,4 @@ library nakama_client;
 export 'src/client/default_client.dart';
 export 'src/client/nakama_session.dart';
 export 'src/generated/proto/apigrpc.pbgrpc.dart';
+export 'src/generated/proto/github.com/heroiclabs/nakama-common/api/api.pb.dart';

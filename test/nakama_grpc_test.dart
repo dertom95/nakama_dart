@@ -88,7 +88,7 @@ void main() {
         print(
             "account-name: ${account.user.username} displayname:${account.user.displayName}");
         var record = await client.writeLeaderboardRecord(session,
-            leaderboardId: "level1", score: 1895);
+            leaderboardId: "level21", score: 1895);
         print("record: ${record.score}");
       } catch (e) {
         print(e);

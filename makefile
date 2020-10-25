@@ -31,11 +31,17 @@ gen: generate_proto swagger-gen
 cert-clean:
 	@rm -Rf test-certs
 
-cert: cert-only ssl-fingerprint
+cert: cert-clean cert-only ssl-fingerprint
 
 cert-only:
-	@mkdir -p certs
+	@mkdir -p test-certs
 	@openssl req -x509 -newkey rsa:2048 -keyout test-certs/nakamassl_key.pem -out test-certs/nakamassl_cert.pem -days 3650 -nodes -subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=${SERVER_HOST}"
 
 ssl-fingerprint:
 	@openssl x509 -fingerprint -noout -inform pem -in test-certs/nakamassl_cert.pem > test-certs/nakamassl.fingerprint
+
+start-nakama:
+	@docker-compose up
+
+start-nakama-ssl:
+	@docker-compose -f docker-compose-ssl.yml up
